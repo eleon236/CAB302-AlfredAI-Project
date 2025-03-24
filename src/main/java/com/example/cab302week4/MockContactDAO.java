@@ -15,6 +15,7 @@ public class MockContactDAO implements IContactDAO {
         addContact(new Contact("John", "Doe", "johndoe@example.com", "0423423423"));
         addContact(new Contact("Jane", "Doe", "janedoe@example.com", "0423423424"));
         addContact(new Contact("Jay", "Doe", "jaydoe@example.com", "0423423425"));
+
     }
 
     @Override

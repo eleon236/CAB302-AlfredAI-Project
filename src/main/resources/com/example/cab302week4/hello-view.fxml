@@ -25,7 +25,7 @@
               text="I agree to the terms and conditions."
               onAction="#onAgreeCheckBoxClick"/>
     <HBox alignment="BOTTOM_RIGHT" spacing="10.0">
-        <Button text="Cancel" />
+        <Button text="Cancel" onAction="#onCancelButtonClick"/>
         <Button fx:id="nextButton"
                 text="Next"
                 onAction="#onNextButtonClick"

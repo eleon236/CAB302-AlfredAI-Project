@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class MainController {
     public TextField firstNameTextField;
@@ -18,6 +20,9 @@ public class MainController {
     public MainController() {
         contactDAO = new MockContactDAO();
     }
+    @FXML
+    private VBox contactContainer;
+
 
     /**
      * Programmatically selects a contact in the list view and
@@ -78,13 +83,25 @@ public class MainController {
      */
     private void syncContacts() {
         contactsListView.getItems().clear();
-        contactsListView.getItems().addAll(contactDAO.getAllContacts());
+        List<Contact> contacts = contactDAO.getAllContacts();
+        boolean hasContact = !contacts.isEmpty();
+        if (hasContact) {
+            contactsListView.getItems().addAll(contacts);
+        }
+        // Show / hide based on whether there are contacts
+        contactContainer.setVisible(hasContact);
     }
 
     @FXML
     public void initialize() {
         contactsListView.setCellFactory(this::renderCell);
         syncContacts();
+        // Select the first contact and display its information
+        contactsListView.getSelectionModel().selectFirst();
+        Contact firstContact = contactsListView.getSelectionModel().getSelectedItem();
+        if (firstContact != null) {
+            selectContact(firstContact);
+        }
     }
     @FXML
     private void onEditConfirm() {
@@ -124,6 +141,16 @@ public class MainController {
         // and focus the first name text field
         selectContact(newContact);
         firstNameTextField.requestFocus();
+    }
+    @FXML
+    private void onCancel() {
+        // Find the selected contact
+        Contact selectedContact = contactsListView.getSelectionModel().getSelectedItem();
+        if (selectedContact != null) {
+            // Since the contact hasn't been modified,
+            // we can just re-select it to refresh the text fields
+            selectContact(selectedContact);
+        }
     }
 }
 
