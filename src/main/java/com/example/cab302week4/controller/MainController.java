@@ -2,30 +2,34 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.model.Contact;
 import com.example.cab302week4.model.IContactDAO;
-import com.example.cab302week4.model.SqliteContactDao;
+import com.example.cab302week4.model.SqliteContactDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
 
 public class MainController {
-    public TextField firstNameTextField;
-    public TextField lastNameTextField;
-    public TextField emailTextField;
-    public TextField phoneTextField;
     @FXML
     private ListView<Contact> contactsListView;
-    private IContactDAO contactDAO;
-    public MainController() {
-        contactDAO = new SqliteContactDao();
-    }
+    @FXML
+    private TextField firstNameTextField;
+    @FXML
+    private TextField lastNameTextField;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private TextField phoneTextField;
     @FXML
     private VBox contactContainer;
+    private IContactDAO contactDAO;
 
-
+    public MainController() {
+        contactDAO = new SqliteContactDAO();
+    }
 
     /**
      * Programmatically selects a contact in the list view and
@@ -47,6 +51,16 @@ public class MainController {
      */
     private ListCell<Contact> renderCell(ListView<Contact> contactListView) {
         return new ListCell<>() {
+            /**
+             * Handles the event when a contact is selected in the list view.
+             * @param mouseEvent The event to handle.
+             */
+            private void onContactSelected(MouseEvent mouseEvent) {
+                ListCell<Contact> clickedCell = (ListCell<Contact>) mouseEvent.getSource();
+                // Get the selected contact from the list view
+                Contact selectedContact = clickedCell.getItem();
+                if (selectedContact != null) selectContact(selectedContact);
+            }
 
             /**
              * Updates the item in the cell by setting the text to the contact's full name.
@@ -57,16 +71,12 @@ public class MainController {
             protected void updateItem(Contact contact, boolean empty) {
                 super.updateItem(contact, empty);
                 // If the cell is empty, set the text to null, otherwise set it to the contact's full name
-                if (empty || contact == null || contact.getFullName() == null) {
+                if (empty || contact == null || contact.getContactSummary() == null) {
                     setText(null);
                     super.setOnMouseClicked(this::onContactSelected);
                 } else {
-                    setText(contact.getFullName());
+                    setText(contact.getContactSummary());
                 }
-            }
-
-            private void onContactSelected(javafx.scene.input.MouseEvent mouseEvent) {
-                
             }
         };
     }
@@ -96,6 +106,7 @@ public class MainController {
             selectContact(firstContact);
         }
     }
+
     @FXML
     private void onEditConfirm() {
         // Get the selected contact from the list view
@@ -119,6 +130,7 @@ public class MainController {
             syncContacts();
         }
     }
+
     @FXML
     private void onAdd() {
         // Default values for a new contact
@@ -135,6 +147,7 @@ public class MainController {
         selectContact(newContact);
         firstNameTextField.requestFocus();
     }
+
     @FXML
     private void onCancel() {
         // Find the selected contact
@@ -146,5 +159,3 @@ public class MainController {
         }
     }
 }
-
-

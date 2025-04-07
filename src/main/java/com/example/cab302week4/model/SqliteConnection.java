@@ -1,5 +1,4 @@
 package com.example.cab302week4.model;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
