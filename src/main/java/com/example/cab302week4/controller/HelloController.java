@@ -4,11 +4,13 @@ import com.example.cab302week4.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
 
 public class HelloController {
     @FXML
@@ -19,14 +21,7 @@ public class HelloController {
     private CheckBox agreeCheckBox;
     @FXML
     private Button nextButton;
-    @FXML
-    private TextField firstNameTextField;
-    @FXML
-    private TextField lastNameTextField;
-    @FXML
-    private TextField emailTextField;
-    @FXML
-    private TextField phoneTextField;
+
     @FXML
     public void initialize() {
         termsAndConditions.setText("""
@@ -48,14 +43,11 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
     }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to the Address Book Application!");
-    }
-    @FXML
     protected void onAgreeCheckBoxClick() {
         boolean accepted = agreeCheckBox.isSelected();
         nextButton.setDisable(!accepted);
     }
+
     @FXML
     protected void onNextButtonClick() throws IOException {
         Stage stage = (Stage) nextButton.getScene().getWindow();
@@ -63,6 +55,7 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
+
     @FXML
     protected void onCancelButtonClick() {
         Stage stage = (Stage) nextButton.getScene().getWindow();
