@@ -1,15 +1,20 @@
 package com.example.cab302week4.controller;
 
+import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.Contact;
 import com.example.cab302week4.model.IContactDAO;
 import com.example.cab302week4.model.SqliteContactDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MainController {
@@ -158,4 +163,15 @@ public class MainController {
             selectContact(selectedContact);
         }
     }
+
+    @FXML
+    private void onGoToFlashcards() throws IOException {
+        Stage stage = (Stage) contactsListView.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("flashcard-view.fxml"));
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
+    }
+
+
+
 }

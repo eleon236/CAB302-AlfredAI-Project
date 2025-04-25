@@ -42,6 +42,7 @@
                 <Button text="Confirm" onAction="#onEditConfirm" />
                 <Button text="Cancel" onAction="#onCancel" />
                 <Button text="Delete" onAction="#onDelete"/>
+                <Button text="Go to Flashcards" onAction="#onGoToFlashcards"/>
             </HBox>
         </VBox>
     </HBox>

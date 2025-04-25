@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.cab302week4.controller.flashcardController"
+      alignment="CENTER" spacing="20" style="-fx-padding: 40; -fx-background-color: #f0f0f0;">
+    <Label fx:id="cardLabel" wrapText="true" maxWidth="260" style="-fx-font-size: 16;"/>
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Next" onAction="#onNext"/>
+        <Button text="Flip" onAction="#onFlip"/>
+    </HBox>
+    <Button text="Back to Contacts" onAction="#onBack"/>
+</VBox>
+
+
