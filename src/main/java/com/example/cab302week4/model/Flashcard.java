@@ -26,4 +26,8 @@ public class Flashcard {
         return mastered;
     }
 
+    public void setMastered(boolean mastered) {
+        this.mastered = mastered;
+    }
+
 }
