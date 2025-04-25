@@ -2,12 +2,11 @@ import com.example.cab302week4.model.*;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
 
 public class QuizTest {
     private Quiz quiz;
 
-    private Flashcard[] flashcards = {
+    private final Flashcard[] flashcards = {
             new Flashcard(1, "What is something?", "something", false),
             new Flashcard(2, "What is nothing?", "nothing", true),
             new Flashcard(3, "Who are you?", "you", true),
@@ -113,7 +112,26 @@ public class QuizTest {
     }
 
     @Test
-    public void testCalcQuizResult() {
+    public void testCalcQuizResultShouldBeZero() {
+        quiz = new Quiz(flashcards, 2);
+        quiz.enterUserAnswer(1, "wrong");
+        quiz.enterUserAnswer(2, "wrong");
+        quiz.enterUserAnswer(3, "wrong");
+        quiz.enterUserAnswer(4, "wrong");
+        quiz.enterUserAnswer(5, "wrong");
+        quiz.calcQuizResult();
+        assertEquals(0, quiz.getResult());
+    }
 
+    @Test
+    public void testCalcQuizResultShouldBeTwo() {
+        quiz = new Quiz(flashcards, 2);
+        quiz.enterUserAnswer(1, "something");
+        quiz.enterUserAnswer(2, "something");
+        quiz.enterUserAnswer(3, "wrong");
+        quiz.enterUserAnswer(4, "wrong");
+        quiz.enterUserAnswer(5, "wrong");
+        quiz.calcQuizResult();
+        assertEquals(2, quiz.getResult());
     }
 }

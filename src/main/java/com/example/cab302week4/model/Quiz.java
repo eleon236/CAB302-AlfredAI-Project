@@ -7,7 +7,7 @@ import java.util.Objects;
  * A class representing a daily quiz, with a list of the quiz's questions
  */
 public class Quiz {
-    private QuizQuestion[] questions;
+    private final QuizQuestion[] questions;
     private int result;
 
     /**
@@ -23,7 +23,7 @@ public class Quiz {
         // Define some values
         int questionNum = 0;
         boolean questionsFull = false;
-        ArrayList<Flashcard> masteredCards = new ArrayList<Flashcard>();
+        ArrayList<Flashcard> masteredCards = new ArrayList<>();
 
         // Add questions that aren't mastered yet
         for (Flashcard flashcard : flashcards) {
@@ -68,22 +68,16 @@ public class Quiz {
         this.result = 0;
     }
 
-    /**
-     * Constructor to make a Quiz based on a provided list of questions
-     * @param questions The quiz questions to be used
-     */
-    public Quiz(QuizQuestion[] questions) {
-        this.questions = questions;
-        this.result = 0;
-    }
-
     public QuizQuestion[] getQuestions() {
         return questions;
+    }
+    public int getResult() {
+        return result;
     }
 
     /**
      * Calculates the number of questions for a daily quiz
-     * @param flashcards All of the user's flashcards for the selected quest
+     * @param flashcards All the user's flashcards for the selected quest
      * @param questDaysLeft An int with the number of days left in the quest
      * @return An int with the number of questions
      */
