@@ -1,5 +1,7 @@
 package com.example.cab302week4.model;
 
+import java.util.ArrayList;
+
 /**
  * A class representing a daily quiz, with a list of the quiz's questions
  */
@@ -12,23 +14,52 @@ public class Quiz {
      * @param questDaysLeft An int with the number of days left in the quest
      */
     public Quiz(Flashcard[] flashcards, int questDaysLeft) {
+        // Prepare questions array
         int quizLength = calcNumberOfQuestions(flashcards, questDaysLeft);
         QuizQuestion[] questions = new QuizQuestion[quizLength];
 
-        // TODO: Implement random logic
+        // Define some values
         int questionNum = 0;
-        for (Flashcard flashcard : flashcards) {
+        boolean questionsFull = false;
+        ArrayList<Flashcard> masteredCards = new ArrayList<Flashcard>();
 
+        // Add questions that aren't mastered yet
+        for (Flashcard flashcard : flashcards) {
+            // If not mastered, add the question and increment questionNum
             if (!flashcard.getMastered()) {
                 QuizQuestion question = new QuizQuestion(flashcard.getQuestion(), flashcard.getAnswer());
                 questions[questionNum] = question;
                 questionNum++;
-            }
 
-            if (questionNum == quizLength) {
-                break;
-            }
+                if (questionNum == quizLength) {
+                    questionsFull = true;
+                    break;
+                }
 
+            // If mastered, add to the mastered ArrayList
+            } else {
+                masteredCards.add(flashcard);
+            }
+        }
+
+        // If questions isn't full, add random questions that are already mastered
+        if (!questionsFull) {
+            int questionsLeft = quizLength - questionNum;
+            for (int i = 0; i < questionsLeft; i++) {
+                // Select a random mastered question to add
+                int randomNum = (int)(Math.random() * masteredCards.size()); // 0 to masteredCards.size() - 1
+                QuizQuestion question = new QuizQuestion(masteredCards.get(randomNum).getQuestion(), masteredCards.get(randomNum).getAnswer());
+                questions[questionNum] = question;
+                questionNum++;
+
+                // Remove the question so it isn't selected again
+                masteredCards.remove(randomNum);
+
+                // Check if questions is full
+                if (questionNum == quizLength) {
+                    break;
+                }
+            }
         }
 
         this.questions = questions;
