@@ -151,7 +151,7 @@ public class Quiz {
             }
         }
 
-        return (questionsDone / questions.length) * 100;
+        return (questionsDone * 100) / questions.length;
     }
 
     /**

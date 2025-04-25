@@ -26,6 +26,15 @@ public class Flashcard {
         return mastered;
     }
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
     public void setMastered(boolean mastered) {
         this.mastered = mastered;
     }

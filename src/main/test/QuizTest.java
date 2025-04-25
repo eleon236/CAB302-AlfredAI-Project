@@ -7,7 +7,6 @@ import java.util.List;
 public class QuizTest {
     private Quiz quiz;
 
-    // Flashcard: ID, question, answer, mastered
     private Flashcard[] flashcards = {
             new Flashcard(1, "What is something?", "something", false),
             new Flashcard(2, "What is nothing?", "nothing", true),
@@ -81,18 +80,36 @@ public class QuizTest {
         assertEquals(30, quiz.getQuestions().length);
     }
 
-    // TODO Finish these tests
     @Test
     public void testEnterUserAnswer() {
+        quiz = new Quiz(flashcards, 2);
         quiz.enterUserAnswer(1, "nothing");
         assertEquals("nothing", quiz.getQuestions()[0].getUserAnswer());
-        // Revert to original state
-        quiz.enterUserAnswer(1, "");
     }
 
     @Test
-    public void testCalcQuizProgress() {
+    public void testCalcQuizProgressShouldBeZero() {
+        quiz = new Quiz(flashcards, 2);
+        assertEquals(0, quiz.calcQuizProgress());
+    }
 
+    @Test
+    public void testCalcQuizProgressShouldBeTwenty() {
+        quiz = new Quiz(flashcards, 2);
+        quiz.enterUserAnswer(1, "something");
+        quiz.enterUserAnswer(2, "nothing");
+        assertEquals(40, quiz.calcQuizProgress());
+    }
+
+    @Test
+    public void testCalcQuizProgressShouldBeOneHundred() {
+        quiz = new Quiz(flashcards, 2);
+        quiz.enterUserAnswer(1, "something");
+        quiz.enterUserAnswer(2, "nothing");
+        quiz.enterUserAnswer(3, "nothing");
+        quiz.enterUserAnswer(4, "nothing");
+        quiz.enterUserAnswer(5, "nothing");
+        assertEquals(100, quiz.calcQuizProgress());
     }
 
     @Test
