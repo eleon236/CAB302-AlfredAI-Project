@@ -15,4 +15,18 @@ public class QuizQuestion {
     public String toString() {
         return "QuizQuestion {question='" + question + "', correctAnswer='" + correctAnswer + "', userAnswer='" + userAnswer + "'}";
     }
+
+    public String getQuestion() {
+        return question;
+    }
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+    }
 }

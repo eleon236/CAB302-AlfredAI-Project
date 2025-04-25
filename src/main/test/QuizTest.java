@@ -80,4 +80,23 @@ public class QuizTest {
 
         assertEquals(30, quiz.getQuestions().length);
     }
+
+    // TODO Finish these tests
+    @Test
+    public void testEnterUserAnswer() {
+        quiz.enterUserAnswer(1, "nothing");
+        assertEquals("nothing", quiz.getQuestions()[0].getUserAnswer());
+        // Revert to original state
+        quiz.enterUserAnswer(1, "");
+    }
+
+    @Test
+    public void testCalcQuizProgress() {
+
+    }
+
+    @Test
+    public void testCalcQuizResult() {
+
+    }
 }

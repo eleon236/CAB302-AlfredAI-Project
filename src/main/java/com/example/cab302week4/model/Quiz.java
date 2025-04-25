@@ -1,12 +1,14 @@
 package com.example.cab302week4.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * A class representing a daily quiz, with a list of the quiz's questions
  */
 public class Quiz {
     private QuizQuestion[] questions;
+    private int result;
 
     /**
      * Constructor to make a Quiz based on provided flashcards and quizLength
@@ -63,6 +65,7 @@ public class Quiz {
         }
 
         this.questions = questions;
+        this.result = 0;
     }
 
     /**
@@ -71,6 +74,7 @@ public class Quiz {
      */
     public Quiz(QuizQuestion[] questions) {
         this.questions = questions;
+        this.result = 0;
     }
 
     public QuizQuestion[] getQuestions() {
@@ -123,6 +127,45 @@ public class Quiz {
         }
 
         return numQuestions;
+    }
 
+    /**
+     * Updates the userAnswer for a quiz question
+     * @param questionNum The question number as displayed on the GUI
+     * @param userAnswer The answer the user entered
+     */
+    public void enterUserAnswer(int questionNum, String userAnswer) {
+        questions[questionNum - 1].setUserAnswer(userAnswer);
+    }
+
+    /**
+     * Calculates the user's current progress in the quiz
+     * @return An int from 0 to 100 representing the percent of questions the user has completed
+     */
+    public int calcQuizProgress() {
+        int questionsDone = 0;
+        for (QuizQuestion question : questions) {
+            // userAnswer != ""
+            if (!Objects.equals(question.getUserAnswer(), "")) {
+                questionsDone++;
+            }
+        }
+
+        return (questionsDone / questions.length) * 100;
+    }
+
+    /**
+     * Calculates and updates the user's quiz result
+     */
+    public void calcQuizResult() {
+        int score = 0;
+        for (QuizQuestion question : questions) {
+            // userAnswer == correctAnswer
+            if (Objects.equals(question.getUserAnswer(), question.getCorrectAnswer())) {
+                score++;
+            }
+        }
+
+        result = score;
     }
 }
