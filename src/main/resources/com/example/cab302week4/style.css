@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+.root {
+    -fx-font-family: 'Comfortaa', sans-serif;
+}
+
+.flashcard-box {
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-alignment: center;
+    -fx-min-height: 150;
+    -fx-min-width: 300;
+}
+
+.flashcard-text {
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
