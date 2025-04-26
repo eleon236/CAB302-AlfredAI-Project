@@ -2,6 +2,7 @@ package com.example.cab302week4.model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SqliteAlfredDAO implements IAlfredDAO {
@@ -9,19 +10,117 @@ public class SqliteAlfredDAO implements IAlfredDAO {
 
     public SqliteAlfredDAO() {
         connection = SqliteConnection.getInstance();
-        createTable();
+        createUsersTable();
+        createQuestsTable();
+        createFlashcardsTable();
+
+        createUserQuestsTable();
+        createQuestFlashcardsTable();
+
+        insertSampleData();
     }
 
-    private void createTable() {
+    private void insertSampleData() {
+        try {
+            // Clear before inserting
+            Statement clearStatement = connection.createStatement();
+            String clearQuery = "DELETE FROM flashcards";
+            clearStatement.execute(clearQuery);
+            Statement insertStatement = connection.createStatement();
+            String insertQuery = "INSERT INTO flashcards (question, answer, mastered) VALUES "
+                    + "('question 1?', 'answer 1', 0),"
+                    + "('question 2?', 'answer 2', 1),"
+                    + "('question 3?', 'answer 3', 1),"
+                    + "('question 4?', 'answer 4', 0),"
+                    + "('question 5?', 'answer 5', 0),"
+                    + "('question 6?', 'answer 6', 0),"
+                    + "('question 7?', 'answer 7', 0),"
+                    + "('question 8?', 'answer 8', 0),"
+                    + "('question 9?', 'answer 9', 0),"
+                    + "('question 10?', 'answer 10', 0)";
+            insertStatement.execute(insertQuery);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createUsersTable() {
         // Create table if not exists
         try {
             Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS contacts ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "firstName VARCHAR NOT NULL,"
-                    + "lastName VARCHAR NOT NULL,"
-                    + "phone VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL"
+            String query = "CREATE TABLE IF NOT EXISTS users ("
+                    + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "username VARCHAR NOT NULL,"
+                    + "password VARCHAR NOT NULL"
+                    + ")";
+            statement.execute(query);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    private void createQuestsTable() {
+        // Create table if not exists
+        try {
+            Statement statement = connection.createStatement();
+            String query = "CREATE TABLE IF NOT EXISTS quests ("
+                    + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "character VARCHAR NOT NULL,"
+                    + "name VARCHAR NOT NULL,"
+                    + "endDate DATE NOT NULL,"
+                    + "distanceTravelled INTEGER NOT NULL,"
+                    + "lastQuizScore INTEGER,"
+                    + "lastQuizDate DATE"
+                    + ")";
+            statement.execute(query);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    private void createFlashcardsTable() {
+        // Create table if not exists
+        try {
+            Statement statement = connection.createStatement();
+            String query = "CREATE TABLE IF NOT EXISTS flashcards ("
+                    + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "question VARCHAR NOT NULL,"
+                    + "answer VARCHAR NOT NULL,"
+                    + "mastered BOOL NOT NULL"
+                    + ")";
+            statement.execute(query);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    private void createUserQuestsTable() {
+        // Create table if not exists
+        try {
+            Statement statement = connection.createStatement();
+            String query = "CREATE TABLE IF NOT EXISTS userQuests ("
+                    + "userID INTEGER,"
+                    + "questID INTEGER,"
+                    + "PRIMARY KEY (userID, questID),"
+                    + "FOREIGN KEY (userID) REFERENCES users(ID),"
+                    + "FOREIGN KEY (questID) REFERENCES quests(ID)"
+                    + ")";
+            statement.execute(query);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    private void createQuestFlashcardsTable() {
+        // Create table if not exists
+        try {
+            Statement statement = connection.createStatement();
+            String query = "CREATE TABLE IF NOT EXISTS questFlashcards ("
+                    + "questID INTEGER,"
+                    + "flashcardID INTEGER,"
+                    + "PRIMARY KEY (questID, flashcardID),"
+                    + "FOREIGN KEY (questID) REFERENCES quests(ID),"
+                    + "FOREIGN KEY (flashcardID) REFERENCES flashcards(ID)"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -30,94 +129,47 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addContact(Contact contact) {
-        try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO contacts (firstName, lastName, phone, email) VALUES (?, ?, ?, ?)"
-            );
-            statement.setString(1, contact.getFirstName());
-            statement.setString(2, contact.getLastName());
-            statement.setString(3, contact.getPhone());
-            statement.setString(4, contact.getEmail());
-            statement.executeUpdate();
-            // Set the id of the new contact
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                contact.setId(generatedKeys.getInt(1));
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+    public void addUser(String username, String password) {
+
     }
 
     @Override
-    public void updateContact(Contact contact) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE id = ?");
-            statement.setString(1, contact.getFirstName());
-            statement.setString(2, contact.getLastName());
-            statement.setString(3, contact.getPhone());
-            statement.setString(4, contact.getEmail());
-            statement.setInt(5, contact.getId());
-            statement.executeUpdate();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+    public int getUserID(String username, String password) {
+        return 0;
     }
 
     @Override
-    public void deleteContact(Contact contact) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM contacts WHERE id = ?");
-            statement.setInt(1, contact.getId());
-            statement.executeUpdate();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+    public void addQuest(String character, String name, Date endDate, int distanceTravelled, int lastQuizScore, Date lastQuizDate) {
+
     }
 
     @Override
-    public Contact getContact(int id) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM contacts WHERE id = ?");
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String phone = resultSet.getString("phone");
-                String email = resultSet.getString("email");
-                Contact contact = new Contact(firstName, lastName, phone, email);
-                contact.setId(id);
-                return contact;
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return null;
+    public void updateQuestDistance(int ID, int distanceTravelled) {
+
     }
 
     @Override
-    public List<Contact> getAllContacts() {
-        List<Contact> contacts = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM contacts");
-            while (rs.next()) {
-                // Retrieve data from the result set
-                int id = rs.getInt("id");
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
-                String phone = rs.getString("phone");
-                String email = rs.getString("email");
-                // Create a new Contact object
-                Contact contact = new Contact(firstName, lastName, email, phone);
-                contact.setId(id);
-                contacts.add(contact);
-            }
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        return contacts;
+    public void updateQuestLastQuizData(int ID, int lastQuizScore, Date lastQuizDate) {
+
+    }
+
+    @Override
+    public void addFlashcard(Flashcard flashcard) {
+
+    }
+
+    @Override
+    public void updateFlashcard(Flashcard flashcard) {
+
+    }
+
+    @Override
+    public void deleteFlashcard(Flashcard flashcard) {
+
+    }
+
+    @Override
+    public Flashcard[] getUserQuests(int questID) {
+        return new Flashcard[0];
     }
 }

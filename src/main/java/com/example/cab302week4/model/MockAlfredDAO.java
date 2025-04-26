@@ -1,6 +1,7 @@
 package com.example.cab302week4.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MockAlfredDAO implements IAlfredDAO {
@@ -11,45 +12,51 @@ public class MockAlfredDAO implements IAlfredDAO {
     private static int autoIncrementedId = 0;
 
     public MockAlfredDAO() {
-        // Add some initial contacts to the mock database
-        addContact(new Contact("John", "Doe", "johndoe@example.com", "0423423423"));
-        addContact(new Contact("Jane", "Doe", "janedoe@example.com", "0423423424"));
-        addContact(new Contact("Jay", "Doe", "jaydoe@example.com", "0423423425"));
 
     }
 
+    @Override
+    public void addUser(String username, String password) {
 
-    public void addContact(Contact contact) {
-        contact.setId(autoIncrementedId);
-        autoIncrementedId++;
-        contacts.add(contact);
     }
 
-
-    public void updateContact(Contact contact) {
-        for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getId() == contact.getId()) {
-                contacts.set(i, contact);
-                break;
-            }
-        }
+    @Override
+    public int getUserID(String username, String password) {
+        return 0;
     }
 
-    public void deleteContact(Contact contact) {
-        contacts.remove(contact);
+    @Override
+    public void addQuest(String character, String name, Date endDate, int distanceTravelled, int lastQuizScore, Date lastQuizDate) {
+
     }
 
+    @Override
+    public void updateQuestDistance(int ID, int distanceTravelled) {
 
-    public Contact getContact(int id) {
-        for (Contact contact : contacts) {
-            if (contact.getId() == id) {
-                return contact;
-            }
-        }
-        return null;
     }
 
-    public List<Contact> getAllContacts() {
-        return new ArrayList<>(contacts);
+    @Override
+    public void updateQuestLastQuizData(int ID, int lastQuizScore, Date lastQuizDate) {
+
+    }
+
+    @Override
+    public void addFlashcard(Flashcard flashcard) {
+
+    }
+
+    @Override
+    public void updateFlashcard(Flashcard flashcard) {
+
+    }
+
+    @Override
+    public void deleteFlashcard(Flashcard flashcard) {
+
+    }
+
+    @Override
+    public Flashcard[] getUserQuests(int questID) {
+        return new Flashcard[0];
     }
 }
