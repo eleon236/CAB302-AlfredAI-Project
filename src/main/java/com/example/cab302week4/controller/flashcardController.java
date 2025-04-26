@@ -1,8 +1,11 @@
 package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -62,4 +65,13 @@ public class flashcardController {
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
+
+    @FXML
+    private void onEditFlashcards(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("edit-flashcards-view.fxml"));
+        Parent editRoot = loader.load();
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        currentScene.setRoot(editRoot);
+    }
+
 }
