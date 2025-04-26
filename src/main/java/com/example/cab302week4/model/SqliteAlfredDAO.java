@@ -1,6 +1,7 @@
 package com.example.cab302week4.model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,32 +17,6 @@ public class SqliteAlfredDAO implements IAlfredDAO {
 
         createUserQuestsTable();
         createQuestFlashcardsTable();
-
-        insertSampleData();
-    }
-
-    private void insertSampleData() {
-        try {
-            // Clear before inserting
-            Statement clearStatement = connection.createStatement();
-            String clearQuery = "DELETE FROM flashcards";
-            clearStatement.execute(clearQuery);
-            Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO flashcards (question, answer, mastered) VALUES "
-                    + "('question 1?', 'answer 1', 0),"
-                    + "('question 2?', 'answer 2', 1),"
-                    + "('question 3?', 'answer 3', 1),"
-                    + "('question 4?', 'answer 4', 0),"
-                    + "('question 5?', 'answer 5', 0),"
-                    + "('question 6?', 'answer 6', 0),"
-                    + "('question 7?', 'answer 7', 0),"
-                    + "('question 8?', 'answer 8', 0),"
-                    + "('question 9?', 'answer 9', 0),"
-                    + "('question 10?', 'answer 10', 0)";
-            insertStatement.execute(insertQuery);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void createUsersTable() {
