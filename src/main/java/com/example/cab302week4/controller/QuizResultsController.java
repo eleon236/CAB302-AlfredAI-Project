@@ -50,7 +50,6 @@ public class QuizResultsController {
 
             // Set up question number label
             Label questionNumLabel = new Label(questionNum + ".");
-            questionNumLabel.setAlignment(Pos.CENTER);
 
             // Set up question field
             Label questionField = new Label(questionInfo.getQuestion());
@@ -72,7 +71,7 @@ public class QuizResultsController {
             );
 
             // Add the row to questionsContainer
-            HBox questionRow = new HBox();
+            HBox questionRow = new HBox(50);
             questionRow.getChildren().add(questionNumLabel);
             questionRow.getChildren().add(questionField);
             questionRow.getChildren().add(answerField);

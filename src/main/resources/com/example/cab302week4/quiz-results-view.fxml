@@ -17,7 +17,7 @@
         <Label text="Results" alignment="CENTER"/>
 
         <Label fx:id="resultsLabel"/>
-        <VBox spacing="10.0" prefWidth="600" fx:id="questionsContainer"/>
+        <VBox spacing="10.0" prefWidth="580" fx:id="questionsContainer"/>
 
     </VBox>
 </ScrollPane>

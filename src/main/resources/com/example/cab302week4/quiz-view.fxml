@@ -15,9 +15,9 @@
         </padding>
         <Button text="Back to Contacts" onAction="#onBack"/>
         <Label text="Daily Quiz" alignment="CENTER"/>
-        <ProgressBar fx:id="progressBar"/>
+        <ProgressBar fx:id="progressBar" prefWidth="580"/>
 
-        <VBox spacing="10.0" prefWidth="600" fx:id="questionsContainer"/>
+        <VBox spacing="10.0" prefWidth="580" fx:id="questionsContainer"/>
 
         <Button text="Submit" onAction="#onSubmit"/>
 

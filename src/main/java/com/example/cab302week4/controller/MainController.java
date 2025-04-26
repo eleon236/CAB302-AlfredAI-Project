@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class MainController {
@@ -175,7 +176,17 @@ public class MainController {
     @FXML
     private void onGoToQuiz() throws IOException {
         Stage stage = (Stage) contactsListView.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
+        FXMLLoader loader;
+
+        // TODO Change this after adding DB
+        // Check if daily quiz has already been done today
+        LocalDate lastDailyQuizDate = LocalDate.now().minusDays(1);
+        if (lastDailyQuizDate.equals(LocalDate.now())) {
+            loader = new FXMLLoader(HelloApplication.class.getResource("quiz-results-view.fxml"));
+        } else {
+            loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
+        }
+
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }

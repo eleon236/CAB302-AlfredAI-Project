@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class QuizController {
     @FXML
@@ -40,14 +41,13 @@ public class QuizController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         progressBar.setProgress(0);
 
         for(int i = 0; i < quiz.getQuestions().length ; i++){
             // Set up question number label
             int questionNum = i + 1;
             Label questionNumLabel = new Label(questionNum + ".");
-            questionNumLabel.setAlignment(Pos.CENTER);
 
             // Set up question field
             Label question = new Label(quiz.getQuestions()[i].getQuestion());
