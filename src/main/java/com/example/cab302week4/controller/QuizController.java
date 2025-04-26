@@ -21,8 +21,6 @@ public class QuizController {
     @FXML
     private VBox questionsContainer;
 
-    private final Quiz quiz;
-
     public QuizController() {
         // TODO Remove after adding DB
         Flashcard[] flashcards = {
@@ -37,20 +35,20 @@ public class QuizController {
                 new Flashcard(9, "Who is that?", "someone", false),
                 new Flashcard(10, "Why?", "just because", false)
         };
-        quiz = new Quiz(flashcards, 2);
+        HelloApplication.quiz = new Quiz(flashcards, 2);
     }
 
     @FXML
     public void initialize() throws IOException {
         progressBar.setProgress(0);
 
-        for(int i = 0; i < quiz.getQuestions().length ; i++){
+        for(int i = 0; i < HelloApplication.quiz.getQuestions().length ; i++){
             // Set up question number label
             int questionNum = i + 1;
             Label questionNumLabel = new Label(questionNum + ".");
 
             // Set up question field
-            Label question = new Label(quiz.getQuestions()[i].getQuestion());
+            Label question = new Label(HelloApplication.quiz.getQuestions()[i].getQuestion());
             question.setPrefWidth(200);
             question.setPrefHeight(100);
             question.setAlignment(Pos.TOP_LEFT);
@@ -77,8 +75,8 @@ public class QuizController {
 
     @FXML
     private void onAnswer(int questionNum, String userAnswer) {
-        quiz.enterUserAnswer(questionNum, userAnswer);
-        double quizProgress = quiz.calcQuizProgress();
+        HelloApplication.quiz.enterUserAnswer(questionNum, userAnswer);
+        double quizProgress = HelloApplication.quiz.calcQuizProgress();
         progressBar.setProgress(quizProgress);
     }
 
@@ -93,7 +91,7 @@ public class QuizController {
     @FXML
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
-        quiz.calcQuizResult();
+        HelloApplication.quiz.calcQuizResult();
 
         // Show results window
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
