@@ -1,0 +1,19 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.cab302week4.controller.EditFlashcardsController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 40;">
+
+    <Label text="Edit Flashcards" style="-fx-font-size: 24;"/>
+
+    <ListView fx:id="flashcardList" prefHeight="400" prefWidth="600"/>
+
+    <HBox spacing="10">
+        <Button text="Back" onAction="#onBack"/>
+    </HBox>
+
+</VBox>
