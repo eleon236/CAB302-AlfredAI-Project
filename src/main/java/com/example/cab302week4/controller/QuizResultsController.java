@@ -3,6 +3,7 @@ package com.example.cab302week4.controller;
 import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.Flashcard;
 import com.example.cab302week4.model.Quiz;
+import com.example.cab302week4.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,15 +14,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class QuizController {
+public class QuizResultsController {
     @FXML
-    private ProgressBar progressBar;
+    private Label resultsLabel;
     @FXML
     private VBox questionsContainer;
 
     private final Quiz quiz;
 
-    public QuizController() {
+    public QuizResultsController() {
         // TODO Remove after adding DB
         Flashcard[] flashcards = {
                 new Flashcard(1, "What is something?", "something", false),
@@ -40,53 +41,38 @@ public class QuizController {
 
     @FXML
     public void initialize() {
-        progressBar.setProgress(0);
+        resultsLabel.setText(quiz.getResult() + " / " + quiz.getQuestions().length);
 
         for(int i = 0; i < quiz.getQuestions().length ; i++){
+            // Set up question field
             int questionNum = i + 1;
+            QuizQuestion questionInfo = quiz.getQuestions()[i];
             Label questionNumLabel = new Label(questionNum + ".");
-            Label question = new Label(quiz.getQuestions()[i].getQuestion());
+            Label questionField = new Label(questionInfo.getQuestion());
 
-            // Set up user answer field
-            TextField userAnswerField = new TextField();
-            userAnswerField.setPromptText("Your answer...");
-            userAnswerField.textProperty().addListener((observable, oldValue, newValue) ->
-                onAnswer(questionNum, newValue)
+            // Set up answer field
+            VBox answerField = new VBox();
+            answerField.getChildren().addAll(
+                    new Label("Answer:"),
+                    new Label(questionInfo.getCorrectAnswer()),
+                    new Label("Your Answer:"),
+                    new Label(questionInfo.getUserAnswer())
             );
 
             // Add the row to questionsContainer
-            HBox questionRow = new HBox(50);
+            HBox questionRow = new HBox();
             questionRow.getChildren().add(questionNumLabel);
-            questionRow.getChildren().add(question);
-            questionRow.getChildren().add(userAnswerField);
+            questionRow.getChildren().add(questionField);
+            questionRow.getChildren().add(answerField);
 
             questionsContainer.getChildren().add(questionRow);
         }
     }
 
     @FXML
-    private void onAnswer(int questionNum, String userAnswer) {
-        quiz.enterUserAnswer(questionNum, userAnswer);
-        double quizProgress = quiz.calcQuizProgress();
-        progressBar.setProgress(quizProgress);
-    }
-
-    @FXML
-    private void onBack() throws IOException {
+    private void onContinue() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
-    }
-
-    @FXML
-    private void onSubmit() throws IOException {
-        // Calculate and update quiz result
-        quiz.calcQuizResult();
-
-        // Show results window
-        Stage stage = (Stage) questionsContainer.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quiz-results-view.fxml"));
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
