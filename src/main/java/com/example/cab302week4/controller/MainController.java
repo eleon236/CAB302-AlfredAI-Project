@@ -191,4 +191,12 @@ public class MainController {
         stage.setScene(scene);
     }
 
+    @FXML
+    private void onGoToAddSubject() throws IOException {
+        Stage stage = (Stage) contactsListView.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("add-subject-view.fxml"));
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
+    }
+
 }

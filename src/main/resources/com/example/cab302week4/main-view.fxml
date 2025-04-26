@@ -44,6 +44,7 @@
                 <Button text="Delete" onAction="#onDelete"/>
                 <Button text="Go to Flashcards" onAction="#onGoToFlashcards"/>
                 <Button text="Go to Quiz" onAction="#onGoToQuiz"/>
+                <Button text="Add Subject" onAction="#onGoToAddSubject"/>
             </HBox>
         </VBox>
     </HBox>
