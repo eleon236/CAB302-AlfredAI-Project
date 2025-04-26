@@ -6,6 +6,7 @@ import com.example.cab302week4.model.Quiz;
 import com.example.cab302week4.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -44,14 +45,25 @@ public class QuizResultsController {
         resultsLabel.setText(quiz.getResult() + " / " + quiz.getQuestions().length);
 
         for(int i = 0; i < quiz.getQuestions().length ; i++){
-            // Set up question field
             int questionNum = i + 1;
             QuizQuestion questionInfo = quiz.getQuestions()[i];
+
+            // Set up question number label
             Label questionNumLabel = new Label(questionNum + ".");
+            questionNumLabel.setAlignment(Pos.CENTER);
+
+            // Set up question field
             Label questionField = new Label(questionInfo.getQuestion());
+            questionField.setPrefWidth(200);
+            questionField.setPrefHeight(100);
+            questionField.setAlignment(Pos.TOP_LEFT);
 
             // Set up answer field
             VBox answerField = new VBox();
+            answerField.setPrefWidth(200);
+            answerField.setPrefHeight(100);
+            answerField.setAlignment(Pos.TOP_LEFT);
+
             answerField.getChildren().addAll(
                     new Label("Answer:"),
                     new Label(questionInfo.getCorrectAnswer()),

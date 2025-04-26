@@ -5,6 +5,7 @@ import com.example.cab302week4.model.Flashcard;
 import com.example.cab302week4.model.Quiz;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -43,12 +44,22 @@ public class QuizController {
         progressBar.setProgress(0);
 
         for(int i = 0; i < quiz.getQuestions().length ; i++){
+            // Set up question number label
             int questionNum = i + 1;
             Label questionNumLabel = new Label(questionNum + ".");
+            questionNumLabel.setAlignment(Pos.CENTER);
+
+            // Set up question field
             Label question = new Label(quiz.getQuestions()[i].getQuestion());
+            question.setPrefWidth(200);
+            question.setPrefHeight(100);
+            question.setAlignment(Pos.TOP_LEFT);
 
             // Set up user answer field
             TextField userAnswerField = new TextField();
+            userAnswerField.setPrefWidth(200);
+            userAnswerField.setPrefHeight(100);
+            userAnswerField.setAlignment(Pos.TOP_LEFT);
             userAnswerField.setPromptText("Your answer...");
             userAnswerField.textProperty().addListener((observable, oldValue, newValue) ->
                 onAnswer(questionNum, newValue)
