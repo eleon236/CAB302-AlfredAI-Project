@@ -172,6 +172,12 @@ public class MainController {
         stage.setScene(scene);
     }
 
-
+    @FXML
+    private void onGoToQuiz() throws IOException {
+        Stage stage = (Stage) contactsListView.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
+    }
 
 }
