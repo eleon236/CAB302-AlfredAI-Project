@@ -1,5 +1,6 @@
 package com.example.cab302week4;
 
+import com.example.cab302week4.model.Quiz;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ public class HelloApplication extends Application {
     public static final String TITLE = "Address Book";
     public static final int WIDTH = 640;
     public static final int HEIGHT = 360;
+    public static Quiz quiz;
 
     @Override
     public void start(Stage stage) throws IOException {
