@@ -136,7 +136,7 @@ public class Quiz {
      * Calculates the user's current progress in the quiz
      * @return An int from 0 to 100 representing the percent of questions the user has completed
      */
-    public int calcQuizProgress() {
+    public double calcQuizProgress() {
         int questionsDone = 0;
         for (QuizQuestion question : questions) {
             // userAnswer != ""
@@ -145,7 +145,7 @@ public class Quiz {
             }
         }
 
-        return (questionsDone * 100) / questions.length;
+        return (double) questionsDone / questions.length;
     }
 
     /**

@@ -93,22 +93,22 @@ public class QuizTest {
     }
 
     @Test
-    public void testCalcQuizProgressShouldBeTwenty() {
+    public void testCalcQuizProgressShouldBeMiddle() {
         quiz = new Quiz(flashcards, 2);
         quiz.enterUserAnswer(1, "something");
         quiz.enterUserAnswer(2, "nothing");
-        assertEquals(40, quiz.calcQuizProgress());
+        assertEquals(0.4, quiz.calcQuizProgress());
     }
 
     @Test
-    public void testCalcQuizProgressShouldBeOneHundred() {
+    public void testCalcQuizProgressShouldBeOne() {
         quiz = new Quiz(flashcards, 2);
         quiz.enterUserAnswer(1, "something");
         quiz.enterUserAnswer(2, "nothing");
         quiz.enterUserAnswer(3, "nothing");
         quiz.enterUserAnswer(4, "nothing");
         quiz.enterUserAnswer(5, "nothing");
-        assertEquals(100, quiz.calcQuizProgress());
+        assertEquals(1, quiz.calcQuizProgress());
     }
 
     @Test
