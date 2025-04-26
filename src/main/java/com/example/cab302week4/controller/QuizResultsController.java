@@ -64,7 +64,7 @@ public class QuizResultsController {
             answerField.setAlignment(Pos.TOP_LEFT);
 
             answerField.getChildren().addAll(
-                    new Label("Answer:"),
+                    new Label("Correct Answer:"),
                     new Label(questionInfo.getCorrectAnswer()),
                     new Label("Your Answer:"),
                     new Label(questionInfo.getUserAnswer())
