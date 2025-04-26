@@ -2,8 +2,8 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.Contact;
-import com.example.cab302week4.model.IContactDAO;
-import com.example.cab302week4.model.SqliteContactDAO;
+import com.example.cab302week4.model.IAlfredDAO;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,10 +31,10 @@ public class MainController {
     private TextField phoneTextField;
     @FXML
     private VBox contactContainer;
-    private IContactDAO contactDAO;
+    private IAlfredDAO contactDAO;
 
     public MainController() {
-        contactDAO = new SqliteContactDAO();
+        contactDAO = new SqliteAlfredDAO();
     }
 
     /**
