@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqliteContactDAO implements IContactDAO {
+public class SqliteAlfredDAO implements IAlfredDAO {
     private Connection connection;
 
-    public SqliteContactDAO() {
+    public SqliteAlfredDAO() {
         connection = SqliteConnection.getInstance();
         createTable();
     }

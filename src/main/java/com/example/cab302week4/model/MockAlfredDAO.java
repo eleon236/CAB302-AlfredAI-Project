@@ -3,14 +3,14 @@ package com.example.cab302week4.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockContactDAO implements IContactDAO {
+public class MockAlfredDAO implements IAlfredDAO {
     /**
      * A static list of contacts to be used as a mock database.
      */
     public static final ArrayList<Contact> contacts = new ArrayList<>();
     private static int autoIncrementedId = 0;
 
-    public MockContactDAO() {
+    public MockAlfredDAO() {
         // Add some initial contacts to the mock database
         addContact(new Contact("John", "Doe", "johndoe@example.com", "0423423423"));
         addContact(new Contact("Jane", "Doe", "janedoe@example.com", "0423423424"));
