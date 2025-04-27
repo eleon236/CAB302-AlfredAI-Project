@@ -37,6 +37,9 @@ public class MainController {
 
     private IAlfredDAO alfredDAO;
 
+    @FXML
+    private ListView<AddSubject> questsListView;
+
     public MainController() {
         contactDAO = new SqliteContactDAO();
         alfredDAO = new SqliteAlfredDAO();
@@ -93,6 +96,7 @@ public class MainController {
         // if (firstContact != null) {
         //     selectContact(firstContact);
         // }
+        loadQuestsIntoListView();
     }
 
 //    @FXML
@@ -185,5 +189,27 @@ public class MainController {
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
+
+
+  private void loadQuestsIntoListView() {
+//      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
+//      List<AddSubject> quests = alfredDAO.getUserQuests(1); // Call the method on the instance
+      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
+      List<AddSubject> quests = alfredDAO.getUserQuests(); // Call the no-argument method
+      questsListView.getItems().addAll(quests);
+
+      questsListView.setCellFactory(listView -> new ListCell<>() {
+          @Override
+          protected void updateItem(AddSubject quest, boolean empty) {
+              super.updateItem(quest, empty);
+              if (empty || quest == null) {
+                  setText(null);
+              } else {
+                  setText(quest.getCharacterName() + " - " + quest.getEndDate());
+              }
+          }
+      });
+  }
+
 
 }

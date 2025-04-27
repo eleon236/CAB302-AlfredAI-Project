@@ -19,8 +19,6 @@ public class AddSubjectController {
     private TextField subjectNameTextField;
     @FXML
     private DatePicker subjectEndDateTextField;
-    @FXML
-    private DatePicker subjectlastQuizDateTextField;
 
     @FXML
     private void onAddSubject() {

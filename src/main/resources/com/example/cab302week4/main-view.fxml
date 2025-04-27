@@ -10,13 +10,19 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.collections.FXCollections?>
 <VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.cab302week4.controller.MainController"
 >
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <Label text="Select a contact to view or edit." />
+    <Label text="Select a Quest to continue" />
+    <ListView fx:id="questsListView" prefWidth="400" prefHeight="300">
+        <items>
+            <FXCollections fx:factory="observableArrayList"/>
+        </items>
+    </ListView>
     <HBox VBox.vgrow="ALWAYS" spacing="20.0">
 <!--        <VBox spacing="10.0">-->
 <!--            <ListView fx:id="contactsListView"  />-->
