@@ -2,6 +2,7 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.AddSubject;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -25,16 +26,19 @@ public class AddSubjectController {
     private void onAddSubject() {
         String subjectName = subjectNameTextField.getText().trim();
         LocalDate subjectEndDate = subjectEndDateTextField.getValue();
-        LocalDate subjectLastQuizDate = subjectlastQuizDateTextField.getValue();
 
-        if (subjectName.isEmpty() || subjectEndDate == null || subjectLastQuizDate == null) {
+        if (subjectName.isEmpty() || subjectEndDate == null) {
             System.out.println("All fields must be filled out.");
             return;
         }
 
         // Create an AddSubject object
-        AddSubject newSubject = new AddSubject(subjectName, subjectEndDate, subjectLastQuizDate);
+        AddSubject newSubject = new AddSubject(subjectName, subjectEndDate);
 
+
+        // Save the subject as a quest in the database
+        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
+        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
         // TODO: Add logic to save the subject to the database or list
         System.out.println("Subject added: " + newSubject);
 
