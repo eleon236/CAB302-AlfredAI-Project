@@ -91,7 +91,11 @@ public class QuizController {
 
         // Update quiz result in database
         // TODO Implement actual questID
-        alfredDAO.updateQuestLastQuizData(1, HelloApplication.quiz.getResult(), LocalDate.now());
+        alfredDAO.updateQuestLastQuizData(
+                1,
+                HelloApplication.quiz.getResult() + " / " + HelloApplication.quiz.getQuestions().length,
+                LocalDate.now()
+        );
 
         // Show results window
         Stage stage = (Stage) questionsContainer.getScene().getWindow();

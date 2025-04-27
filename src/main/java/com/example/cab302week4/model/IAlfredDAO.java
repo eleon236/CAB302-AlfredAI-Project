@@ -55,7 +55,7 @@ public interface IAlfredDAO {
      */
     public void updateQuestLastQuizData(
             int ID,
-            int lastQuizScore,
+            String lastQuizScore,
             LocalDate lastQuizDate
     );
 
@@ -72,6 +72,13 @@ public interface IAlfredDAO {
      * @return The quest's last quiz date as a LocalDate
      */
     public LocalDate getQuestLastQuizDate(int questID);
+
+    /**
+     * Retrieves a quest's last quiz score from the database
+     * @param questID The quest's ID
+     * @return The quest's last quiz score as an integer
+     */
+    public String getQuestLastQuizScore (int questID);
 
     ///////////////// Flashcards /////////////////
     /**

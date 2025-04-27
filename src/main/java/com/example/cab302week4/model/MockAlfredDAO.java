@@ -31,13 +31,18 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void updateQuestLastQuizData(int ID, int lastQuizScore, LocalDate lastQuizDate) {
+    public void updateQuestLastQuizData(int ID, String lastQuizScore, LocalDate lastQuizDate) {
 
     }
 
     @Override
     public LocalDate getQuestLastQuizDate(int questID) {
         return LocalDate.now();
+    }
+
+    @Override
+    public String getQuestLastQuizScore(int questID) {
+        return "";
     }
 
     @Override
