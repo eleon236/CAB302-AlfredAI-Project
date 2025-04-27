@@ -29,17 +29,11 @@ public interface IAlfredDAO {
      * @param character The quest's character name
      * @param name The quest's name
      * @param endDate The quest's end date
-     * @param distanceTravelled The distance the user has travelled in the quest so far
-     * @param lastQuizScore The user's score on their last daily quiz
-     * @param lastQuizDate The date the user did their last daily quiz
      */
     public void addQuest(
             String character,
             String name,
-            Date endDate,
-            int distanceTravelled,
-            int lastQuizScore,
-            Date lastQuizDate
+            Date endDate
     );
 
     /**
@@ -94,5 +88,5 @@ public interface IAlfredDAO {
      * Retrieves a quest's flashcards from the database
      * @param questID The quest's ID
      */
-    public Flashcard[] getUserQuests(int questID);
+    public List<Flashcard> getQuestFlashcards(int questID);
 }

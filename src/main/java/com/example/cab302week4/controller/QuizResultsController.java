@@ -1,8 +1,6 @@
 package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
-import com.example.cab302week4.model.Flashcard;
-import com.example.cab302week4.model.Quiz;
 import com.example.cab302week4.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

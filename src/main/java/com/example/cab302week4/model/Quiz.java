@@ -155,7 +155,7 @@ public class Quiz {
         int score = 0;
         for (QuizQuestion question : questions) {
             // userAnswer == correctAnswer
-            if (Objects.equals(question.getUserAnswer(), question.getCorrectAnswer())) {
+            if (Objects.equals(question.getUserAnswer().toLowerCase(), question.getCorrectAnswer().toLowerCase())) {
                 score++;
             }
         }
