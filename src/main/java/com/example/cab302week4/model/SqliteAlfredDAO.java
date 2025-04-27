@@ -1,6 +1,7 @@
 package com.example.cab302week4.model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -170,16 +171,35 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void updateQuestLastQuizData(int ID, int lastQuizScore, Date lastQuizDate) {
+    public void updateQuestLastQuizData(int ID, int lastQuizScore, LocalDate lastQuizDate) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE quests SET lastQuizScore = ?, lastQuizDate = ? WHERE ID = ?");
             statement.setInt(1, lastQuizScore);
-            statement.setDate(2, (java.sql.Date) lastQuizDate);
+            statement.setDate(2, java.sql.Date.valueOf(lastQuizDate));
             statement.setInt(3, ID);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public LocalDate getQuestLastQuizDate(int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizDate FROM quests WHERE ID = ?");
+            statement.setInt(1, questID);
+            // Return the last quiz date
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                if (resultSet.getDate("lastQuizDate") == null) {
+                    return null;
+                }
+                return resultSet.getDate("lastQuizDate").toLocalDate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

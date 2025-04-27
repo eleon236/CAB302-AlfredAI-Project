@@ -178,10 +178,12 @@ public class MainController {
         Stage stage = (Stage) contactsListView.getScene().getWindow();
         FXMLLoader loader;
 
-        // TODO Change this after adding DB
         // Check if daily quiz has already been done today
-        LocalDate lastDailyQuizDate = LocalDate.now().minusDays(1);
-        if (lastDailyQuizDate.equals(LocalDate.now())) {
+        // TODO Implement actual questID
+        LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(1);
+        if (lastDailyQuizDate == null) {
+            loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
+        } else if (lastDailyQuizDate.equals(LocalDate.now())) {
             loader = new FXMLLoader(HelloApplication.class.getResource("quiz-results-view.fxml"));
         } else {
             loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));

@@ -1,5 +1,6 @@
 package com.example.cab302week4.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public interface IAlfredDAO {
     public void updateQuestLastQuizData(
             int ID,
             int lastQuizScore,
-            Date lastQuizDate
+            LocalDate lastQuizDate
     );
 
     // TODO Implement when there's a Quest class
@@ -64,6 +65,13 @@ public interface IAlfredDAO {
      * @param userID The user's ID
      */
     //public Quest[] getUserQuests(int userID);
+
+    /**
+     * Retrieves a quest's last quiz date from the database
+     * @param questID The quest's ID
+     * @return The quest's last quiz date as a LocalDate
+     */
+    public LocalDate getQuestLastQuizDate(int questID);
 
     ///////////////// Flashcards /////////////////
     /**

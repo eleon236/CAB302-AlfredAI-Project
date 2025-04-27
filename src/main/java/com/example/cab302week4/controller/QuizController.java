@@ -2,7 +2,9 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.Flashcard;
+import com.example.cab302week4.model.IAlfredDAO;
 import com.example.cab302week4.model.Quiz;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -13,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class QuizController {
     @FXML
@@ -20,7 +23,11 @@ public class QuizController {
     @FXML
     private VBox questionsContainer;
 
+    private IAlfredDAO alfredDAO;
+
     public QuizController() {
+        alfredDAO = new SqliteAlfredDAO();
+
         // TODO Remove after adding DB
         Flashcard[] flashcards = {
                 new Flashcard(1, "What is something?", "something", false),
@@ -91,6 +98,10 @@ public class QuizController {
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
         HelloApplication.quiz.calcQuizResult();
+
+        // Update quiz result in database
+        // TODO Implement actual questID
+        alfredDAO.updateQuestLastQuizData(1, HelloApplication.quiz.getResult(), LocalDate.now());
 
         // Show results window
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
