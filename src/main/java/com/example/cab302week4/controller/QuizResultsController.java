@@ -1,8 +1,6 @@
 package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
-import com.example.cab302week4.model.Flashcard;
-import com.example.cab302week4.model.Quiz;
 import com.example.cab302week4.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,32 +19,15 @@ public class QuizResultsController {
     @FXML
     private VBox questionsContainer;
 
-    private final Quiz quiz;
-
-    public QuizResultsController() {
-        // TODO Remove after adding DB
-        Flashcard[] flashcards = {
-                new Flashcard(1, "What is something?", "something", false),
-                new Flashcard(2, "What is nothing?", "nothing", true),
-                new Flashcard(3, "Who are you?", "you", true),
-                new Flashcard(4, "How does something happen?", "something", false),
-                new Flashcard(5, "When did this happen?", "time", false),
-                new Flashcard(6, "Where is something?", "place", false),
-                new Flashcard(7, "Why does this happen?", "a reason", false),
-                new Flashcard(8, "Why does something not happen?", "because", false),
-                new Flashcard(9, "Who is that?", "someone", false),
-                new Flashcard(10, "Why?", "just because", false)
-        };
-        quiz = new Quiz(flashcards, 2);
-    }
+    public QuizResultsController() {}
 
     @FXML
     public void initialize() {
-        resultsLabel.setText(quiz.getResult() + " / " + quiz.getQuestions().length);
+        resultsLabel.setText(HelloApplication.quiz.getResult() + " / " + HelloApplication.quiz.getQuestions().length);
 
-        for(int i = 0; i < quiz.getQuestions().length ; i++){
+        for(int i = 0; i < HelloApplication.quiz.getQuestions().length ; i++){
             int questionNum = i + 1;
-            QuizQuestion questionInfo = quiz.getQuestions()[i];
+            QuizQuestion questionInfo = HelloApplication.quiz.getQuestions()[i];
 
             // Set up question number label
             Label questionNumLabel = new Label(questionNum + ".");

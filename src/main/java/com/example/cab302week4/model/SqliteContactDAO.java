@@ -1,6 +1,9 @@
 package com.example.cab302week4.model;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,16 +28,14 @@ public class SqliteContactDAO implements IContactDAO {
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
 
     @Override
     public void addContact(Contact contact) {
         try {
-            PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO contacts (firstName, lastName, phone, email) VALUES (?, ?, ?, ?)"
-            );
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email) VALUES (?, ?, ?, ?)");
             statement.setString(1, contact.getFirstName());
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
@@ -46,10 +47,9 @@ public class SqliteContactDAO implements IContactDAO {
                 contact.setId(generatedKeys.getInt(1));
             }
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
-
     @Override
     public void updateContact(Contact contact) {
         try {
@@ -61,7 +61,7 @@ public class SqliteContactDAO implements IContactDAO {
             statement.setInt(5, contact.getId());
             statement.executeUpdate();
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -72,7 +72,7 @@ public class SqliteContactDAO implements IContactDAO {
             statement.setInt(1, contact.getId());
             statement.executeUpdate();
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -87,12 +87,12 @@ public class SqliteContactDAO implements IContactDAO {
                 String lastName = resultSet.getString("lastName");
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
-                Contact contact = new Contact(firstName, lastName, phone, email);
+                Contact contact = new Contact(firstName, lastName, email, phone);
                 contact.setId(id);
                 return contact;
             }
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -102,21 +102,20 @@ public class SqliteContactDAO implements IContactDAO {
         List<Contact> contacts = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM contacts");
-            while (rs.next()) {
-                // Retrieve data from the result set
-                int id = rs.getInt("id");
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
-                String phone = rs.getString("phone");
-                String email = rs.getString("email");
-                // Create a new Contact object
+            String query = "SELECT * FROM contacts";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
                 Contact contact = new Contact(firstName, lastName, email, phone);
                 contact.setId(id);
                 contacts.add(contact);
             }
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return contacts;
     }

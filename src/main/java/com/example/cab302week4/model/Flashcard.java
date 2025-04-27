@@ -13,6 +13,12 @@ public class Flashcard {
         this.mastered = mastered;
     }
 
+    public Flashcard(String question, String answer, boolean mastered) {
+        this.question = question;
+        this.answer = answer;
+        this.mastered = mastered;
+    }
+
     public int getID() {
         return ID;
     }
