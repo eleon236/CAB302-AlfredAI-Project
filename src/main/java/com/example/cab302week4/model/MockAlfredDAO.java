@@ -5,11 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 public class MockAlfredDAO implements IAlfredDAO {
-    /**
-     * A static list of contacts to be used as a mock database.
-     */
-    public static final ArrayList<Contact> contacts = new ArrayList<>();
-    private static int autoIncrementedId = 0;
 
     public MockAlfredDAO() {
 
@@ -26,7 +21,7 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addQuest(String character, String name, Date endDate, int distanceTravelled, int lastQuizScore, Date lastQuizDate) {
+    public void addQuest(String character, String name, Date endDate) {
 
     }
 
@@ -56,7 +51,7 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public Flashcard[] getUserQuests(int questID) {
-        return new Flashcard[0];
+    public List<Flashcard> getQuestFlashcards(int questID) {
+        return List.of(new Flashcard[0]);
     }
 }
