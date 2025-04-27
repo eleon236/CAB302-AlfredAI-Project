@@ -1,9 +1,6 @@
 package com.example.cab302week4.model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

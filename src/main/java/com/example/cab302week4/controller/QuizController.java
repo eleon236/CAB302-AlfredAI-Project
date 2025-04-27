@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class QuizController {
     @FXML
@@ -28,19 +29,8 @@ public class QuizController {
     public QuizController() {
         alfredDAO = new SqliteAlfredDAO();
 
-        // TODO Remove after adding DB
-        Flashcard[] flashcards = {
-                new Flashcard(1, "What is something?", "something", false),
-                new Flashcard(2, "What is nothing?", "nothing", true),
-                new Flashcard(3, "Who are you?", "you", true),
-                new Flashcard(4, "How does something happen?", "something", false),
-                new Flashcard(5, "When did this happen?", "time", false),
-                new Flashcard(6, "Where is something?", "place", false),
-                new Flashcard(7, "Why does this happen?", "a reason", false),
-                new Flashcard(8, "Why does something not happen?", "because", false),
-                new Flashcard(9, "Who is that?", "someone", false),
-                new Flashcard(10, "Why?", "just because", false)
-        };
+        // TODO Implement actual questID
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1);
         HelloApplication.quiz = new Quiz(flashcards, 2);
     }
 
