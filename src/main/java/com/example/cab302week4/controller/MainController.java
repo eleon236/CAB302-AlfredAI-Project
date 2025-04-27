@@ -183,7 +183,7 @@ public class MainController {
         LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(1);
         if (lastDailyQuizDate == null) {
             loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
-        } else if (lastDailyQuizDate.equals(LocalDate.now().plusDays(1))) {
+        } else if (lastDailyQuizDate.equals(LocalDate.now())) {
             loader = new FXMLLoader(HelloApplication.class.getResource("quiz-results-view.fxml"));
         } else {
             loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));

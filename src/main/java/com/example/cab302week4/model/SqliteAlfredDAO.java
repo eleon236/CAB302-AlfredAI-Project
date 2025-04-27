@@ -171,10 +171,10 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void updateQuestLastQuizData(int ID, int lastQuizScore, LocalDate lastQuizDate) {
+    public void updateQuestLastQuizData(int ID, String lastQuizScore, LocalDate lastQuizDate) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE quests SET lastQuizScore = ?, lastQuizDate = ? WHERE ID = ?");
-            statement.setInt(1, lastQuizScore);
+            statement.setString(1, lastQuizScore);
             statement.setDate(2, java.sql.Date.valueOf(lastQuizDate));
             statement.setInt(3, ID);
             statement.executeUpdate();
@@ -200,6 +200,22 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String getQuestLastQuizScore (int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizScore FROM quests WHERE ID = ?");
+            statement.setInt(1, questID);
+            // Return the last quiz date
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("lastQuizScore");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override
