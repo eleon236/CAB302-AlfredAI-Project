@@ -1,12 +1,16 @@
 import com.example.cab302week4.model.*;
 
 import org.junit.jupiter.api.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class QuizTest {
     private Quiz quiz;
 
-    private final Flashcard[] flashcards = {
+    private final List<Flashcard> flashcards = new ArrayList<>( List.of(
             new Flashcard(1, "What is something?", "something", false),
             new Flashcard(2, "What is nothing?", "nothing", true),
             new Flashcard(3, "Who are you?", "you", true),
@@ -17,7 +21,7 @@ public class QuizTest {
             new Flashcard(8, "Why does something not happen?", "because", false),
             new Flashcard(9, "Who is that?", "someone", false),
             new Flashcard(10, "Why?", "just because", false)
-    };
+    ));
 
     @Test
     public void testSetUpWithReasonableDaysLeft() {
@@ -38,13 +42,13 @@ public class QuizTest {
 
     @Test
     public void testSetUpWithNoFlashcards() {
-        quiz = new Quiz(new Flashcard[0], 2);
+        quiz = new Quiz(new ArrayList<>(), 2);
         assertEquals(0, quiz.getQuestions().length);
     }
 
     @Test
     public void testSetUpWithAllFlashcardsMastered() {
-        Flashcard[] masteredFlashcards = flashcards;
+        List<Flashcard> masteredFlashcards = flashcards;
         for (Flashcard flashcard : masteredFlashcards) {
             flashcard.setMastered(true);
         }
@@ -69,9 +73,9 @@ public class QuizTest {
 
     @Test
     public void testSetUpWithMoreThan30Questions() {
-        Flashcard[] ThirtyOneFlashcards = new Flashcard[31];
-        for (int i = 0; i < ThirtyOneFlashcards.length; i++) {
-            ThirtyOneFlashcards[i] = new Flashcard(1, "Why?", "because", false);
+        List<Flashcard> ThirtyOneFlashcards = new ArrayList<>();
+        for (int i = 0; i < 31; i++) {
+            ThirtyOneFlashcards.add(new Flashcard(1, "Why?", "because", false));
         }
 
         quiz = new Quiz(ThirtyOneFlashcards, 1);

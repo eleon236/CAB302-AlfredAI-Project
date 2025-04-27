@@ -1,6 +1,7 @@
 package com.example.cab302week4.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,10 +13,10 @@ public class Quiz {
 
     /**
      * Constructor to make a Quiz based on provided flashcards and quizLength
-     * @param flashcards All of the user's flashcards for the selected quest
+     * @param flashcards All the user's flashcards for the selected quest
      * @param questDaysLeft An int with the number of days left in the quest
      */
-    public Quiz(Flashcard[] flashcards, int questDaysLeft) {
+    public Quiz(List<Flashcard> flashcards, int questDaysLeft) {
         // Prepare questions array
         int quizLength = calcNumberOfQuestions(flashcards, questDaysLeft);
         QuizQuestion[] questions = new QuizQuestion[quizLength];
@@ -81,7 +82,7 @@ public class Quiz {
      * @param questDaysLeft An int with the number of days left in the quest
      * @return An int with the number of questions
      */
-    private int calcNumberOfQuestions(Flashcard[] flashcards, int questDaysLeft) {
+    private int calcNumberOfQuestions(List<Flashcard> flashcards, int questDaysLeft) {
         // Find number of flashcards not mastered yet
         int numNotMastered = 0;
         for (Flashcard flashcard : flashcards) {
@@ -93,12 +94,12 @@ public class Quiz {
         int numQuestions;
 
         // No flashcards
-        if (flashcards.length == 0) {
+        if (flashcards.isEmpty()) {
             return 0;
 
         // All flashcards mastered
         } else if (numNotMastered == 0) {
-            numQuestions = flashcards.length / 2;
+            numQuestions = flashcards.size() / 2;
 
         // It's the day the quest is ending
         } else if (questDaysLeft == 0) {

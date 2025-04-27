@@ -1,7 +1,9 @@
 package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
+import com.example.cab302week4.model.IAlfredDAO;
 import com.example.cab302week4.model.QuizQuestion;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -19,11 +21,22 @@ public class QuizResultsController {
     @FXML
     private VBox questionsContainer;
 
-    public QuizResultsController() {}
+    private IAlfredDAO alfredDAO;
+
+    public QuizResultsController() {
+        alfredDAO = new SqliteAlfredDAO();
+    }
 
     @FXML
     public void initialize() {
-        resultsLabel.setText(HelloApplication.quiz.getResult() + " / " + HelloApplication.quiz.getQuestions().length);
+        // TODO Implement actual questID
+        resultsLabel.setText(alfredDAO.getQuestLastQuizScore(1));
+
+        if (HelloApplication.quiz == null) {
+            questionsContainer.getChildren().add(new Label("Come back again tomorrow to do your next daily quiz!"));
+            questionsContainer.setAlignment(Pos.CENTER);
+            return;
+        }
 
         for(int i = 0; i < HelloApplication.quiz.getQuestions().length ; i++){
             int questionNum = i + 1;

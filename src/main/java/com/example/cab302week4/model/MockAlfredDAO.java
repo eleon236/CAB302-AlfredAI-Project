@@ -1,6 +1,6 @@
 package com.example.cab302week4.model;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +31,18 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void updateQuestLastQuizData(int ID, int lastQuizScore, Date lastQuizDate) {
+    public void updateQuestLastQuizData(int ID, String lastQuizScore, LocalDate lastQuizDate) {
 
+    }
+
+    @Override
+    public LocalDate getQuestLastQuizDate(int questID) {
+        return LocalDate.now();
+    }
+
+    @Override
+    public String getQuestLastQuizScore(int questID) {
+        return "";
     }
 
     @Override

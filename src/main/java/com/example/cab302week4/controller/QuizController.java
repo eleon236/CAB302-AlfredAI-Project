@@ -2,7 +2,9 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.Flashcard;
+import com.example.cab302week4.model.IAlfredDAO;
 import com.example.cab302week4.model.Quiz;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -13,6 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 public class QuizController {
     @FXML
@@ -20,20 +24,13 @@ public class QuizController {
     @FXML
     private VBox questionsContainer;
 
+    private IAlfredDAO alfredDAO;
+
     public QuizController() {
-        // TODO Remove after adding DB
-        Flashcard[] flashcards = {
-                new Flashcard(1, "What is something?", "something", false),
-                new Flashcard(2, "What is nothing?", "nothing", true),
-                new Flashcard(3, "Who are you?", "you", true),
-                new Flashcard(4, "How does something happen?", "something", false),
-                new Flashcard(5, "When did this happen?", "time", false),
-                new Flashcard(6, "Where is something?", "place", false),
-                new Flashcard(7, "Why does this happen?", "a reason", false),
-                new Flashcard(8, "Why does something not happen?", "because", false),
-                new Flashcard(9, "Who is that?", "someone", false),
-                new Flashcard(10, "Why?", "just because", false)
-        };
+        alfredDAO = new SqliteAlfredDAO();
+
+        // TODO Implement actual questID
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1);
         HelloApplication.quiz = new Quiz(flashcards, 2);
     }
 
@@ -91,6 +88,14 @@ public class QuizController {
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
         HelloApplication.quiz.calcQuizResult();
+
+        // Update quiz result in database
+        // TODO Implement actual questID
+        alfredDAO.updateQuestLastQuizData(
+                1,
+                HelloApplication.quiz.getResult() + " / " + HelloApplication.quiz.getQuestions().length,
+                LocalDate.now()
+        );
 
         // Show results window
         Stage stage = (Stage) questionsContainer.getScene().getWindow();

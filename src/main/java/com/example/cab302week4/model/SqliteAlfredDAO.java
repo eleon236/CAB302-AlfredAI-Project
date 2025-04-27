@@ -1,6 +1,7 @@
 package com.example.cab302week4.model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -170,16 +171,51 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void updateQuestLastQuizData(int ID, int lastQuizScore, Date lastQuizDate) {
+    public void updateQuestLastQuizData(int ID, String lastQuizScore, LocalDate lastQuizDate) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE quests SET lastQuizScore = ?, lastQuizDate = ? WHERE ID = ?");
-            statement.setInt(1, lastQuizScore);
-            statement.setDate(2, (java.sql.Date) lastQuizDate);
+            statement.setString(1, lastQuizScore);
+            statement.setDate(2, java.sql.Date.valueOf(lastQuizDate));
             statement.setInt(3, ID);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public LocalDate getQuestLastQuizDate(int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizDate FROM quests WHERE ID = ?");
+            statement.setInt(1, questID);
+            // Return the last quiz date
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                if (resultSet.getDate("lastQuizDate") == null) {
+                    return null;
+                }
+                return resultSet.getDate("lastQuizDate").toLocalDate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public String getQuestLastQuizScore (int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizScore FROM quests WHERE ID = ?");
+            statement.setInt(1, questID);
+            // Return the last quiz date
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("lastQuizScore");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override
@@ -229,19 +265,20 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     public List<Flashcard> getQuestFlashcards(int questID) {
         List<Flashcard> flashcards = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            String query = "SELECT flashcards.* FROM flashcards "
-                        + "INNER JOIN questFlashcards "
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT flashcards.ID, flashcards.question, flashcards.answer, flashcards.mastered FROM flashcards "
+                        + "JOIN questFlashcards "
                         + "ON flashcards.ID = questFlashcards.flashcardID "
-                        + "WHERE questFlashcards.questID = ?";
-            ResultSet resultSet = statement.executeQuery(query);
+                        + "WHERE questFlashcards.questID = ?");
+            statement.setInt(1, questID);
+            ResultSet resultSet = statement.executeQuery();
+            // Return all flashcards selected
             while (resultSet.next()) {
                 int ID = resultSet.getInt("ID");
                 String question = resultSet.getString("question");
                 String answer = resultSet.getString("answer");
                 Boolean mastered = resultSet.getBoolean("mastered");
-                Flashcard flashcard = new Flashcard(question, answer, mastered);
-                flashcard.setID(ID);
+                Flashcard flashcard = new Flashcard(ID, question, answer, mastered);
                 flashcards.add(flashcard);
             }
         } catch (Exception e) {
