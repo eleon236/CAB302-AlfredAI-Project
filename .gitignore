@@ -36,3 +36,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+alfred.db
+.idea/dataSources.local.xml
+.idea/sqldialects.xml
+.idea/dataSources/83481175-e7ad-478a-bc77-20450f0db8b0/storage_v2/_src_/schema/main.uQUzAA.meta
+alfred.db
