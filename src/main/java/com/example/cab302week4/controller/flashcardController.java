@@ -61,6 +61,7 @@ public class flashcardController {
         }
     }
 
+
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) cardLabel.getScene().getWindow();
