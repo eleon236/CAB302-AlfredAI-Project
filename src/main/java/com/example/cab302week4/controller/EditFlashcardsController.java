@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,11 +18,12 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class EditFlashcardsController {
 
     @FXML
-    private ListView<Flashcard> flashcardList; // Now ListView<Flashcard> instead of String
+    private ListView<Flashcard> flashcardList;
 
     private SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // connect to database
 
@@ -40,26 +42,68 @@ public class EditFlashcardsController {
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    // Show the question + answer
                     Text text = new Text("Q: " + item.getQuestion() + "\nA: " + item.getAnswer());
 
-                    // Create edit and delete buttons
                     Button editButton = new Button("Edit");
                     Button deleteButton = new Button("Delete");
 
-                    // Create an HBox for the text
                     HBox hBox = new HBox(10, text);
-
-                    // Create an HBox for the buttons
                     HBox buttonBox = new HBox(10, editButton, deleteButton);
                     buttonBox.setStyle("-fx-alignment: center-right;");
-
-                    // Create a container VBox with the text and the buttons
                     VBox container = new VBox(hBox, buttonBox);
 
                     setGraphic(container);
 
-                    // TODO: Add actual Edit/Delete button functionality here
+                    // EDIT functionality
+                    editButton.setOnAction(e -> {
+                        TextInputDialog questionDialog = new TextInputDialog(item.getQuestion());
+                        questionDialog.setTitle("Edit Flashcard");
+                        questionDialog.setHeaderText("Edit Question");
+                        questionDialog.setContentText("Question:");
+
+                        Optional<String> newQuestion = questionDialog.showAndWait();
+
+                        if (newQuestion.isPresent()) {
+                            TextInputDialog answerDialog = new TextInputDialog(item.getAnswer());
+                            answerDialog.setTitle("Edit Flashcard");
+                            answerDialog.setHeaderText("Edit Answer");
+                            answerDialog.setContentText("Answer:");
+
+                            Optional<String> newAnswer = answerDialog.showAndWait();
+
+                            if (newAnswer.isPresent()) {
+                                // Update the flashcard object
+                                item.setQuestion(newQuestion.get());
+                                item.setAnswer(newAnswer.get());
+
+                                // Update the database
+                                alfredDAO.updateFlashcard(item);
+
+                                // Refresh the ListView
+                                flashcardList.refresh();
+                            }
+                        }
+                    });
+
+                    // DELETE functionality
+                    deleteButton.setOnAction(e -> {
+                        // Confirm deletion
+                        TextInputDialog confirmDialog = new TextInputDialog();
+                        confirmDialog.setTitle("Delete Flashcard");
+                        confirmDialog.setHeaderText("Are you sure you want to delete this flashcard?");
+                        confirmDialog.setContentText("Type 'YES' to confirm:");
+
+                        Optional<String> confirmation = confirmDialog.showAndWait();
+
+                        if (confirmation.isPresent() && confirmation.get().equalsIgnoreCase("YES")) {
+                            // Remove from database
+                            alfredDAO.deleteFlashcard(item);
+
+                            // Remove from ListView
+                            flashcardList.getItems().remove(item);
+                        }
+                    });
+
                 }
             }
         });

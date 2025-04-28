@@ -241,7 +241,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     @Override
     public void updateFlashcard(Flashcard flashcard) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE flashcards SET question = ?, answer = ?, mastered = ? WHERE ID = ?");
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE flashcards SET question = ?, answer = ?, mastered = ? WHERE ID = ?"
+            );
             statement.setString(1, flashcard.getQuestion());
             statement.setString(2, flashcard.getAnswer());
             statement.setBoolean(3, flashcard.getMastered());
@@ -251,6 +253,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void deleteFlashcard(Flashcard flashcard) {
