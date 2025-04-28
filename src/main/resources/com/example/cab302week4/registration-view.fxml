@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:controller="com.example.cab302week4.controller.RegistrationController"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="center"
+          hgap="20" vgap="20">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Page Title -->
+    <Label text="Start your Adventure !" GridPane.columnSpan="2" style="-fx-font-size: 36px; -fx-font-weight: bold;" GridPane.halignment="CENTER"/>
+
+    <!-- Username -->
+    <Label text="Username:" style="-fx-font-size: 24px;" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>
+    <TextField fx:id="usernameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <!-- Password -->
+    <Label text="Password:" style="-fx-font-size: 24px;" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>
+    <PasswordField fx:id="passwordField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <!-- Confirm Password -->
+    <Label text="Confirm Password:" style="-fx-font-size: 24px;" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>
+    <PasswordField fx:id="confirmPasswordField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <!-- Go Button -->
+    <Button text="Go !" fx:id="goButton" onAction="#handleGoButton"
+            style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+
+</GridPane>

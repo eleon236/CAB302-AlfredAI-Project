@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<?import javafx.scene.image.ImageView?>
+<VBox fx:id="emptyBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.cab302week4.controller.WelcomeController"
+      spacing="20" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Top section: Bear image + Title -->
+    <HBox spacing="20" alignment="CENTER">
+        <ImageView fx:id="bearImage" fitWidth="200" fitHeight="250" />
+        <Label fx:id="titleLabel" text="Welcome to\nAlfred AI!" style="-fx-font-size: 40px; -fx-font-weight: bold;" />
+    </HBox>
+
+    <!-- Center section: Form -->
+    <VBox spacing="10" alignment="CENTER">
+        <Label text="Ready to continue your adventure?" style="-fx-font-size: 27px; -fx-font-weight: bold;" />
+
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Username:" style="-fx-font-size: 20px;" />
+            <TextField fx:id="usernameField" prefWidth="200"/>
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Password:" style="-fx-font-size: 20px;" />
+            <PasswordField fx:id="passwordField" prefWidth="200"/>
+        </HBox>
+
+        <Button text="Continue !" onAction="#onContinue" style="-fx-font-size: 15px;"/>
+    </VBox>
+
+    <!-- Bottom section: Register link -->
+    <Label text="Not an adventurer yet? Register"
+           onMouseClicked="#onRegister"
+           style="-fx-font-size: 20px; -fx-underline: true; -fx-cursor: hand;"/>
+</VBox>
