@@ -190,6 +190,24 @@ public class MainController {
         stage.setScene(scene);
     }
 
+    @FXML
+    private void GoToLoginPage() throws IOException {
+    //        Stage stage = (Stage) contactsListView.getScene().getWindow();
+        Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
+    }
+
+
+    @FXML
+    private void GoToRegisterPage() throws IOException {
+        //        Stage stage = (Stage) contactsListView.getScene().getWindow();
+        Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("register.fxml"));
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
+    }
 
   private void loadQuestsIntoListView() {
 //      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
