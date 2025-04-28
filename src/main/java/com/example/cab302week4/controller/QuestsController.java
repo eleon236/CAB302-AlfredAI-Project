@@ -66,6 +66,26 @@ public class QuestsController {
         });
     }
 
+    @FXML
+    private void onQuestSelected() throws IOException {
+        AddSubject selectedQuest = (AddSubject) questsListView.getSelectionModel().getSelectedItem();
+        if (selectedQuest == null) {
+            return; // No item selected
+        }
+
+        // Navigate to the Quest page
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("QuestPage.fxml"));
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+
+        // Pass the selected quest's ID to the new controller
+        QuestPageController questPageController = loader.getController();
+        questPageController.setQuestID(selectedQuest.getCharacterName()); // Assuming the ID is the name for now
+
+        Stage stage = (Stage) questsListView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+
     private void handleButton(String subject) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Adventure");

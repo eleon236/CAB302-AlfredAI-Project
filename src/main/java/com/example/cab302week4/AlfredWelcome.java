@@ -15,6 +15,8 @@ public class AlfredWelcome extends Application {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public static Quiz quiz;
+    public static int currentUserID;
+    public static int currentQuestID;
 
     @Override
     public void start(Stage stage) throws IOException {
