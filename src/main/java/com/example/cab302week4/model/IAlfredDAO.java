@@ -62,14 +62,12 @@ public interface IAlfredDAO {
             LocalDate lastQuizDate
     );
 
-
     // TODO Implement when there's a Quest class
     /**
      * Retrieves a user's quests from the database
      * @param userID The user's ID
      */
     //public Quest[] getUserQuests(int userID);
-
 
     /**
      * Retrieves a quest's last quiz date from the database
