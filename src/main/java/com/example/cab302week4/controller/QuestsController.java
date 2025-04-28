@@ -49,15 +49,13 @@ public class QuestsController {
     }
 
     private void loadQuestsIntoListView() {
-//      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
-//      List<AddSubject> quests = alfredDAO.getUserQuests(1); // Call the method on the instance
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
         List<AddSubject> quests = alfredDAO.getUserQuests(); // Call the no-argument method
         questsListView.getItems().addAll(quests);
 
-        questsListView.setCellFactory(listView -> new ListCell<>() {
+        questsListView.setCellFactory(listView -> new ListCell<AddSubject>() { // Explicitly specify the type
             @Override
-            protected void updateItem(AddSubject quest, boolean empty) {
+            protected void updateItem(AddSubject quest, boolean empty) { // Ensure method signature matches
                 super.updateItem(quest, empty);
                 if (empty || quest == null) {
                     setText(null);

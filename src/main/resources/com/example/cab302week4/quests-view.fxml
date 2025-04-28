@@ -29,18 +29,16 @@
     </top>
 
     <!-- Center Panel: Buttons -->
-    <center>
-        <GridPane hgap="30.0" vgap="30.0" alignment="CENTER">
-            <padding>
-                <Insets top="50.0" right="50.0" bottom="50.0" left="50.0"/>
-            </padding>
-            <ListView fx:id="questsListView" prefWidth="400" prefHeight="300">
-                <items>
-                    <FXCollections fx:factory="observableArrayList"/>
-                </items>
-            </ListView>
-            <Button text="Add Subject" onAction="#onGoToAddSubject"/>
-        </GridPane>
-    </center>
+<center>
+    <GridPane hgap="30.0" vgap="30.0" alignment="CENTER">
+        <padding>
+            <Insets top="50.0" right="50.0" bottom="50.0" left="50.0"/>
+        </padding>
+        <!-- ListView in the first row -->
+        <ListView fx:id="questsListView" prefWidth="400" prefHeight="300" GridPane.rowIndex="0"/>
+        <!-- Button in the second row -->
+        <Button text="Add Subject" onAction="#onGoToAddSubject" GridPane.rowIndex="1"/>
+    </GridPane>
+</center>
 
 </BorderPane>
