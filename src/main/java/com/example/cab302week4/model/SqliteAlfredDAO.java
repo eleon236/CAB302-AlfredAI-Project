@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SqliteAlfredDAO<Quest> implements IAlfredDAO {
+
+public class SqliteAlfredDAO implements IAlfredDAO {
+
     private Connection connection;
 
     public SqliteAlfredDAO() {
@@ -287,22 +289,23 @@ public class SqliteAlfredDAO<Quest> implements IAlfredDAO {
         return flashcards;
     }
 
-public List<AddSubject> getUserQuests() {
-    List<AddSubject> quests = new ArrayList<>();
-    try {
-        String query = "SELECT name, endDate FROM quests";
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet resultSet = statement.executeQuery();
+    public List<AddSubject> getUserQuests() {
+        List<AddSubject> quests = new ArrayList<>();
+        try {
+            String query = "SELECT name, endDate FROM quests";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
 
-        while (resultSet.next()) {
-            String name = resultSet.getString("name");
-            LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
-            quests.add(new AddSubject(name, endDate));
-            System.out.println("Retrieved quest: " + name + ", End Date: " + endDate); // Log each row
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
+                quests.add(new AddSubject(name, endDate));
+                System.out.println("Retrieved quest: " + name + ", End Date: " + endDate); // Log each row
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+        return quests;
     }
-    return quests;
-}
+
 }

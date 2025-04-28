@@ -9,7 +9,9 @@ import java.util.List;
  * Interface for the Contact Data Access Object that handles
  * the CRUD operations for the Contact class with the database.
  */
-public interface IAlfredDAO<Quest> {
+
+public interface IAlfredDAO {
+
     ///////////////// Users /////////////////
     /**
      * Adds a new user to the database
@@ -61,6 +63,12 @@ public interface IAlfredDAO<Quest> {
     );
 
 
+    // TODO Implement when there's a Quest class
+    /**
+     * Retrieves a user's quests from the database
+     * @param userID The user's ID
+     */
+    //public Quest[] getUserQuests(int userID);
 
 
     /**

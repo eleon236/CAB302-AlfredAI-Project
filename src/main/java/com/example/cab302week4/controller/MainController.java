@@ -34,6 +34,7 @@ public class MainController {
     private VBox contactContainer;
 
     private IContactDAO contactDAO;
+    private IAlfredDAO alfredDAO;
 
     private IAlfredDAO alfredDAO;
 
