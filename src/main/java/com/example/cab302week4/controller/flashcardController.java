@@ -1,6 +1,8 @@
 package com.example.cab302week4.controller;
 
 import com.example.cab302week4.HelloApplication;
+import com.example.cab302week4.model.Flashcard;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,38 +13,37 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class flashcardController {
+
     @FXML private Label cardLabel;
 
-    private static class Flashcard {
-        final String question;
-        final String answer;
-
-        Flashcard(String question, String answer) {
-            this.question = question;
-            this.answer = answer;
-        }
-    }
-
-    private final List<Flashcard> flashcards = List.of(
-            new Flashcard("What is the capital of France?", "Paris"),
-            new Flashcard("What is 2 + 2?", "4"),
-            new Flashcard("What is the boiling point of water?", "100°C")
-    );
-
+    private List<Flashcard> flashcards = new ArrayList<>();  // Now real flashcards from DB
     private int currentIndex = 0;
     private boolean showingQuestion = true;
 
+    private SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();  // Access the database
+
     @FXML
     public void initialize() {
-        updateCard();
+        // Load flashcards from the database
+        flashcards = alfredDAO.getQuestFlashcards(1); // assuming questID = 1 for now
+        if (flashcards.isEmpty()) {
+            cardLabel.setText("No flashcards available.");
+        } else {
+            updateCard();
+        }
     }
 
     private void updateCard() {
+        if (flashcards.isEmpty()) {
+            cardLabel.setText("No flashcards available.");
+            return;
+        }
         Flashcard card = flashcards.get(currentIndex);
-        cardLabel.setText(showingQuestion ? card.question : card.answer);
+        cardLabel.setText(showingQuestion ? card.getQuestion() : card.getAnswer());
     }
 
     @FXML
@@ -53,9 +54,11 @@ public class flashcardController {
 
     @FXML
     private void onNext() {
-        currentIndex = (currentIndex + 1) % flashcards.size();
-        showingQuestion = true;
-        updateCard();
+        if (!flashcards.isEmpty()) {
+            currentIndex = (currentIndex + 1) % flashcards.size();
+            showingQuestion = true;
+            updateCard();
+        }
     }
 
     @FXML
