@@ -11,4 +11,5 @@
             fx:controller="com.example.cab302week4.controller.QuestPageController"
             prefHeight="400.0" prefWidth="600.0">
     <Label fx:id="questDetailsLabel" layoutX="50.0" layoutY="50.0" text="Quest Details"/>
+
 </AnchorPane>
