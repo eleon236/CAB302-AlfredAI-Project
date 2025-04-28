@@ -36,7 +36,6 @@ public class MainController {
     private IContactDAO contactDAO;
     private IAlfredDAO alfredDAO;
 
-    private IAlfredDAO alfredDAO;
 
     @FXML
     private ListView<AddSubject> questsListView;
