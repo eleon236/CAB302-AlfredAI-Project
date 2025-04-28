@@ -21,14 +21,14 @@
 
             <!-- Titles -->
             <VBox alignment="CENTER" spacing="10">
-                <Label text="Alfred AI" style="-fx-font-size: 36px; -fx-font-weight: bold;"/>
+                <Label text="Alfred AI" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-alignment: center;"/>
                 <Label text="Welcome back!&#10;How will you continue your adventure?"
-                       style="-fx-font-size: 20px;" textAlignment="CENTER"/>
+                       style="-fx-font-size: 20px; -fx-alignment: center;" textAlignment="CENTER"/>
             </VBox>
         </HBox>
     </top>
 
-    <!-- Center Panel: Buttons -->
+        <!-- Center Panel: Buttons -->
     <center>
         <GridPane hgap="30.0" vgap="30.0" alignment="CENTER">
             <padding>
