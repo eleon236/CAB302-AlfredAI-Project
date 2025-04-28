@@ -51,6 +51,8 @@
                 <Button text="Go to Flashcards" onAction="#onGoToFlashcards"/>
                 <Button text="Go to Quiz" onAction="#onGoToQuiz"/>
                 <Button text="Add Subject" onAction="#onGoToAddSubject"/>
+                <Button text="Login" onAction="#GoToLoginPage"/>
+                <Button text="Register" onAction="#GoToRegisterPage"/>
             </HBox>
         </VBox>
     </HBox>

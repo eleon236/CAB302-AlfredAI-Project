@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.example.cab302week4.controller.LoginController">
+    <!-- Label for the title -->
+    <Label text="Login"/>
+    <!-- Text field for username input -->
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <!-- Password field for password input (hides characters) -->
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+    <!-- Button that triggers login when clicked -->
+    <Button text="Login" onAction="#handleLogin"/>
+
+    <!-- Label to show login messages (success/failure) -->
+    <Label fx:id="messageLabel" text="Initial message..." />
+
+</VBox>
