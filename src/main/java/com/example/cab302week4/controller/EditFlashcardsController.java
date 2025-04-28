@@ -1,5 +1,7 @@
 package com.example.cab302week4.controller;
 
+import com.example.cab302week4.model.Flashcard;
+import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
@@ -14,54 +16,53 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.util.List;
 
 public class EditFlashcardsController {
 
     @FXML
-    private ListView<String> flashcardList;
+    private ListView<Flashcard> flashcardList; // Now ListView<Flashcard> instead of String
+
+    private SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // connect to database
 
     @FXML
     public void initialize() {
-        // For now, populate dummy flashcards (later replace with real ones)
-        flashcardList.getItems().addAll(
-                "Q: What is Java? - A: A programming language",
-                "Q: What is JavaFX? - A: A GUI framework"
-        );
+        // Load real flashcards from the database
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1); // assuming questID = 1
+
+        flashcardList.getItems().addAll(flashcards);
 
         flashcardList.setCellFactory(list -> new ListCell<>() {
             @Override
-            protected void updateItem(String item, boolean empty) {
+            protected void updateItem(Flashcard item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    // Create the text for the flashcard (question + answer)
-                    Text text = new Text(item);
+                    // Show the question + answer
+                    Text text = new Text("Q: " + item.getQuestion() + "\nA: " + item.getAnswer());
 
-                    // Create buttons for editing and deleting
+                    // Create edit and delete buttons
                     Button editButton = new Button("Edit");
                     Button deleteButton = new Button("Delete");
 
-                    // Create an HBox for the text and buttons
+                    // Create an HBox for the text
                     HBox hBox = new HBox(10, text);
 
-                    // Add buttons to the right side by creating another HBox for the buttons
+                    // Create an HBox for the buttons
                     HBox buttonBox = new HBox(10, editButton, deleteButton);
-                    buttonBox.setSpacing(10);
-                    buttonBox.setStyle("-fx-alignment: center-right;"); // Align buttons to the right
+                    buttonBox.setStyle("-fx-alignment: center-right;");
 
-                    // Add both hBoxes to the main HBox (text + buttons)
-                    VBox container = new VBox();
-                    container.getChildren().addAll(hBox, buttonBox);
+                    // Create a container VBox with the text and the buttons
+                    VBox container = new VBox(hBox, buttonBox);
 
                     setGraphic(container);
 
-                    // TODO: Hook up real edit/delete logic here
+                    // TODO: Add actual Edit/Delete button functionality here
                 }
             }
         });
-
     }
 
     @FXML
@@ -72,8 +73,4 @@ public class EditFlashcardsController {
         Scene scene = ((Node) event.getSource()).getScene();
         scene.setRoot(root);
     }
-
-
-
-
 }
