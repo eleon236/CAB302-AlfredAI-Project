@@ -2,6 +2,7 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.model.IAlfredDAO;
 import com.example.cab302week4.model.SqliteAlfredDAO;
+import com.example.cab302week4.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
@@ -11,8 +12,8 @@ import javafx.scene.control.Label;
 import java.util.Objects;
 
 public class RegisterController {
+    private User user;
     private IAlfredDAO alfredDAO;
-    public int LoggedinUserID;
 
     @FXML
     private TextField usernameField;
@@ -26,6 +27,7 @@ public class RegisterController {
 
     @FXML
     private void initialize() {
+        user = new User();
         alfredDAO = new SqliteAlfredDAO();
     }
 

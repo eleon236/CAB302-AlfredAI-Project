@@ -2,6 +2,7 @@ package com.example.cab302week4.controller;
 
 import com.example.cab302week4.model.IAlfredDAO;
 import com.example.cab302week4.model.SqliteAlfredDAO;
+import com.example.cab302week4.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
@@ -11,8 +12,15 @@ import javafx.scene.control.Label;
 
 
 public class LoginController {
+    private User user;
     private SqliteAlfredDAO alfredDAO;
-    public int LoggedinUserID;
+
+
+    @FXML
+    private void initialize() {
+        user = new User();
+        alfredDAO = new SqliteAlfredDAO();
+    }
 
     @FXML
     private TextField usernameField;
@@ -20,13 +28,6 @@ public class LoginController {
     private PasswordField passwordField;
     @FXML
     private Label messageLabel;
-
-
-
-    @FXML
-    private void initialize() {
-        alfredDAO = new SqliteAlfredDAO();
-    }
 
     @FXML
     private void handleLogin(){
@@ -40,7 +41,7 @@ public class LoginController {
         if(FindUser == 0){
             messageLabel.setText("This combination of username and password is invalid");
         }else{
-            LoggedinUserID = FindUser;
+            user.LogedinUser(FindUser);
             messageLabel.setText("You have sucessfully logged in");
         }
     }
