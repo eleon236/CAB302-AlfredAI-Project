@@ -25,6 +25,7 @@ public class flashcardController {
 
     private SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();  // Access the database
 
+
     @FXML
     public void initialize() {
         // Load flashcards from the database
