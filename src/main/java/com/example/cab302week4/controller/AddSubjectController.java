@@ -48,7 +48,7 @@ public class AddSubjectController {
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quests-view.fxml"));
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }

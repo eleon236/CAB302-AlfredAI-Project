@@ -25,8 +25,6 @@ public class QuestsController {
     @FXML
     private ListView questsListView;
 
-    private IContactDAO contactDAO;
-    private IAlfredDAO alfredDAO;
     @FXML
     private void initialize() {
         try {
@@ -68,6 +66,8 @@ public class QuestsController {
 
     @FXML
     private void onQuestSelected() throws IOException {
+
+
         AddSubject selectedQuest = (AddSubject) questsListView.getSelectionModel().getSelectedItem();
         if (selectedQuest == null) {
             return; // No item selected
@@ -79,20 +79,13 @@ public class QuestsController {
 
         // Pass the selected quest's ID to the new controller
         QuestPageController questPageController = loader.getController();
-        questPageController.setQuestID(selectedQuest.getCharacterName()); // Assuming the ID is the name for now
+        questPageController.setQuestID(String.valueOf(selectedQuest.getId())); // Convert int to String
 
         Stage stage = (Stage) questsListView.getScene().getWindow();
         stage.setScene(scene);
     }
 
 
-    private void handleButton(String subject) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Adventure");
-        alert.setHeaderText(null);
-        alert.setContentText("You selected: " + subject);
-        alert.showAndWait();
-    }
 
 //    @FXML
 //    private void onAddSubject() {
