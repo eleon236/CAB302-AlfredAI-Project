@@ -39,16 +39,14 @@ public class RegisterController {
 
         int FindUser = alfredDAO.getUserID(username,password);
 
-        if(FindUser == 0){
-            if(Objects.equals(password, password2)){
-                messageLabel.setText("You have successfully registered an account");
-                alfredDAO.addUser(username,password);
-            }else{
-                messageLabel.setText("Passwords do not match");
-            }
+        if(Objects.equals(password, password2)){
+            String Message = user.Register(FindUser);
+            messageLabel.setText(Message);
+            alfredDAO.addUser(username,password);
         }else{
-            messageLabel.setText("This user already exsits");
+            messageLabel.setText("Passwords do not match");
         }
+
     }
 }
 

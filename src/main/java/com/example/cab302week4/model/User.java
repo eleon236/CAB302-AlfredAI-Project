@@ -1,5 +1,7 @@
 package com.example.cab302week4.model;
 
+import java.util.Objects;
+
 public class User {
     public int UserID;
     private String Username;
@@ -23,6 +25,25 @@ public class User {
     public String getPassword() {
         return Password;
     }
+
+    public String Login(int ID){
+        if(ID == 0){
+            return ("This combination of username and password is invalid, please try again");
+        }else{
+            LogedinUser(ID);
+            return ("You have sucessfully logged in");
+        }
+    }
+
+    public String Register(int ID){
+        if(ID == 0){
+            LogedinUser(ID);
+            return ("You have sucessfully registered an account");
+        }else{
+            return ("This User already exsits");
+        }
+    }
+
 
     public void LogedinUser(int EnteredID){
         this.CurrentUser = EnteredID;
