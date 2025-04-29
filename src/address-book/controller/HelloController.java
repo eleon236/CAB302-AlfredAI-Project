@@ -1,4 +1,4 @@
-package com.example.cab302week4.controller;
+package com.example.alfredAI.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.example.alfredAI.controller.RegisterController">
+    <!--    Register-->
+    <Label text="Register"/>
+
+    <!-- Text field for new username -->
+    <TextField fx:id="usernameField" promptText="Username"/>
+
+    <!-- Password field for new password -->
+    <PasswordField fx:id="passwordField1" promptText="Password"/>
+    <PasswordField fx:id="passwordField2" promptText="Password"/>
+
+    <!-- Button to trigger registration -->
+    <Button text="Register" onAction="#handleRegister"/>
+
+    <!-- Message label to show result -->
+    <Label fx:id="messageLabel"/>
+</VBox>

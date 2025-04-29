@@ -1,4 +1,4 @@
-import com.example.cab302week4.model.*;
+import com.example.alfredAI.model.*;
 
 import org.junit.jupiter.api.*;
 

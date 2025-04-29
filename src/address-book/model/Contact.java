@@ -1,4 +1,4 @@
-package com.example.cab302week4.model;
+package com.example.alfredAI.model;
 
 public class Contact {
     private int id;

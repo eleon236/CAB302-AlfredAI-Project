@@ -1,6 +1,6 @@
-package com.example.cab302week4.controller;
+package com.example.alfredAI.controller;
 
-import com.example.cab302week4.model.*;
+import com.example.alfredAI.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

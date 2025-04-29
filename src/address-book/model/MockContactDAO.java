@@ -1,4 +1,4 @@
-package com.example.cab302week4.model;
+package com.example.alfredAI.model;
 
 import java.util.ArrayList;
 import java.util.List;
