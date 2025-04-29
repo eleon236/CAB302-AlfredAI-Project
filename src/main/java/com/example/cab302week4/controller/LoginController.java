@@ -38,11 +38,7 @@ public class LoginController {
         System.out.println(password);
         int FindUser = alfredDAO.getUserID(username,password);
 
-        if(FindUser == 0){
-            messageLabel.setText("This combination of username and password is invalid");
-        }else{
-            user.LogedinUser(FindUser);
-            messageLabel.setText("You have sucessfully logged in");
-        }
+        String Message = user.Login(FindUser);
+        messageLabel.setText(Message);
     }
 }
