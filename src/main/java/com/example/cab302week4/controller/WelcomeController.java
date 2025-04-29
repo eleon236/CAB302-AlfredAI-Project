@@ -12,14 +12,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class WelcomeController {
 
-    @FXML
-    private VBox emptyBox;
 
     @FXML
-    private ImageView bearImage;
+    private VBox emptyBox;
 
     @FXML
     private TextField usernameField;
@@ -31,13 +30,19 @@ public class WelcomeController {
     private Label titleLabel;
 
     @FXML
+    private ImageView bearImageView;
+
+    @FXML
     public void initialize() {
-        // Load bear image
-//        Image bear = new Image("Bear.png"); // Assuming it's in resources folder
-//        bearImage.setImage(bear);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        bearImageView.setImage(image);
 
         titleLabel.setText("Welcome to\nAlfred AI!");
     }
+
+
+
+
 
     @FXML
     private void onRegister() throws IOException {
