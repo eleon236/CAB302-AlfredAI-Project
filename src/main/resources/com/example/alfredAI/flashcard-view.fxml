@@ -1,0 +1,34 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.alfredAI.controller.FlashcardController"
+      alignment="CENTER" spacing="10"
+      style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+
+    <HBox alignment="CENTER_RIGHT" spacing="5" maxWidth="600">
+        <Button text="Edit Flashcards" onAction="#onEditFlashcards"
+                style="-fx-font-size: 14px; -fx-font-family: 'Comfortaa';"/>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="5" maxWidth="600">
+        <Label text="Flashcards" style="-fx-font-size: 30px; -fx-font-family: 'Comfortaa'; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <StackPane alignment="CENTER" maxWidth="400" minHeight="200"
+               style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2;
+                      -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 20;">
+        <Label fx:id="cardLabel" wrapText="true" textAlignment="CENTER"
+               style="-fx-font-size: 20px; -fx-font-family: 'Comfortaa';"/>
+    </StackPane>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Next" onAction="#onNext"/>
+        <Button text="Flip" onAction="#onFlip"/>
+    </HBox>
+
+    <Button text="Back to Contacts" onAction="#onBack" alignment="CENTER"/>
+</VBox>

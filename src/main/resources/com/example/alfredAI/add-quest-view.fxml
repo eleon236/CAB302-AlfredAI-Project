@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.DatePicker?>
+<VBox alignment="CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.alfredAI.controller.AddQuestController">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+    <Label text="Add a New Subject" style="-fx-font-size: 16px;"/>
+    <TextField fx:id="subjectNameTextField" promptText="Enter subject name"/>
+    <DatePicker fx:id="subjectEndDateTextField" promptText="Select end date"/>
+    <Button text="Add Subject" onAction="#onAddSubject"/>
+    <Button text="Back to Contacts" onAction="#onBack"/>
+</VBox>
