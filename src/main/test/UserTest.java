@@ -1,61 +1,68 @@
-import com.example.cab302week4.model.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+import com.example.cab302week4.model.*;
+
+import org.junit.jupiter.api.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
-    private static final int USERID1 = 1;
-    private static final int USERID2 = 2;
-    private static final String USERNAME1 = "Tester1";
-    private static final String USERNAME2 = "Tester2";
-    private static final String PASSWORD1 = "Password123";
-    private static final String PASSWORD2 = "Password456";
+    private User user;
 
-    private User user1;
-    private User user2;
+    private final List<User> users = new ArrayList<>( List.of(
+            new User(1, "Tester1","Password1"),
+            new User(2, "Tester2","Password2"),
+            new User(3, "Tester3","Password3"),
+            new User(4, "Tester4","Password4"),
+            new User(5, "Tester5","Password5")
+    ));
 
-    //TODO: Test staments to do with controllers?
-    //test valid and not valid
-        //User registation
-            //Valid
-            //Invalid username and password exist
-            //Invalid Passwords do not match
-        //User Login
-            //Username or password is incorrect
+    //Copy paste for incorrect username and password
     @Test
-    public void setUp(){
-        user1 = new User(USERID1,USERNAME1,PASSWORD1);
-        user2 = new User(USERID2,USERNAME2,PASSWORD2);
+    public void testLoginUserWithAllCorrect(){
+        String username = "Tester1";
+        String password = "Password1";
+        int userId = 0;
+        for(User user : users){
+            if((Objects.equals(user.getUsername(), username)) && (Objects.equals(user.getPassword(), password))){
+                userId = user.getUserID();
+            }
+        }
+        user = new User(userId,username,password);
+        String message = user.Login(userId);
+        assertEquals("You have sucessfully logged in", message);
     }
 
     @Test
-    public void testGetUserID() {
-        assertEquals(USERNAME1, user1.getUserID());
+    public void testLoginUserWithincorrectUsername(){
+        String username = "Tester4";
+        String password = "Password1";
+        int userId = 0;
+        for(User user : users){
+            if((Objects.equals(user.getUsername(), username)) && (Objects.equals(user.getPassword(), password))){
+                userId = user.getUserID();
+            }
+        }
+        user = new User(userId,username,password);
+        String message = user.Login(userId);
+        assertEquals("This combination of username and password is invalid, please try again", message);
     }
 
     @Test
-    public void testGetUsername() {
-        assertEquals(USERNAME1, user1.getUsername());
+    public void testLoginUserWithIncorrectPassword() {
+        String username = "Tester1";
+        String password = "Password4";
+        int userId = 0;
+        for (User user : users) {
+            if ((Objects.equals(user.getUsername(), username)) && (Objects.equals(user.getPassword(), password))) {
+                userId = user.getUserID();
+            }
+        }
+        user = new User(userId, username, password);
+        String message = user.Login(userId);
+        assertEquals("This combination of username and password is invalid, please try again", message);
+
     }
-
-    @Test
-    public void testGetPassword() {
-        assertEquals(USERNAME1, user1.getPassword());
-    }
-
-    @Test
-    public void testLoggedInUser(){
-        user1.LogedinUser(1);
-        assertEquals(1, user1.CurrentUser);
-    }
-
-    @Test
-    public void testLogoutUser() {
-        user1.LogedinUser(1);
-        user1.LogoutUser();
-        assertEquals(0, user1.UserID);
-    }
-
-
 }

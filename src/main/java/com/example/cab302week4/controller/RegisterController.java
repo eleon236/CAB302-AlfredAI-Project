@@ -42,7 +42,10 @@ public class RegisterController {
         if(Objects.equals(password, password2)){
             String Message = user.Register(FindUser);
             messageLabel.setText(Message);
-            alfredDAO.addUser(username,password);
+
+            if(FindUser == 0){
+                alfredDAO.addUser(username,password);
+            }
         }else{
             messageLabel.setText("Passwords do not match");
         }
