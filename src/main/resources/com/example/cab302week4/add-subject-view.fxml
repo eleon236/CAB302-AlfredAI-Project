@@ -13,7 +13,7 @@
         <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
     </padding>
     <Label text="Add a New Subject" style="-fx-font-size: 16px;"/>
-    < fx:id="subjectNameTextField" promptText="Enter subject name"/>
+    <TextField fx:id="subjectNameTextField" promptText="Enter subject name"/>
     <DatePicker fx:id="subjectEndDateTextField" promptText="Select end date"/>
     <Button text="Add Subject" onAction="#onAddSubject"/>
     <Button text="Back to Contacts" onAction="#onBack"/>
