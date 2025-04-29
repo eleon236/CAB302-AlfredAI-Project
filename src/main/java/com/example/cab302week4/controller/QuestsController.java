@@ -94,30 +94,30 @@ public class QuestsController {
         alert.showAndWait();
     }
 
-    @FXML
-    private void onAddSubject() {
-        String subjectName = subjectNameTextField.getText().trim();
-        LocalDate subjectEndDate = subjectEndDateTextField.getValue();
-
-        if (subjectName.isEmpty() || subjectEndDate == null) {
-            System.out.println("All fields must be filled out.");
-            return;
-        }
-
-        // Create an AddSubject object
-        AddSubject newSubject = new AddSubject(subjectName, subjectEndDate);
-
-        // Save the subject as a quest in the database
-        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-        // TODO: Add logic to save the subject to the database or list
-        System.out.println("Subject added: " + newSubject);
-
-        closeWindow();
-    }
-
-    private void closeWindow() {
-        Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-        stage.close();
-    }
+//    @FXML
+//    private void onAddSubject() {
+//        String subjectName = subjectNameTextField.getText().trim();
+//        LocalDate subjectEndDate = subjectEndDateTextField.getValue();
+//
+//        if (subjectName.isEmpty() || subjectEndDate == null) {
+//            System.out.println("All fields must be filled out.");
+//            return;
+//        }
+//
+//        // Create an AddSubject object
+//        AddSubject newSubject = new AddSubject(subjectName, subjectEndDate);
+//
+//        // Save the subject as a quest in the database
+//        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
+//        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
+//        // TODO: Add logic to save the subject to the database or list
+//        System.out.println("Subject added: " + newSubject);
+//
+//        closeWindow();
+//    }
+//
+//    private void closeWindow() {
+//        Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
+//        stage.close();
+//    }
 }

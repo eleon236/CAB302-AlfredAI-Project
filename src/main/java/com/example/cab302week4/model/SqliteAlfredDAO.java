@@ -289,24 +289,24 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         return flashcards;
     }
 
-public List<AddSubject> getUserQuests() {
-    List<AddSubject> quests = new ArrayList<>();
-    try {
-        String query = "SELECT ID, name, endDate FROM quests"; // Include ID in the query
-        PreparedStatement statement = connection.prepareStatement(query);
-        ResultSet resultSet = statement.executeQuery();
 
-        while (resultSet.next()) {
-           int ID = resultSet.getInt("ID"); // Retrieve the ID
-            String name = resultSet.getString("name");
-            LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
-            quests.add(new AddSubject(name, endDate)); // Use the existing constructor
-            System.out.println("Retrieved quest: ID=" + ID + ", Name=" + name + ", End Date=" + endDate); // Log ID separately
+    public List<AddSubject> getUserQuests() {
+        List<AddSubject> quests = new ArrayList<>();
+        try {
+            String query = "SELECT ID, name, endDate FROM quests"; // Include ID in the query
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID"); // Retrieve the ID
+                String name = resultSet.getString("name");
+                LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
+                quests.add(new AddSubject(id, name, endDate)); // Pass ID to the constructor
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+        return quests;
     }
-    return quests;
-}
 
 }
