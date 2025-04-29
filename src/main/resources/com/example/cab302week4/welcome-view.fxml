@@ -14,7 +14,7 @@
 
     <!-- Top section: Bear image + Title -->
     <HBox spacing="20" alignment="CENTER">
-        <ImageView fx:id="bearImage" fitWidth="200" fitHeight="250" />
+        <ImageView fx:id="bearImageView" fitWidth="200" fitHeight="250" preserveRatio="true"/>
         <Label fx:id="titleLabel" text="Welcome to\nAlfred AI!" style="-fx-font-size: 40px; -fx-font-weight: bold;" />
     </HBox>
 
