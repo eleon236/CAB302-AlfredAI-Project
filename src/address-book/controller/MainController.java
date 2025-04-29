@@ -1,6 +1,5 @@
 package com.example.cab302week4.controller;
 
-import com.example.cab302week4.HelloApplication;
 import com.example.cab302week4.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

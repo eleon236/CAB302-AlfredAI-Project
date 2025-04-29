@@ -1,9 +1,8 @@
 package com.example.cab302week4.controller;
 
-import com.example.cab302week4.HelloApplication;
+import com.example.cab302week4.AlfredWelcome;
 import com.example.cab302week4.model.AddSubject;
 import com.example.cab302week4.model.SqliteAlfredDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -48,8 +47,8 @@ public class AddSubjectController {
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quests-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
 }

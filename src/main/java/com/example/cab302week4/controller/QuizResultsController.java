@@ -1,6 +1,6 @@
 package com.example.cab302week4.controller;
 
-import com.example.cab302week4.HelloApplication;
+import com.example.cab302week4.AlfredWelcome;
 import com.example.cab302week4.model.IAlfredDAO;
 import com.example.cab302week4.model.QuizQuestion;
 import com.example.cab302week4.model.SqliteAlfredDAO;
@@ -32,15 +32,15 @@ public class QuizResultsController {
         // TODO Implement actual questID
         resultsLabel.setText(alfredDAO.getQuestLastQuizScore(1));
 
-        if (HelloApplication.quiz == null) {
+        if (AlfredWelcome.quiz == null) {
             questionsContainer.getChildren().add(new Label("Come back again tomorrow to do your next daily quiz!"));
             questionsContainer.setAlignment(Pos.CENTER);
             return;
         }
 
-        for(int i = 0; i < HelloApplication.quiz.getQuestions().length ; i++){
+        for(int i = 0; i < AlfredWelcome.quiz.getQuestions().length ; i++){
             int questionNum = i + 1;
-            QuizQuestion questionInfo = HelloApplication.quiz.getQuestions()[i];
+            QuizQuestion questionInfo = AlfredWelcome.quiz.getQuestions()[i];
 
             // Set up question number label
             Label questionNumLabel = new Label(questionNum + ".");
@@ -77,8 +77,8 @@ public class QuizResultsController {
     @FXML
     private void onContinue() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("main-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
 }

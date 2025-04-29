@@ -1,7 +1,6 @@
 package com.example.cab302week4.controller;
 
 import com.example.cab302week4.AlfredWelcome;
-import com.example.cab302week4.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,14 +39,10 @@ public class WelcomeController {
         titleLabel.setText("Welcome to\nAlfred AI!");
     }
 
-
-
-
-
     @FXML
     private void onRegister() throws IOException {
         Stage stage = (Stage) emptyBox.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("registration-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("registration-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
@@ -55,7 +50,7 @@ public class WelcomeController {
     @FXML
     private void onContinue() throws IOException {
         Stage stage = (Stage) emptyBox.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quests-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }

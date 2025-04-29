@@ -1,6 +1,6 @@
 package com.example.cab302week4.controller;
 
-import com.example.cab302week4.HelloApplication;
+import com.example.cab302week4.AlfredWelcome;
 import com.example.cab302week4.model.Flashcard;
 import com.example.cab302week4.model.SqliteAlfredDAO;
 import javafx.event.ActionEvent;
@@ -65,14 +65,14 @@ public class flashcardController {
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) cardLabel.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
 
     @FXML
     private void onEditFlashcards(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("edit-flashcards-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("edit-flashcards-view.fxml"));
         Parent editRoot = loader.load();
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(editRoot);

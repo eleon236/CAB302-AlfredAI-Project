@@ -1,8 +1,7 @@
 package com.example.cab302week4.controller;
 
-import com.example.cab302week4.HelloApplication;
+import com.example.cab302week4.AlfredWelcome;
 import com.example.cab302week4.model.IAlfredDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,8 +32,8 @@ public class QuestPageController {
     private void onGoToFlashcards() throws IOException {
 //        Stage stage = (Stage) contactsListView.getScene().getWindow();
         Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("flashcard-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("flashcard-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
 
@@ -48,14 +47,14 @@ public class QuestPageController {
         // TODO Implement actual questID
         LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(1);
         if (lastDailyQuizDate == null) {
-            loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
+            loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-view.fxml"));
         } else if (lastDailyQuizDate.equals(LocalDate.now())) {
-            loader = new FXMLLoader(HelloApplication.class.getResource("quiz-results-view.fxml"));
+            loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-results-view.fxml"));
         } else {
-            loader = new FXMLLoader(HelloApplication.class.getResource("quiz-view.fxml"));
+            loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-view.fxml"));
         }
 
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
 }
