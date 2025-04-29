@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class flashcardController {
+public class FlashcardController {
 
     @FXML private Label cardLabel;
 

@@ -13,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class AddSubjectController {
+public class AddQuestController {
     @FXML
     private TextField subjectNameTextField;
     @FXML

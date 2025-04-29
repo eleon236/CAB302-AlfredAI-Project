@@ -38,7 +38,7 @@ public class QuestsController {
     private void onGoToAddSubject() throws IOException {
 //        Stage stage = (Stage) contactsListView.getScene().getWindow();
         Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("add-subject-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("add-quest-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
@@ -71,7 +71,7 @@ public class QuestsController {
         }
 
         // Navigate to the Quest page
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("QuestPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
 
         // Pass the selected quest's ID to the new controller
