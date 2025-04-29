@@ -30,14 +30,12 @@ public class AddSubjectController {
             return;
         }
 
-        // Create an AddSubject object
-        AddSubject newSubject = new AddSubject(subjectName, subjectEndDate);
-
+        // Create an AddSubject object with a placeholder ID
+        AddSubject newSubject = new AddSubject(0, subjectName, subjectEndDate);
 
         // Save the subject as a quest in the database
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
         alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-        // TODO: Add logic to save the subject to the database or list
         System.out.println("Subject added: " + newSubject);
 
         closeWindow();
@@ -50,7 +48,7 @@ public class AddSubjectController {
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("quests-view.fxml"));
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }

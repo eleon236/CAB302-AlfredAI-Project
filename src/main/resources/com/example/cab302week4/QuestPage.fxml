@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.example.cab302week4.controller.QuestPageController"
+          prefHeight="400.0" prefWidth="600.0" hgap="10" vgap="10" alignment="CENTER">
+    <Label fx:id="questDetailsLabel" text="Quest Details" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <Button text="Go to Flashcards" onAction="#onGoToFlashcards" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <Button text="Go to Quiz" onAction="#onGoToQuiz" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+</GridPane>

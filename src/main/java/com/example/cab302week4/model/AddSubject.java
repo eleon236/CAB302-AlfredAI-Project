@@ -4,11 +4,12 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class AddSubject {
+    private int id; // Add ID field
     private String subjectName;
     private LocalDate endDate;
-    private LocalDate lastQuizDate;
 
-    public AddSubject(String subjectName, LocalDate endDate) {
+    public AddSubject(int id, String subjectName, LocalDate endDate) { // Include ID in constructor
+        this.id = id;
         this.subjectName = subjectName;
         this.endDate = endDate;
     }
@@ -19,10 +20,13 @@ public class AddSubject {
         return "AddSubject {subjectName='" + subjectName + "', endDate=" + endDate + "}";
     }
 
-//    // Getters and setters
-//    public String getCharacter() {
-//        return character;
-//    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCharacterName() {
         return subjectName;

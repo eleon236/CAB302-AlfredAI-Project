@@ -181,6 +181,26 @@ public class MainController {
         stage.setScene(scene);
     }
 
+    private void loadQuestsIntoListView() {
+//      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
+//      List<AddSubject> quests = alfredDAO.getUserQuests(1); // Call the method on the instance
+        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
+        List<AddSubject> quests = alfredDAO.getUserQuests(); // Call the no-argument method
+        questsListView.getItems().addAll(quests);
+
+        questsListView.setCellFactory(listView -> new ListCell<>() {
+            @Override
+            protected void updateItem(AddSubject quest, boolean empty) {
+                super.updateItem(quest, empty);
+                if (empty || quest == null) {
+                    setText(null);
+                } else {
+                    setText(quest.getCharacterName() + " - " + quest.getEndDate() + " - " + quest.getId());
+                }
+            }
+        });
+    }
+
     @FXML
     private void onGoToAddSubject() throws IOException {
 //        Stage stage = (Stage) contactsListView.getScene().getWindow();
@@ -209,25 +229,7 @@ public class MainController {
         stage.setScene(scene);
     }
 
-  private void loadQuestsIntoListView() {
-//      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
-//      List<AddSubject> quests = alfredDAO.getUserQuests(1); // Call the method on the instance
-      SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
-      List<AddSubject> quests = alfredDAO.getUserQuests(); // Call the no-argument method
-      questsListView.getItems().addAll(quests);
 
-      questsListView.setCellFactory(listView -> new ListCell<>() {
-          @Override
-          protected void updateItem(AddSubject quest, boolean empty) {
-              super.updateItem(quest, empty);
-              if (empty || quest == null) {
-                  setText(null);
-              } else {
-                  setText(quest.getCharacterName() + " - " + quest.getEndDate());
-              }
-          }
-      });
-  }
 
 
 }
