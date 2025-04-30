@@ -16,5 +16,5 @@
     <TextField fx:id="subjectNameTextField" promptText="Enter subject name"/>
     <DatePicker fx:id="subjectEndDateTextField" promptText="Select end date"/>
     <Button text="Add Subject" onAction="#onAddSubject"/>
-    <Button text="Back to Quests" onAction="#onBack"/>
+    <Button text="Back to Contacts" onAction="#onBack"/>
 </VBox>

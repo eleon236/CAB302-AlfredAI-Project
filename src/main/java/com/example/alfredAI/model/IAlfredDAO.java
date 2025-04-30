@@ -33,7 +33,7 @@ public interface IAlfredDAO {
      * @param name The quest's name
      * @param endDate The quest's end date
      */
-    public int addQuest(
+    public void addQuest(
             String character,
             String name,
             Date endDate
@@ -61,12 +61,26 @@ public interface IAlfredDAO {
             LocalDate lastQuizDate
     );
 
+    // TODO Implement when there's a Quest class
     /**
-     * Retrieves a quest's information from the database
-     * @param questID The quest's ID
-     * @return The full quest information
+     * Retrieves a user's quests from the database
+     * @param userID The user's ID
      */
-    public Quest getQuest(int questID);
+    //public Quest[] getUserQuests(int userID);
+
+    /**
+     * Retrieves a quest's last quiz date from the database
+     * @param questID The quest's ID
+     * @return The quest's last quiz date as a LocalDate
+     */
+    public LocalDate getQuestLastQuizDate(int questID);
+
+    /**
+     * Retrieves a quest's last quiz score from the database
+     * @param questID The quest's ID
+     * @return The quest's last quiz score as an integer
+     */
+    public String getQuestLastQuizScore (int questID);
 
     ///////////////// Flashcards /////////////////
     /**
@@ -92,9 +106,4 @@ public interface IAlfredDAO {
      * @param questID The quest's ID
      */
     public List<Flashcard> getQuestFlashcards(int questID);
-
-    /**
-     * Retrieves a user's quests from the database
-     */
-    public List<Quest> getUserQuests();
 }
