@@ -16,16 +16,22 @@ public class QuestPageController {
     private Label questDetailsLabel;
     private IAlfredDAO alfredDAO;
 
-    private String questID;
+//    private String questID;
 
-    public void setQuestID(String questID) {
-        this.questID = questID;
+//    public void setQuestID() {
+//        this.questID = questID;
+//        loadQuestDetails();
+//    }
+
+    @FXML
+    public void initialize() {
         loadQuestDetails();
     }
 
     private void loadQuestDetails() {
         // Load quest details based on the questID
-        questDetailsLabel.setText("Quest Details for: " + questID);
+        String questName = alfredDAO.getQuestName(AlfredWelcome.currentQuestID);
+        questDetailsLabel.setText("Quest Details for: " + questName);
     }
 
     @FXML
@@ -40,12 +46,11 @@ public class QuestPageController {
     @FXML
     private void onGoToQuiz() throws IOException {
 //        Stage stage = (Stage) contactsListView.getScene().getWindow();
-        Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
+        Stage stage = (Stage) Stage.getWindows().getFirst(); // Get the primary stage
         FXMLLoader loader;
 
         // Check if daily quiz has already been done today
-        // TODO Implement actual questID
-        LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(1);
+        LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(AlfredWelcome.currentQuestID);
         if (lastDailyQuizDate == null) {
             loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-view.fxml"));
         } else if (lastDailyQuizDate.equals(LocalDate.now())) {

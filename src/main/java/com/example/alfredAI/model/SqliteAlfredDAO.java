@@ -186,6 +186,22 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public String getQuestName(int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT name FROM quests WHERE ID = ?");
+            statement.setInt(1, questID);
+            // Return the last quiz date
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("name");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public LocalDate getQuestLastQuizDate(int questID) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT lastQuizDate FROM quests WHERE ID = ?");
@@ -292,7 +308,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         return flashcards;
     }
 
-
+    @Override
     public List<Quest> getUserQuests() {
         List<Quest> quests = new ArrayList<>();
         try {

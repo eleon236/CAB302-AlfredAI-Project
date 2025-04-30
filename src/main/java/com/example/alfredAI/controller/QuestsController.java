@@ -63,8 +63,6 @@ public class QuestsController {
 
     @FXML
     private void onQuestSelected() throws IOException {
-
-
         Quest selectedQuest = (Quest) questsListView.getSelectionModel().getSelectedItem();
         if (selectedQuest == null) {
             return; // No item selected
@@ -75,8 +73,9 @@ public class QuestsController {
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
 
         // Pass the selected quest's ID to the new controller
-        QuestPageController questPageController = loader.getController();
-        questPageController.setQuestID(String.valueOf(selectedQuest.getId())); // Convert int to String
+        AlfredWelcome.currentQuestID = selectedQuest.getId();
+//        QuestPageController questPageController = loader.getController();
+//        questPageController.setQuestID(String.valueOf(selectedQuest.getId())); // Convert int to String
 
         Stage stage = (Stage) questsListView.getScene().getWindow();
         stage.setScene(scene);
@@ -100,7 +99,7 @@ public class QuestsController {
 //        // Save the subject as a quest in the database
 //        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
 //        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-//        // TODO: Add logic to save the subject to the database or list
+//        // To do: Add logic to save the subject to the database or list
 //        System.out.println("Subject added: " + newSubject);
 //
 //        closeWindow();
