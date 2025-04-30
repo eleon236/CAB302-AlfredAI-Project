@@ -35,7 +35,7 @@ public class QuestPageController {
 
     private void loadQuestDetails() {
         // Load quest details based on the questID
-        String questName = alfredDAO.getQuestName(AlfredWelcome.currentQuestID);
+        String questName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getSubjectName();
         questDetailsLabel.setText("Quest Details for: " + questName);
     }
 
@@ -55,7 +55,7 @@ public class QuestPageController {
         FXMLLoader loader;
 
         // Check if daily quiz has already been done today
-        LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(AlfredWelcome.currentQuestID);
+        LocalDate lastDailyQuizDate = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizDate();
         if (lastDailyQuizDate == null) {
             loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-view.fxml"));
         } else if (lastDailyQuizDate.equals(LocalDate.now())) {

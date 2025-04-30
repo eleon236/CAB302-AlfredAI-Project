@@ -44,11 +44,31 @@ public class Quest {
     }
 
     public String getCharacterName() {
+        return character;
+    }
+
+    public String getSubjectName() {
         return subjectName;
     }
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public int getDistanceTravelled() {
+        return distanceTravelled;
+    }
+
+    public String getLastQuizScore() {
+        return lastQuizScore;
+    }
+
+    public LocalDate getLastQuizDate() {
+        return lastQuizDate;
+    }
+
+    public String getHighestQuizScore() {
+        return highestQuizScore;
     }
 
 }

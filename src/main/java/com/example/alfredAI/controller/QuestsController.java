@@ -55,7 +55,7 @@ public class QuestsController {
                 if (empty || quest == null) {
                     setText(null);
                 } else {
-                    setText(quest.getCharacterName() + " - " + quest.getEndDate());
+                    setText(quest.getSubjectName() + " - " + quest.getEndDate());
                 }
             }
         });

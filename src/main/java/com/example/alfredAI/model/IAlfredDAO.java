@@ -62,32 +62,11 @@ public interface IAlfredDAO {
     );
 
     /**
-     * Retrieves a quests information from the database
+     * Retrieves a quest's information from the database
      * @param questID The quest's ID
      * @return The full quest information
      */
     public Quest getQuest(int questID);
-
-    /**
-     * Retrieves a quest's name from the database
-     * @param questID The quest's ID
-     * @return The quest's name
-     */
-    public String getQuestName(int questID);
-
-    /**
-     * Retrieves a quest's last quiz date from the database
-     * @param questID The quest's ID
-     * @return The quest's last quiz date as a LocalDate
-     */
-    public LocalDate getQuestLastQuizDate(int questID);
-
-    /**
-     * Retrieves a quest's last quiz score from the database
-     * @param questID The quest's ID
-     * @return The quest's last quiz score as an integer
-     */
-    public String getQuestLastQuizScore (int questID);
 
     ///////////////// Flashcards /////////////////
     /**

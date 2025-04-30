@@ -29,7 +29,7 @@ public class QuizResultsController {
 
     @FXML
     public void initialize() {
-        resultsLabel.setText(alfredDAO.getQuestLastQuizScore(AlfredWelcome.currentQuestID));
+        resultsLabel.setText(alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizScore());
 
         if (AlfredWelcome.quiz == null) {
             questionsContainer.getChildren().add(new Label("Come back again tomorrow to do your next daily quiz!"));

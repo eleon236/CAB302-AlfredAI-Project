@@ -41,21 +41,6 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public String getQuestName(int questID) {
-        return "";
-    }
-
-    @Override
-    public LocalDate getQuestLastQuizDate(int questID) {
-        return LocalDate.now();
-    }
-
-    @Override
-    public String getQuestLastQuizScore(int questID) {
-        return "";
-    }
-
-    @Override
     public void addFlashcard(Flashcard flashcard) {
 
     }

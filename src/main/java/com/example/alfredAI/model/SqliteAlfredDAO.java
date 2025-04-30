@@ -211,57 +211,6 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public String getQuestName(int questID) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT name FROM quests WHERE ID = ?");
-            statement.setInt(1, questID);
-            // Return the last quiz date
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString("name");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public LocalDate getQuestLastQuizDate(int questID) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizDate FROM quests WHERE ID = ?");
-            statement.setInt(1, questID);
-            // Return the last quiz date
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                if (resultSet.getDate("lastQuizDate") == null) {
-                    return null;
-                }
-                return resultSet.getDate("lastQuizDate").toLocalDate();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public String getQuestLastQuizScore (int questID) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizScore FROM quests WHERE ID = ?");
-            statement.setInt(1, questID);
-            // Return the last quiz date
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString("lastQuizScore");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    @Override
     public void addFlashcard(Flashcard flashcard) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO flashcards (question, answer, mastered) VALUES (?, ?, ?)");
