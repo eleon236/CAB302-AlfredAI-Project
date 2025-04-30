@@ -2,6 +2,7 @@ package com.example.alfredAI.controller;
 
 import com.example.alfredAI.AlfredWelcome;
 import com.example.alfredAI.model.IAlfredDAO;
+import com.example.alfredAI.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,6 +23,10 @@ public class QuestPageController {
 //        this.questID = questID;
 //        loadQuestDetails();
 //    }
+
+    public QuestPageController() {
+        alfredDAO = new SqliteAlfredDAO();
+    }
 
     @FXML
     public void initialize() {

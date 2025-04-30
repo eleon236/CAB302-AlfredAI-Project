@@ -29,8 +29,7 @@ public class QuizController {
     public QuizController() {
         alfredDAO = new SqliteAlfredDAO();
 
-        // TODO Implement actual questID
-        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1);
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
         AlfredWelcome.quiz = new Quiz(flashcards, 2);
     }
 
@@ -88,11 +87,11 @@ public class QuizController {
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
         AlfredWelcome.quiz.calcQuizResult();
+        // TODO Implement high score
 
         // Update quiz result in database
-        // TODO Implement actual questID
         alfredDAO.updateQuestLastQuizData(
-                1,
+                AlfredWelcome.currentQuestID,
                 AlfredWelcome.quiz.getResult() + " / " + AlfredWelcome.quiz.getQuestions().length,
                 LocalDate.now()
         );

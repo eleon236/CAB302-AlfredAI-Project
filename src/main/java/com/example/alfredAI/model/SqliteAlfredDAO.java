@@ -141,7 +141,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addQuest(String character, String name, Date endDate) {
+    public int addQuest(String character, String name, Date endDate) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO quests (character, name, endDate, distanceTravelled) VALUES (?, ?, ?, ?)");
             statement.setString(1, character);
@@ -149,15 +149,15 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             statement.setDate(3, (java.sql.Date) endDate);
             statement.setInt(4, 0);
             statement.executeUpdate();
-            // TODO Update when there's a quest class
-            // Set the id of the new quest
-//            ResultSet generatedKeys = statement.getGeneratedKeys();
-//            if (generatedKeys.next()) {
-//                quest.setId(generatedKeys.getInt(1));
-//            }
+            // Return the id of the new quest
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override

@@ -29,16 +29,19 @@ public class AddQuestController {
             return;
         }
 
-        // Create an Quest object with a placeholder ID
+        // Create a Quest object with a placeholder ID
         Quest newSubject = new Quest(0, subjectName, subjectEndDate);
 
         // Save the subject as a quest in the database
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
+        int newQuestID = alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
+        newSubject.setId(newQuestID);
+        AlfredWelcome.currentQuestID = newQuestID;
         System.out.println("Subject added: " + newSubject);
 
         closeWindow();
     }
+
     private void closeWindow() {
         Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
         stage.close();

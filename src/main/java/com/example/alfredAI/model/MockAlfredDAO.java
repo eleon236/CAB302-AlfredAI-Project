@@ -21,8 +21,8 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addQuest(String character, String name, Date endDate) {
-
+    public int addQuest(String character, String name, Date endDate) {
+        return 0;
     }
 
     @Override

@@ -33,7 +33,7 @@ public interface IAlfredDAO {
      * @param name The quest's name
      * @param endDate The quest's end date
      */
-    public void addQuest(
+    public int addQuest(
             String character,
             String name,
             Date endDate

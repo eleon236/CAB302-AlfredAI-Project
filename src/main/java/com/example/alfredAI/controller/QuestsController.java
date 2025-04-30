@@ -68,12 +68,14 @@ public class QuestsController {
             return; // No item selected
         }
 
+        // Temporarily store the selected questID
+        AlfredWelcome.currentQuestID = selectedQuest.getId();
+
         // Navigate to the Quest page
         FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
 
         // Pass the selected quest's ID to the new controller
-        AlfredWelcome.currentQuestID = selectedQuest.getId();
 //        QuestPageController questPageController = loader.getController();
 //        questPageController.setQuestID(String.valueOf(selectedQuest.getId())); // Convert int to String
 
