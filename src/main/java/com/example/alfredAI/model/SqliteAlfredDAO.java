@@ -208,7 +208,11 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                 LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
                 int distanceTravelled = resultSet.getInt("distanceTravelled");
                 String lastQuizScore = resultSet.getString("lastQuizScore");
-                LocalDate lastQuizDate = resultSet.getDate("lastQuizDate").toLocalDate();
+
+                // Check date is not null before converting to LocalDate
+                java.sql.Date sqlQuizDate = resultSet.getDate("lastQuizDate");
+                LocalDate lastQuizDate = (sqlQuizDate != null) ? sqlQuizDate.toLocalDate() : null;
+
                 String highestQuizScore = resultSet.getString("highestQuizScore");
 
                 return new Quest(ID, character, name, endDate, distanceTravelled, lastQuizScore, lastQuizDate, highestQuizScore);
