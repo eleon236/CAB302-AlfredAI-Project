@@ -2,7 +2,6 @@ package com.example.alfredAI.controller;
 
 import com.example.alfredAI.AlfredWelcome;
 import com.example.alfredAI.model.IAlfredDAO;
-import com.example.alfredAI.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,26 +16,16 @@ public class QuestPageController {
     private Label questDetailsLabel;
     private IAlfredDAO alfredDAO;
 
-//    private String questID;
+    private String questID;
 
-//    public void setQuestID() {
-//        this.questID = questID;
-//        loadQuestDetails();
-//    }
-
-    public QuestPageController() {
-        alfredDAO = new SqliteAlfredDAO();
-    }
-
-    @FXML
-    public void initialize() {
+    public void setQuestID(String questID) {
+        this.questID = questID;
         loadQuestDetails();
     }
 
     private void loadQuestDetails() {
         // Load quest details based on the questID
-        String questName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getSubjectName();
-        questDetailsLabel.setText("Quest Details for: " + questName);
+        questDetailsLabel.setText("Quest Details for: " + questID);
     }
 
     @FXML
@@ -51,11 +40,12 @@ public class QuestPageController {
     @FXML
     private void onGoToQuiz() throws IOException {
 //        Stage stage = (Stage) contactsListView.getScene().getWindow();
-        Stage stage = (Stage) Stage.getWindows().getFirst(); // Get the primary stage
+        Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
         FXMLLoader loader;
 
         // Check if daily quiz has already been done today
-        LocalDate lastDailyQuizDate = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizDate();
+        // TODO Implement actual questID
+        LocalDate lastDailyQuizDate = alfredDAO.getQuestLastQuizDate(1);
         if (lastDailyQuizDate == null) {
             loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-view.fxml"));
         } else if (lastDailyQuizDate.equals(LocalDate.now())) {
@@ -64,14 +54,6 @@ public class QuestPageController {
             loader = new FXMLLoader(AlfredWelcome.class.getResource("quiz-view.fxml"));
         }
 
-        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
-        stage.setScene(scene);
-    }
-
-    @FXML
-    private void onBack() throws IOException {
-        Stage stage = (Stage) questDetailsLabel.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }

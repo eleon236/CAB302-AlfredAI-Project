@@ -20,7 +20,7 @@ public class AddQuestController {
     private DatePicker subjectEndDateTextField;
 
     @FXML
-    private void onAddSubject() throws IOException {
+    private void onAddSubject() {
         String subjectName = subjectNameTextField.getText().trim();
         LocalDate subjectEndDate = subjectEndDateTextField.getValue();
 
@@ -29,23 +29,16 @@ public class AddQuestController {
             return;
         }
 
-        // Create a Quest object with a placeholder ID
+        // Create an Quest object with a placeholder ID
         Quest newSubject = new Quest(0, subjectName, subjectEndDate);
 
         // Save the subject as a quest in the database
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-        int newQuestID = alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-        newSubject.setId(newQuestID);
-        AlfredWelcome.currentQuestID = newQuestID;
-        //System.out.println("Subject added: " + newSubject);
+        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
+        System.out.println("Subject added: " + newSubject);
 
-        // Navigate to the Quest page
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
-        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
-        Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-        stage.setScene(scene);
+        closeWindow();
     }
-
     private void closeWindow() {
         Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
         stage.close();

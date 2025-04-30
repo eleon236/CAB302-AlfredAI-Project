@@ -55,7 +55,7 @@ public class QuestsController {
                 if (empty || quest == null) {
                     setText(null);
                 } else {
-                    setText(quest.getSubjectName() + " - " + quest.getEndDate());
+                    setText(quest.getCharacterName() + " - " + quest.getEndDate());
                 }
             }
         });
@@ -63,21 +63,20 @@ public class QuestsController {
 
     @FXML
     private void onQuestSelected() throws IOException {
+
+
         Quest selectedQuest = (Quest) questsListView.getSelectionModel().getSelectedItem();
         if (selectedQuest == null) {
             return; // No item selected
         }
-
-        // Temporarily store the selected questID
-        AlfredWelcome.currentQuestID = selectedQuest.getId();
 
         // Navigate to the Quest page
         FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
 
         // Pass the selected quest's ID to the new controller
-//        QuestPageController questPageController = loader.getController();
-//        questPageController.setQuestID(String.valueOf(selectedQuest.getId())); // Convert int to String
+        QuestPageController questPageController = loader.getController();
+        questPageController.setQuestID(String.valueOf(selectedQuest.getId())); // Convert int to String
 
         Stage stage = (Stage) questsListView.getScene().getWindow();
         stage.setScene(scene);
@@ -101,7 +100,7 @@ public class QuestsController {
 //        // Save the subject as a quest in the database
 //        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
 //        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-//        // To do: Add logic to save the subject to the database or list
+//        // TODO: Add logic to save the subject to the database or list
 //        System.out.println("Subject added: " + newSubject);
 //
 //        closeWindow();

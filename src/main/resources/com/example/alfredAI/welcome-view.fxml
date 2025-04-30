@@ -32,8 +32,6 @@
             <PasswordField fx:id="passwordField" prefWidth="200"/>
         </HBox>
 
-        <Label fx:id="messageLabel" text="" style="-fx-text-fill: green; -fx-font-size: 16px;" />
-
         <Button text="Continue !" onAction="#onContinue" style="-fx-font-size: 15px;"/>
     </VBox>
 

@@ -30,5 +30,5 @@
         <Button text="Flip" onAction="#onFlip"/>
     </HBox>
 
-    <Button text="Back to Quest" onAction="#onBack" alignment="CENTER"/>
+    <Button text="Back to Contacts" onAction="#onBack" alignment="CENTER"/>
 </VBox>

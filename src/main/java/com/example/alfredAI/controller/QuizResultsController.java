@@ -6,7 +6,6 @@ import com.example.alfredAI.model.QuizQuestion;
 import com.example.alfredAI.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -30,7 +29,8 @@ public class QuizResultsController {
 
     @FXML
     public void initialize() {
-        resultsLabel.setText(alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizScore());
+        // TODO Implement actual questID
+        resultsLabel.setText(alfredDAO.getQuestLastQuizScore(1));
 
         if (AlfredWelcome.quiz == null) {
             questionsContainer.getChildren().add(new Label("Come back again tomorrow to do your next daily quiz!"));
@@ -44,32 +44,24 @@ public class QuizResultsController {
 
             // Set up question number label
             Label questionNumLabel = new Label(questionNum + ".");
-            questionNumLabel.setPrefWidth(50);
 
             // Set up question field
             Label questionField = new Label(questionInfo.getQuestion());
-            questionField.setWrapText(true);
-            questionField.setPrefWidth(300);
-            questionField.setPrefHeight(150);
+            questionField.setPrefWidth(200);
+            questionField.setPrefHeight(100);
             questionField.setAlignment(Pos.TOP_LEFT);
 
             // Set up answer field
             VBox answerField = new VBox();
-            answerField.setPrefWidth(300);
-            answerField.setPrefHeight(150);
+            answerField.setPrefWidth(200);
+            answerField.setPrefHeight(100);
             answerField.setAlignment(Pos.TOP_LEFT);
-
-            Label correctAns = new Label(questionInfo.getCorrectAnswer());
-            correctAns.setWrapText(true);
-            correctAns.setPadding(new Insets(0, 0, 10, 0));
-            Label yourAns = new Label(questionInfo.getUserAnswer());
-            yourAns.setWrapText(true);
 
             answerField.getChildren().addAll(
                     new Label("Correct Answer:"),
-                    correctAns,
+                    new Label(questionInfo.getCorrectAnswer()),
                     new Label("Your Answer:"),
-                    yourAns
+                    new Label(questionInfo.getUserAnswer())
             );
 
             // Add the row to questionsContainer
@@ -85,7 +77,7 @@ public class QuizResultsController {
     @FXML
     private void onContinue() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("main-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }

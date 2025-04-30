@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class QuizController {
@@ -30,10 +29,9 @@ public class QuizController {
     public QuizController() {
         alfredDAO = new SqliteAlfredDAO();
 
-        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
-        LocalDate questEndDate = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getEndDate();
-        int questDaysLeft = (int) ChronoUnit.DAYS.between(LocalDate.now(), questEndDate);
-        AlfredWelcome.quiz = new Quiz(flashcards, questDaysLeft);
+        // TODO Implement actual questID
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1);
+        AlfredWelcome.quiz = new Quiz(flashcards, 2);
     }
 
     @FXML
@@ -44,19 +42,17 @@ public class QuizController {
             // Set up question number label
             int questionNum = i + 1;
             Label questionNumLabel = new Label(questionNum + ".");
-            questionNumLabel.setPrefWidth(50);
 
             // Set up question field
             Label question = new Label(AlfredWelcome.quiz.getQuestions()[i].getQuestion());
-            question.setWrapText(true);
-            question.setPrefWidth(300);
-            question.setPrefHeight(150);
+            question.setPrefWidth(200);
+            question.setPrefHeight(100);
             question.setAlignment(Pos.TOP_LEFT);
 
             // Set up user answer field
             TextField userAnswerField = new TextField();
-            userAnswerField.setPrefWidth(300);
-            userAnswerField.setPrefHeight(150);
+            userAnswerField.setPrefWidth(200);
+            userAnswerField.setPrefHeight(100);
             userAnswerField.setAlignment(Pos.TOP_LEFT);
             userAnswerField.setPromptText("Your answer...");
             userAnswerField.textProperty().addListener((observable, oldValue, newValue) ->
@@ -83,7 +79,7 @@ public class QuizController {
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("main-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
@@ -94,8 +90,9 @@ public class QuizController {
         AlfredWelcome.quiz.calcQuizResult();
 
         // Update quiz result in database
+        // TODO Implement actual questID
         alfredDAO.updateQuestLastQuizData(
-                AlfredWelcome.currentQuestID,
+                1,
                 AlfredWelcome.quiz.getResult() + " / " + AlfredWelcome.quiz.getQuestions().length,
                 LocalDate.now()
         );

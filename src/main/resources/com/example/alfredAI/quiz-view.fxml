@@ -15,13 +15,13 @@
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>
-        <Button text="Back to Quest" onAction="#onBack"/>
-        <Label text="Daily Quiz" maxWidth="700" alignment="CENTER"/>
-        <ProgressBar fx:id="progressBar" prefWidth="700"/>
+        <Button text="Back to Contacts" onAction="#onBack"/>
+        <Label text="Daily Quiz" maxWidth="580" alignment="CENTER"/>
+        <ProgressBar fx:id="progressBar" prefWidth="580"/>
 
-        <VBox spacing="10.0" prefWidth="700" fx:id="questionsContainer"/>
+        <VBox spacing="10.0" prefWidth="580" fx:id="questionsContainer"/>
 
-        <HBox maxWidth="700" alignment="CENTER_RIGHT">
+        <HBox maxWidth="580" alignment="CENTER_RIGHT">
             <Button text="Submit" onAction="#onSubmit"/>
         </HBox>
 

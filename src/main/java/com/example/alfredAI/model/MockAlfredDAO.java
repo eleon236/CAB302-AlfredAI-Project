@@ -21,8 +21,8 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public int addQuest(String character, String name, Date endDate) {
-        return 0;
+    public void addQuest(String character, String name, Date endDate) {
+
     }
 
     @Override
@@ -36,8 +36,13 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public Quest getQuest(int questID) {
-        return null;
+    public LocalDate getQuestLastQuizDate(int questID) {
+        return LocalDate.now();
+    }
+
+    @Override
+    public String getQuestLastQuizScore(int questID) {
+        return "";
     }
 
     @Override
@@ -58,10 +63,5 @@ public class MockAlfredDAO implements IAlfredDAO {
     @Override
     public List<Flashcard> getQuestFlashcards(int questID) {
         return List.of(new Flashcard[0]);
-    }
-
-    @Override
-    public List<Quest> getUserQuests() {
-        return List.of();
     }
 }
