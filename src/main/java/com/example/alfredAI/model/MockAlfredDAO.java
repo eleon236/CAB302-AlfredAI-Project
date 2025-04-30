@@ -36,6 +36,11 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public Quest getQuest(int questID) {
+        return null;
+    }
+
+    @Override
     public String getQuestName(int questID) {
         return "";
     }

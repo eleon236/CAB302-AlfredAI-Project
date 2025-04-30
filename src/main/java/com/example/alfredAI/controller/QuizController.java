@@ -87,7 +87,6 @@ public class QuizController {
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
         AlfredWelcome.quiz.calcQuizResult();
-        // TODO Implement high score
 
         // Update quiz result in database
         alfredDAO.updateQuestLastQuizData(

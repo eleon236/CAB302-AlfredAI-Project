@@ -62,6 +62,13 @@ public interface IAlfredDAO {
     );
 
     /**
+     * Retrieves a quests information from the database
+     * @param questID The quest's ID
+     * @return The full quest information
+     */
+    public Quest getQuest(int questID);
+
+    /**
      * Retrieves a quest's name from the database
      * @param questID The quest's ID
      * @return The quest's name

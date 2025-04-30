@@ -186,6 +186,31 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public Quest getQuest(int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM quests WHERE ID = ?");
+            statement.setInt(1, questID);
+            // Return the last quiz date
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                String character = resultSet.getString("character");
+                String name = resultSet.getString("name");
+                LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
+                int distanceTravelled = resultSet.getInt("distanceTravelled");
+                String lastQuizScore = resultSet.getString("lastQuizScore");
+                LocalDate lastQuizDate = resultSet.getDate("lastQuizDate").toLocalDate();
+                String highestQuizScore = resultSet.getString("highestQuizScore");
+
+                return new Quest(ID, character, name, endDate, distanceTravelled, lastQuizScore, lastQuizDate, highestQuizScore);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public String getQuestName(int questID) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT name FROM quests WHERE ID = ?");
