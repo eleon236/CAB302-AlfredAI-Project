@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class QuizController {
@@ -30,7 +31,9 @@ public class QuizController {
         alfredDAO = new SqliteAlfredDAO();
 
         List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
-        AlfredWelcome.quiz = new Quiz(flashcards, 2);
+        LocalDate questEndDate = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getEndDate();
+        int questDaysLeft = (int) ChronoUnit.DAYS.between(LocalDate.now(), questEndDate);
+        AlfredWelcome.quiz = new Quiz(flashcards, questDaysLeft);
     }
 
     @FXML

@@ -1,5 +1,7 @@
 package com.example.alfredAI.model;
 
+import com.example.alfredAI.AlfredWelcome;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +21,13 @@ public class SqliteAlfredDAO implements IAlfredDAO {
 
         createUserQuestsTable();
         createQuestFlashcardsTable();
+
+        // Uncomment this to reset quiz data so you can do the daily quiz again today
+//        updateQuestLastQuizData(
+//                AlfredWelcome.currentQuestID,
+//                "0 / 5",
+//                LocalDate.now().minusDays(1)
+//        );
     }
 
     private void createUsersTable() {
