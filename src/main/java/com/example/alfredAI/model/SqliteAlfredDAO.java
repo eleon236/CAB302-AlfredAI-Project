@@ -1,5 +1,7 @@
 package com.example.alfredAI.model;
 
+import com.example.alfredAI.AlfredWelcome;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +21,13 @@ public class SqliteAlfredDAO implements IAlfredDAO {
 
         createUserQuestsTable();
         createQuestFlashcardsTable();
+
+        // Uncomment this to reset quiz data so you can do the daily quiz again today
+        updateQuestLastQuizData(
+                AlfredWelcome.currentQuestID,
+                "0 / 5",
+                LocalDate.now().minusDays(1)
+        );
     }
 
     private void createUsersTable() {
@@ -112,7 +121,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
-            // TODO Update when there's a user class
+            // TODO Update with user class
             // Set the id of the new user
 //            ResultSet generatedKeys = statement.getGeneratedKeys();
 //            if (generatedKeys.next()) {
@@ -141,7 +150,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addQuest(String character, String name, Date endDate) {
+    public int addQuest(String character, String name, Date endDate) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO quests (character, name, endDate, distanceTravelled) VALUES (?, ?, ?, ?)");
             statement.setString(1, character);
@@ -149,15 +158,15 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             statement.setDate(3, (java.sql.Date) endDate);
             statement.setInt(4, 0);
             statement.executeUpdate();
-            // TODO Update when there's a quest class
-            // Set the id of the new quest
-//            ResultSet generatedKeys = statement.getGeneratedKeys();
-//            if (generatedKeys.next()) {
-//                quest.setId(generatedKeys.getInt(1));
-//            }
+            // Return the id of the new quest
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override
@@ -186,38 +195,32 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public LocalDate getQuestLastQuizDate(int questID) {
+    public Quest getQuest(int questID) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizDate FROM quests WHERE ID = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM quests WHERE ID = ?");
             statement.setInt(1, questID);
             // Return the last quiz date
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                if (resultSet.getDate("lastQuizDate") == null) {
-                    return null;
-                }
-                return resultSet.getDate("lastQuizDate").toLocalDate();
+                int ID = resultSet.getInt("ID");
+                String character = resultSet.getString("character");
+                String name = resultSet.getString("name");
+                LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
+                int distanceTravelled = resultSet.getInt("distanceTravelled");
+                String lastQuizScore = resultSet.getString("lastQuizScore");
+
+                // Check date is not null before converting to LocalDate
+                java.sql.Date sqlQuizDate = resultSet.getDate("lastQuizDate");
+                LocalDate lastQuizDate = (sqlQuizDate != null) ? sqlQuizDate.toLocalDate() : null;
+
+                String highestQuizScore = resultSet.getString("highestQuizScore");
+
+                return new Quest(ID, character, name, endDate, distanceTravelled, lastQuizScore, lastQuizDate, highestQuizScore);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @Override
-    public String getQuestLastQuizScore (int questID) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT lastQuizScore FROM quests WHERE ID = ?");
-            statement.setInt(1, questID);
-            // Return the last quiz date
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString("lastQuizScore");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     @Override
@@ -292,7 +295,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         return flashcards;
     }
 
-
+    @Override
     public List<Quest> getUserQuests() {
         List<Quest> quests = new ArrayList<>();
         try {
