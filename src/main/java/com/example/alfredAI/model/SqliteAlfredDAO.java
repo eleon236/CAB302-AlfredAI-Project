@@ -23,11 +23,11 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         createQuestFlashcardsTable();
 
         // Uncomment this to reset quiz data so you can do the daily quiz again today
-//        updateQuestLastQuizData(
-//                AlfredWelcome.currentQuestID,
-//                "0 / 5",
-//                LocalDate.now().minusDays(1)
-//        );
+        updateQuestLastQuizData(
+                AlfredWelcome.currentQuestID,
+                "0 / 5",
+                LocalDate.now().minusDays(1)
+        );
     }
 
     private void createUsersTable() {
@@ -121,7 +121,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
-            // TODO Update when there's a user class
+            // TODO Update with user class
             // Set the id of the new user
 //            ResultSet generatedKeys = statement.getGeneratedKeys();
 //            if (generatedKeys.next()) {

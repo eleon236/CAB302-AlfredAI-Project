@@ -44,17 +44,19 @@ public class QuizController {
             // Set up question number label
             int questionNum = i + 1;
             Label questionNumLabel = new Label(questionNum + ".");
+            questionNumLabel.setPrefWidth(50);
 
             // Set up question field
             Label question = new Label(AlfredWelcome.quiz.getQuestions()[i].getQuestion());
-            question.setPrefWidth(200);
-            question.setPrefHeight(100);
+            question.setWrapText(true);
+            question.setPrefWidth(300);
+            question.setPrefHeight(150);
             question.setAlignment(Pos.TOP_LEFT);
 
             // Set up user answer field
             TextField userAnswerField = new TextField();
-            userAnswerField.setPrefWidth(200);
-            userAnswerField.setPrefHeight(100);
+            userAnswerField.setPrefWidth(300);
+            userAnswerField.setPrefHeight(150);
             userAnswerField.setAlignment(Pos.TOP_LEFT);
             userAnswerField.setPromptText("Your answer...");
             userAnswerField.textProperty().addListener((observable, oldValue, newValue) ->
