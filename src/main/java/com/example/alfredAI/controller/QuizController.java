@@ -78,7 +78,7 @@ public class QuizController {
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("main-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }

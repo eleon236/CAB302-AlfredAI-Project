@@ -67,4 +67,12 @@ public class QuestPageController {
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
+
+    @FXML
+    private void onBack() throws IOException {
+        Stage stage = (Stage) questDetailsLabel.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
 }
