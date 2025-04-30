@@ -10,7 +10,9 @@
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.example.alfredAI.controller.QuestPageController"
           prefHeight="400.0" prefWidth="600.0" hgap="10" vgap="10" alignment="CENTER">
-    <Label fx:id="questDetailsLabel" text="Quest Details" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-    <Button text="Go to Flashcards" onAction="#onGoToFlashcards" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <Button text="Go to Quiz" onAction="#onGoToQuiz" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Button text="Back to All Quests" GridPane.rowIndex="0" GridPane.columnIndex="0" onAction="#onBack"/>
+    <Label fx:id="questDetailsLabel" text="Quest Details" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <Button text="Go to Flashcards" onAction="#onGoToFlashcards" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <Button text="Go to Quiz" onAction="#onGoToQuiz" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 </GridPane>
