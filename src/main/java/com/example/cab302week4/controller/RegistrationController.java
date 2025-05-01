@@ -1,8 +1,16 @@
 package com.example.cab302week4.controller;
 
+import com.example.cab302week4.AlfredWelcome;
+import com.example.cab302week4.HelloApplication;
+//import com.sun.javafx.tk.quantum.PaintRenderJob;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class RegistrationController {
 
@@ -17,6 +25,18 @@ public class RegistrationController {
 
     @FXML
     private Button goButton;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private void onbackButton() throws IOException {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("welcome-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
+
 
     @FXML
     private void handleGoButton() {

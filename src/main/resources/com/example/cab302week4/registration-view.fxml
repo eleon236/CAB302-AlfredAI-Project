@@ -32,4 +32,9 @@
     <Button text="Go !" fx:id="goButton" onAction="#handleGoButton"
             style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
 
+
+    <Button text="Back" fx:id="backButton" onAction="#onbackButton"
+            style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
+
+
 </GridPane>

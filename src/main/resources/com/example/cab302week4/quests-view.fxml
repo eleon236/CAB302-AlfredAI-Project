@@ -17,7 +17,11 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
             <!-- Bear Image -->
-            <ImageView fx:id="bearImageView" fitHeight="200" fitWidth="150" preserveRatio="true"/>
+            <!-- Top section: Bear image + Title -->
+            <!-- Top section: Bear image + Title -->
+            <HBox spacing="20" alignment="CENTER">
+                <ImageView fx:id="bearImageView" fitWidth="200" fitHeight="250" preserveRatio="true"/>
+            </HBox>
 
             <!-- Titles -->
             <VBox alignment="CENTER" spacing="10">
@@ -25,6 +29,10 @@
                 <Label text="Welcome back!&#10;How will you continue your adventure?"
                        style="-fx-font-size: 20px; -fx-alignment: center;" textAlignment="CENTER"/>
             </VBox>
+
+            <Button text="Logout" fx:id="logoutButton" onAction="#onlogoutButton"
+                    style="-fx-font-size: 13px;" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+
         </HBox>
     </top>
 
@@ -38,6 +46,8 @@
             <ListView fx:id="questsListView" prefWidth="400" prefHeight="300" GridPane.rowIndex="0" onMouseClicked="#onQuestSelected"/>
             <!-- Button in the second row -->
             <Button text="Add Subject" onAction="#onGoToAddSubject" GridPane.rowIndex="1"/>
+
+
         </GridPane>
     </center>
 
