@@ -1,14 +1,14 @@
-module com.example.cab302week4 {
+module com.example.alfredAI {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
     requires java.sql;
 
 
-    opens com.example.cab302week4 to javafx.fxml;
-    exports com.example.cab302week4;
-    exports com.example.cab302week4.controller;
-    opens com.example.cab302week4.controller to javafx.fxml;
-    exports com.example.cab302week4.model;
-    opens com.example.cab302week4.model to javafx.fxml;
+    opens com.example.alfredAI to javafx.fxml;
+    exports com.example.alfredAI;
+    exports com.example.alfredAI.controller;
+    opens com.example.alfredAI.controller to javafx.fxml;
+    exports com.example.alfredAI.model;
+    opens com.example.alfredAI.model to javafx.fxml;
 }
