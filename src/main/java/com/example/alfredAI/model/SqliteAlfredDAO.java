@@ -115,21 +115,21 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addUser(String username, String password) {
+    public User addUser(String username, String password) {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
-            // TODO Update with user class
-            // Set the id of the new user
-//            ResultSet generatedKeys = statement.getGeneratedKeys();
-//            if (generatedKeys.next()) {
-//                user.setId(generatedKeys.getInt(1));
-//            }
+            // Return the new User with ID
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return new User(generatedKeys.getInt(1), username, password);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return new User();
     }
 
     @Override
@@ -296,11 +296,15 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public List<Quest> getUserQuests() {
+    public List<Quest> getUserQuests(int userID) {
         List<Quest> quests = new ArrayList<>();
         try {
-            String query = "SELECT ID, name, endDate FROM quests"; // Include ID in the query
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT quests.ID, quests.name, quests.endDate FROM quests "
+                            + "JOIN userQuests "
+                            + "ON quests.ID = userQuests.questID "
+                            + "WHERE userQuests.userID = ?");
+            statement.setInt(1, userID);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

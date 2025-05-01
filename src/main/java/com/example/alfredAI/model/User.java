@@ -31,7 +31,7 @@ public class User {
             return ("This combination of username and password is invalid, please try again");
         }else{
             LogedinUser(ID);
-            return ("You have sucessfully logged in");
+            return ("You have successfully logged in");
         }
     }
 

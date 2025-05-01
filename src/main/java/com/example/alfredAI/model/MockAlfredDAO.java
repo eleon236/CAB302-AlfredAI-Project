@@ -11,8 +11,8 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addUser(String username, String password) {
-
+    public User addUser(String username, String password) {
+        return new User();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public List<Quest> getUserQuests() {
+    public List<Quest> getUserQuests(int userID) {
         return List.of();
     }
 }

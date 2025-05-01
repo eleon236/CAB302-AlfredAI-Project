@@ -17,7 +17,7 @@ public interface IAlfredDAO {
      * @param username The user's username
      * @param password The user's password
      */
-    public void addUser(String username, String password);
+    public User addUser(String username, String password);
 
     /**
      * Retrieves a user's ID from the database
@@ -96,5 +96,5 @@ public interface IAlfredDAO {
     /**
      * Retrieves a user's quests from the database
      */
-    public List<Quest> getUserQuests();
+    public List<Quest> getUserQuests(int userID);
 }

@@ -65,7 +65,8 @@ public class RegistrationController {
             int FindUser = alfredDAO.getUserID(username,password);
             String Message = user.Register(FindUser);
             if(FindUser == 0){
-                alfredDAO.addUser(username,password);
+                User user = alfredDAO.addUser(username,password);
+                AlfredWelcome.currentUserID = user.getUserID();
 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");

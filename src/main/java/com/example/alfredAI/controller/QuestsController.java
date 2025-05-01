@@ -27,14 +27,6 @@ public class QuestsController {
     private Button logoutButton;
 
     @FXML
-    private void onlogoutButton() throws IOException {
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("welcome-view.fxml"));
-        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
-        stage.setScene(scene);
-    }
-
-    @FXML
     private ImageView bearImageView;
 
     @FXML
@@ -43,6 +35,15 @@ public class QuestsController {
         bearImageView.setImage(image);
 
         loadQuestsIntoListView();
+    }
+
+    @FXML
+    private void onlogoutButton() throws IOException {
+        AlfredWelcome.currentUserID = 0;
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("welcome-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
     }
 
     @FXML
@@ -56,7 +57,7 @@ public class QuestsController {
 
     private void loadQuestsIntoListView() {
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // Create an instance
-        List<Quest> quests = alfredDAO.getUserQuests(); // Call the no-argument method
+        List<Quest> quests = alfredDAO.getUserQuests(AlfredWelcome.currentUserID); // Call the no-argument method
         questsListView.getItems().addAll(quests);
 
         questsListView.setCellFactory(listView -> new ListCell<Quest>() { // Explicitly specify the type
