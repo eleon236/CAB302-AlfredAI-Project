@@ -33,7 +33,7 @@
             style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
 
 
-    <Button text="Back" fx:id="backButton" onAction="#onbackButton"
+    <Button text="Back" fx:id="backButton" onAction="#onBackButton"
             style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
 
 

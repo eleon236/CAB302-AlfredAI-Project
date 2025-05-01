@@ -35,9 +35,20 @@ public class RegistrationController {
     private Button goButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     public void initialize() {
         user = new User();
         alfredDAO = new SqliteAlfredDAO();
+    }
+
+    @FXML
+    private void onBackButton() throws IOException {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("welcome-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
     }
 
     @FXML
