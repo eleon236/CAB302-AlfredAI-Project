@@ -71,8 +71,8 @@ public class WelcomeController {
         String password = passwordField.getText();
 
         //run login function and check database
-        int FindUser = alfredDAO.getUserID(username,password);
-        String Message = user.Login(FindUser);
+        int FoundUserID = alfredDAO.getUserID(username,password);
+        String Message = user.Login(FoundUserID);
         //display message
         messageLabel.setText(Message);
 
@@ -82,7 +82,9 @@ public class WelcomeController {
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(event -> {
             try {
-                if(Message.equals("You have sucessfully logged in")){
+                if(Message.equals("You have successfully logged in")){
+                    // Update currentUserID
+                    AlfredWelcome.currentUserID = FoundUserID;
                     // Load the next scene after delay
                     FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
                     Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
