@@ -6,30 +6,41 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class QuestsController {
     @FXML
     private TextField subjectNameTextField;
     @FXML
     private DatePicker subjectEndDateTextField;
-    @FXML
-    private ImageView bearImageView;
+
     @FXML
     private ListView questsListView;
 
     @FXML
-    private void initialize() {
-        try {
-//            Image bearImage = new Image(getClass().getResource("/img/Bear.png").toExternalForm());
-//            bearImageView.setImage(bearImage);
-        } catch (Exception e) {
-            System.out.println("Bear image not found!");
-        }
+    private Button logoutButton;
+
+    @FXML
+    private void onlogoutButton() throws IOException {
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("welcome-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    private ImageView bearImageView;
+
+    @FXML
+    public void initialize() {
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        bearImageView.setImage(image);
 
         loadQuestsIntoListView();
     }
