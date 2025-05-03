@@ -5,14 +5,30 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
 
-<GridPane xmlns="http://javafx.com/javafx"
+<VBox xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.example.alfredAI.controller.QuestPageController"
-          prefHeight="400.0" prefWidth="600.0" hgap="10" vgap="10" alignment="CENTER">
+          prefHeight="600.0" prefWidth="800.0" alignment="TOP_CENTER"
+          style="-fx-background-color: white;">
 
-    <Button text="Back to All Quests" GridPane.rowIndex="0" GridPane.columnIndex="0" onAction="#onBack"/>
-    <Label fx:id="questDetailsLabel" text="Quest Details" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <Button text="Go to Flashcards" onAction="#onGoToFlashcards" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-    <Button text="Go to Quiz" onAction="#onGoToQuiz" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-</GridPane>
+    <StackPane alignment="TOP_CENTER" maxWidth="800" maxHeight="180">
+
+        <ImageView fx:id="questProgressImage" fitWidth="700" fitHeight="210" preserveRatio="true"/>
+
+        <StackPane alignment="TOP_LEFT" maxWidth="800">
+            <Button text="Back" onAction="#onBack"/>
+        </StackPane>
+
+        <Label fx:id="questNameLabel" textAlignment="CENTER"
+               style="-fx-font-family: 'Century'; -fx-font-size: 30px;
+                    -fx-padding: 5px; -fx-border-insets: 5px; -fx-background-insets: 5px;"/>
+
+    </StackPane>
+
+    <HBox spacing="20.0" alignment="CENTER" style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;">
+        <Button text="Go to Flashcards" prefWidth="340" onAction="#onGoToFlashcards"/>
+        <Button text="Go to Quiz" prefWidth="340" onAction="#onGoToQuiz"/>
+    </HBox>
+</VBox>
