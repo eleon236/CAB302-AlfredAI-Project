@@ -7,14 +7,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class QuestPageController {
     @FXML
-    private Label questDetailsLabel;
+    private Label questNameLabel;
+    @FXML
+    private ImageView questProgressImage;
+
     private IAlfredDAO alfredDAO;
 
 //    private String questID;
@@ -31,12 +37,15 @@ public class QuestPageController {
     @FXML
     public void initialize() {
         loadQuestDetails();
+
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-1.png")));
+        questProgressImage.setImage(image);
     }
 
     private void loadQuestDetails() {
         // Load quest details based on the questID
         String questName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getSubjectName();
-        questDetailsLabel.setText("Quest Details for: " + questName);
+        questNameLabel.setText(questName + " Quest");
     }
 
     @FXML
@@ -70,7 +79,7 @@ public class QuestPageController {
 
     @FXML
     private void onBack() throws IOException {
-        Stage stage = (Stage) questDetailsLabel.getScene().getWindow();
+        Stage stage = (Stage) questNameLabel.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);

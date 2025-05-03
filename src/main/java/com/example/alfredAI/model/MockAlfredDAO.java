@@ -61,6 +61,11 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public int getQuestFlashcardsMastered(int questID) {
+        return 0;
+    }
+
+    @Override
     public List<Quest> getUserQuests(int userID) {
         return List.of();
     }
