@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +18,10 @@ import java.util.List;
 
 public class FlashcardController {
 
+    @FXML private Label flashcardsMasteredLabel;
+    @FXML private ProgressBar progressBar;
     @FXML private Label cardLabel;
+    @FXML private Label masteredLabel;
 
     private List<Flashcard> flashcards = new ArrayList<>();  // Now real flashcards from DB
     private int currentIndex = 0;
@@ -25,16 +29,20 @@ public class FlashcardController {
 
     private SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();  // Access the database
 
-
     @FXML
     public void initialize() {
         // Load flashcards from the database
-        flashcards = alfredDAO.getQuestFlashcards(1); // assuming questID = 1 for now
+        flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
         if (flashcards.isEmpty()) {
             cardLabel.setText("No flashcards available.");
         } else {
             updateCard();
         }
+
+        // Set up mastered text and progress bar
+        int numMastered = alfredDAO.getQuestFlashcardsMastered(AlfredWelcome.currentQuestID);
+        flashcardsMasteredLabel.setText(numMastered + " of " + flashcards.size() + " flashcards mastered");
+        progressBar.setProgress((double) numMastered / flashcards.size());
     }
 
     private void updateCard() {
@@ -44,6 +52,7 @@ public class FlashcardController {
         }
         Flashcard card = flashcards.get(currentIndex);
         cardLabel.setText(showingQuestion ? card.getQuestion() : card.getAnswer());
+        masteredLabel.setText(card.getMastered() ? "✔ Mastered" : "");
     }
 
     @FXML

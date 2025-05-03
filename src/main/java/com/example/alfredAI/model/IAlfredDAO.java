@@ -94,6 +94,12 @@ public interface IAlfredDAO {
     public List<Flashcard> getQuestFlashcards(int questID);
 
     /**
+     * Retrieves a quest's flashcards from the database
+     * @param questID The quest's ID
+     */
+    public int getQuestFlashcardsMastered(int questID);
+
+    /**
      * Retrieves a user's quests from the database
      */
     public List<Quest> getUserQuests(int userID);

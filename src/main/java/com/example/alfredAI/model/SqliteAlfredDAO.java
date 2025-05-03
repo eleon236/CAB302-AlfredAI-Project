@@ -296,6 +296,27 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public int getQuestFlashcardsMastered(int questID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT COUNT(*) FROM flashcards "
+                            + "JOIN questFlashcards "
+                            + "ON flashcards.ID = questFlashcards.flashcardID "
+                            + "WHERE questFlashcards.questID = ? "
+                            + "AND flashcards.mastered = 1");
+            statement.setInt(1, questID);
+            ResultSet resultSet = statement.executeQuery();
+            // Return number of flashcards mastered
+            while (resultSet.next()) {
+                return resultSet.getInt("COUNT(*)");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
     public List<Quest> getUserQuests(int userID) {
         List<Quest> quests = new ArrayList<>();
         try {
