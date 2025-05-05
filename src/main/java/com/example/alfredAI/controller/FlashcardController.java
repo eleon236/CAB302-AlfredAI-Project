@@ -72,6 +72,13 @@ public class FlashcardController {
         }
     }
 
+    @FXML
+    private void onPrevious() {
+        currentIndex = (currentIndex - 1 + flashcards.size()) % flashcards.size();
+        showingQuestion = true;
+        updateCard();
+    }
+
 
     @FXML
     private void onBack() throws IOException {
