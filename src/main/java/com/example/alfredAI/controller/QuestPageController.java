@@ -1,12 +1,14 @@
 package com.example.alfredAI.controller;
 
 import com.example.alfredAI.AlfredWelcome;
+import com.example.alfredAI.model.Flashcard;
 import com.example.alfredAI.model.IAlfredDAO;
 import com.example.alfredAI.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 
 public class QuestPageController {
     @FXML
@@ -111,4 +114,15 @@ public class QuestPageController {
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
+
+    @FXML
+    private void onAddFlashcard() throws IOException {
+        Stage stage = (Stage) questNameLabel.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("add-flashcard-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
+
+
+
 }

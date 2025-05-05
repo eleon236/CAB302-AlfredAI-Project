@@ -30,7 +30,7 @@ public class EditFlashcardsController {
     @FXML
     public void initialize() {
         // Load real flashcards from the database
-        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1); // assuming questID = 1
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1);
 
         flashcardList.getItems().addAll(flashcards);
 
