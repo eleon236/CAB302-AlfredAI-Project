@@ -11,7 +11,8 @@
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.example.alfredAI.controller.QuestPageController"
           prefHeight="600.0" prefWidth="800.0" alignment="TOP_CENTER"
-          style="-fx-background-color: white;">
+          style="-fx-background-color: white;"
+          stylesheets="@style.css">
 
     <StackPane alignment="TOP_CENTER" maxWidth="800" maxHeight="180">
 
@@ -21,9 +22,9 @@
             <Button text="Back" onAction="#onBack"/>
         </StackPane>
 
-        <Label fx:id="questNameLabel" textAlignment="CENTER"
+        <Label fx:id="questNameLabel" textAlignment="CENTER" maxWidth="360"
                style="-fx-font-family: 'Century'; -fx-font-size: 30px;
-                    -fx-padding: 5px; -fx-border-insets: 5px; -fx-background-insets: 5px;"/>
+                    -fx-padding: 7px; -fx-border-insets: 7px; -fx-background-insets: 7px;"/>
 
     </StackPane>
 

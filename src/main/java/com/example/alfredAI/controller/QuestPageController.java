@@ -23,13 +23,6 @@ public class QuestPageController {
 
     private IAlfredDAO alfredDAO;
 
-//    private String questID;
-
-//    public void setQuestID() {
-//        this.questID = questID;
-//        loadQuestDetails();
-//    }
-
     public QuestPageController() {
         alfredDAO = new SqliteAlfredDAO();
     }
@@ -59,7 +52,6 @@ public class QuestPageController {
 
     @FXML
     private void onGoToQuiz() throws IOException {
-//        Stage stage = (Stage) contactsListView.getScene().getWindow();
         Stage stage = (Stage) Stage.getWindows().getFirst(); // Get the primary stage
         FXMLLoader loader;
 
