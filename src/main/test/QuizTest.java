@@ -1,8 +1,8 @@
-import com.example.alfredAI.model.*;
+}import com.example.alfredAI.model.*;
 
-import org.junit.jupiter.api.*;
+        import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -138,4 +138,3 @@ public class QuizTest {
         quiz.calcQuizResult();
         assertEquals(2, quiz.getResult());
     }
-}

@@ -34,6 +34,7 @@
     </StackPane>
 
     <HBox spacing="20" alignment="CENTER">
+        <Button text="Previous" onAction="#onPrevious"/>
         <Button text="Next" onAction="#onNext"/>
         <Button text="Flip" onAction="#onFlip"/>
     </HBox>
