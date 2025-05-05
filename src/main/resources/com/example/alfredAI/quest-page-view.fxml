@@ -30,5 +30,7 @@
     <HBox spacing="20.0" alignment="CENTER" style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;">
         <Button text="Go to Flashcards" prefWidth="340" onAction="#onGoToFlashcards"/>
         <Button text="Go to Quiz" prefWidth="340" onAction="#onGoToQuiz"/>
+        <Button fx:id="addButton" text="Add Flashcard" onAction="#onAddFlashcard"/>
+
     </HBox>
 </VBox>

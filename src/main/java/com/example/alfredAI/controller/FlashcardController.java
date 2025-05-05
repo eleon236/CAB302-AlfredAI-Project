@@ -11,10 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FlashcardController {
 
@@ -93,5 +95,6 @@ public class FlashcardController {
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(editRoot);
     }
+
 
 }

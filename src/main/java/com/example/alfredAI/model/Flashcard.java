@@ -13,7 +13,7 @@ public class Flashcard {
         this.mastered = mastered;
     }
 
-    public Flashcard(String question, String answer, boolean mastered) {
+    public Flashcard(String question, String answer) {
         this.question = question;
         this.answer = answer;
         this.mastered = mastered;
