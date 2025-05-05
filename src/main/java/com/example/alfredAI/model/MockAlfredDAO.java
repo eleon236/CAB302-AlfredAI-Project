@@ -21,7 +21,7 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public int addQuest(String character, String name, Date endDate) {
+    public int addQuest(int userID, String character, String name, Date endDate) {
         return 0;
     }
 
@@ -41,7 +41,7 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addFlashcard(Flashcard flashcard) {
+    public void addFlashcard(int questID, Flashcard flashcard) {
 
     }
 

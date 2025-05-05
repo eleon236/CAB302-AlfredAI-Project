@@ -8,11 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-// TODO
-// Make going back to main page work
-// Make going back to quest page work
-// Make quests page refresh when returning
-
 //Main class
 public class AlfredWelcome extends Application {
     // Constants defining the window title and size

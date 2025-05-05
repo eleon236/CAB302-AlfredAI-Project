@@ -29,15 +29,9 @@ public class AddQuestController {
             return;
         }
 
-        // Create a Quest object with a placeholder ID
-        Quest newSubject = new Quest(0, subjectName, subjectEndDate);
-
         // Save the subject as a quest in the database
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-        int newQuestID = alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-        newSubject.setId(newQuestID);
-        AlfredWelcome.currentQuestID = newQuestID;
-        //System.out.println("Subject added: " + newSubject);
+        AlfredWelcome.currentQuestID = alfredDAO.addQuest(AlfredWelcome.currentUserID, "Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
 
         // Navigate to the Quest page
         FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));

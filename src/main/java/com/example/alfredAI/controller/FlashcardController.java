@@ -35,14 +35,16 @@ public class FlashcardController {
         flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
         if (flashcards.isEmpty()) {
             cardLabel.setText("No flashcards available.");
+            flashcardsMasteredLabel.setText("");
+            progressBar.setVisible(false);
         } else {
             updateCard();
-        }
 
-        // Set up mastered text and progress bar
-        int numMastered = alfredDAO.getQuestFlashcardsMastered(AlfredWelcome.currentQuestID);
-        flashcardsMasteredLabel.setText(numMastered + " of " + flashcards.size() + " flashcards mastered");
-        progressBar.setProgress((double) numMastered / flashcards.size());
+            // Set up mastered text and progress bar
+            int numMastered = alfredDAO.getQuestFlashcardsMastered(AlfredWelcome.currentQuestID);
+            flashcardsMasteredLabel.setText(numMastered + " of " + flashcards.size() + " flashcards mastered");
+            progressBar.setProgress((double) numMastered / flashcards.size());
+        }
     }
 
     private void updateCard() {
