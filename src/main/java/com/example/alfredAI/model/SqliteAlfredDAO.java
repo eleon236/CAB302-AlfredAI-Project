@@ -18,7 +18,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         createUsersTable();
         createQuestsTable();
         createFlashcardsTable();
-
+        createAchievementsTable();
         createUserQuestsTable();
         createQuestFlashcardsTable();
 
@@ -338,6 +338,63 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             e.printStackTrace();
         }
         return quests;
+    }
+
+    private void createAchievementsTable() {
+        try {
+            Statement statement = connection.createStatement();
+            String query = "CREATE TABLE IF NOT EXISTS achievements ("
+                    + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "userID INTEGER NOT NULL,"
+                    + "daysLoggedIn INTEGER DEFAULT 0,"
+                    + "questsCompleted INTEGER DEFAULT 0,"
+                    + "otherVariables TEXT,"
+                    + "FOREIGN KEY (userID) REFERENCES users(ID)"
+                    + ")";
+            statement.execute(query);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    public void addAchievement(int userID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO achievements (userID, daysLoggedIn, questsCompleted, otherVariables) VALUES (?, 0, 0, NULL)"
+            );
+            statement.setInt(1, userID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAchievement(int userID, int daysLoggedIn, int questsCompleted, String otherVariables) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE achievements SET daysLoggedIn = ?, questsCompleted = ?, otherVariables = ? WHERE userID = ?"
+            );
+            statement.setInt(1, daysLoggedIn);
+            statement.setInt(2, questsCompleted);
+            statement.setString(3, otherVariables);
+            statement.setInt(4, userID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet getAchievement(int userID) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM achievements WHERE userID = ?"
+            );
+            statement.setInt(1, userID);
+            return statement.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
