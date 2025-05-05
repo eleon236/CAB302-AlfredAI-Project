@@ -20,6 +20,12 @@ public class QuestPageController {
     private Label questNameLabel;
     @FXML
     private ImageView questProgressImage;
+    @FXML
+    private ImageView questCharacter;
+    @FXML
+    private ImageView questVillain;
+    @FXML
+    private Label distanceTravelledLabel;
 
     private IAlfredDAO alfredDAO;
 
@@ -31,8 +37,37 @@ public class QuestPageController {
     public void initialize() {
         loadQuestDetails();
 
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-1.png")));
+        // Display correct quest progress image
+        Image image;
+        int distanceTravelled = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getDistanceTravelled();
+        if (distanceTravelled < 25) {
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-1.png")));
+        } else if (distanceTravelled < 75) {
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-2.png")));
+        } else if (distanceTravelled < 150) {
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-3.png")));
+        } else if (distanceTravelled < 250) {
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-4.png")));
+        } else if (distanceTravelled < 400) {
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-5.png")));
+        } else {
+            image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-6.png")));
+        }
         questProgressImage.setImage(image);
+
+        // Update distance travelled label
+        if (distanceTravelled == 0) {
+            distanceTravelledLabel.setText("You haven't travelled any distance in this quest yet!");
+        } else {
+            distanceTravelledLabel.setText("You've travelled " + distanceTravelled + "km so far!");
+        }
+
+        // Set character images
+        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        questCharacter.setImage(characterImage);
+
+        Image villainImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villain.png")));
+        questVillain.setImage(villainImage);
     }
 
     private void loadQuestDetails() {

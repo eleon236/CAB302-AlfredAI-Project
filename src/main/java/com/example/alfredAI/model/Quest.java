@@ -1,5 +1,7 @@
 package com.example.alfredAI.model;
 
+import com.example.alfredAI.AlfredWelcome;
+
 import java.time.LocalDate;
 
 public class Quest {
@@ -35,6 +37,7 @@ public class Quest {
         return "Quest {subjectName='" + subjectName + "', endDate=" + endDate + "}";
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -69,6 +72,25 @@ public class Quest {
 
     public String getHighestQuizScore() {
         return highestQuizScore;
+    }
+
+    // Updates the distance travelled after a daily quiz is completed
+    public void updateDistanceTravelled() {
+
+        // Add distance based on today's quiz score
+        double scorePercent = (double) AlfredWelcome.quiz.getResult() / AlfredWelcome.quiz.getQuestions().length;
+        int disToAdd = (int) ((scorePercent * 100) / 4); // Max you can travel in one day with no streak is 25km
+
+        // Possible addition: Increase distance by length of current streak
+        // Up to max of 50km in one day
+
+        // Ensure min 1km
+        if (disToAdd < 1) {
+            disToAdd = 1;
+        }
+
+        distanceTravelled = disToAdd;
+
     }
 
 }
