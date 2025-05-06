@@ -23,31 +23,31 @@
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="alfred" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Alfred" />
+                    <Label text="alfred" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="bob" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Bob" />
+                    <Label text="bob" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="harry" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Harry" />
+                    <Label text="harry" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="milo" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Milo" />
+                    <Label text="milo" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="lola" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Lola" />
+                    <Label text="lola" />
                 </children>
             </VBox>
         </children>
@@ -57,31 +57,31 @@
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="penny" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Penny" />
+                    <Label text="penny" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="steve" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Steve" />
+                    <Label text="steve" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="capi" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Capi" />
+                    <Label text="capi" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="oscar" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Oscar" />
+                    <Label text="oscar" />
                 </children>
             </VBox>
             <VBox alignment="CENTER" onMouseClicked="#handleSelection">
                 <children>
                     <ImageView fx:id="molly" fitWidth="100" fitHeight="150" preserveRatio="true"/>
-                    <Label text="Molly" />
+                    <Label text="molly" />
                 </children>
             </VBox>
         </children>

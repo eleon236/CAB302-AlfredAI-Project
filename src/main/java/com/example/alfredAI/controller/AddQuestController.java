@@ -20,6 +20,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class AddQuestController {
+    private String selectedCharacter;
+
     @FXML
     private TextField subjectNameTextField;
     @FXML
@@ -63,14 +65,13 @@ public class AddQuestController {
         VBox selectedBox = (VBox) mouseEvent.getSource();
         ImageView selectedImage = (ImageView) selectedBox.getChildren().get(0);
         Label selectedLabel = (Label) selectedBox.getChildren().get(1);
-
-        // Reset all image styles (optional: store them in a list if needed)
+        selectedCharacter = selectedLabel.getText();
         resetImageStyles();
+
         // Highlight the selected image
         selectedImage.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 120, 255, 0.7), 15, 0.3, 0, 0);");
     }
 
-    // Optional helper to remove selection styles (could be refined with a list of imageViews)
     private void resetImageStyles() {
         alfred.setStyle("");
         bob.setStyle("");
@@ -96,7 +97,7 @@ public class AddQuestController {
 
         // Save the subject as a quest in the database
         SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-        AlfredWelcome.currentQuestID = alfredDAO.addQuest(AlfredWelcome.currentUserID, "Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
+        AlfredWelcome.currentQuestID = alfredDAO.addQuest(AlfredWelcome.currentUserID, selectedCharacter, subjectName, java.sql.Date.valueOf(subjectEndDate));
 
         // Navigate to the Quest page
         FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quest-page-view.fxml"));
