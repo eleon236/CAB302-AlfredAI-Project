@@ -65,8 +65,9 @@ public class QuestPageController {
             distanceTravelledLabel.setText("You've travelled " + distanceTravelled + "km so far!");
         }
 
+        String characterName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getCharacterName();
         // Set character images
-        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/"+characterName+".png")));
         questCharacter.setImage(characterImage);
 
         Image villainImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villain.png")));
