@@ -42,7 +42,7 @@ public class AddFlashcardController {
 
         // Save and redirect
         Flashcard newCard = new Flashcard(AlfredWelcome.currentQuestID, question, answer, false);
-        alfredDAO.addFlashcard(newCard);
+        alfredDAO.addFlashcard(AlfredWelcome.currentQuestID, newCard);
 
         // Return to Quest Page
         Stage stage = (Stage) questionField.getScene().getWindow();
