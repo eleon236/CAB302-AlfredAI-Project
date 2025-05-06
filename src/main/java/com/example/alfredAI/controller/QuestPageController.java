@@ -66,7 +66,7 @@ public class QuestPageController {
         }
 
         // Set character images
-        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/alfred.png")));
         questCharacter.setImage(characterImage);
 
         Image villainImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villain.png")));

@@ -48,7 +48,7 @@ public class WelcomeController {
         user = new User();
         alfredDAO = new SqliteAlfredDAO();
 
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/alfred.png")));
         bearImageView.setImage(image);
 
         titleLabel.setText("Welcome to\nAlfred AI!");
