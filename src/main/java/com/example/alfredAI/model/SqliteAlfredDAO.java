@@ -55,8 +55,10 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                     + "name VARCHAR NOT NULL,"
                     + "endDate DATE NOT NULL,"
                     + "distanceTravelled INTEGER NOT NULL,"
-                    + "lastQuizScore INTEGER,"
-                    + "lastQuizDate DATE"
+                    + "lastQuizScore VARCHAR,"
+                    + "lastQuizDate DATE,"
+                    + "highestQuizScore VARCHAR,"
+                    + "currentStreakDays INT"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
