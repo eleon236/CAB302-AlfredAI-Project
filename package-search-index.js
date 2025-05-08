@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.alfredAI","l":"com.example.alfredAI"},{"m":"com.example.alfredAI","l":"com.example.alfredAI.controller"},{"m":"com.example.alfredAI","l":"com.example.alfredAI.model"}];updateSearchResults();
