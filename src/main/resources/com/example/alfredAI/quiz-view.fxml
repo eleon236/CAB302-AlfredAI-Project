@@ -22,7 +22,7 @@
         <VBox spacing="10.0" prefWidth="700" fx:id="questionsContainer"/>
 
         <HBox maxWidth="700" alignment="CENTER_RIGHT">
-            <Button text="Submit" onAction="#onSubmit"/>
+            <Button fx:id="submitBtn" text="Submit" onAction="#onSubmit"/>
         </HBox>
 
     </VBox>

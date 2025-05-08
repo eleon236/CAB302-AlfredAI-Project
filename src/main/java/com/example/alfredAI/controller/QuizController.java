@@ -21,13 +21,18 @@ public class QuizController {
     private ProgressBar progressBar;
     @FXML
     private VBox questionsContainer;
+    @FXML
+    private Button submitBtn;
 
-    private IAlfredDAO alfredDAO;
+    private final IAlfredDAO alfredDAO;
+    private final boolean noFlashcards;
 
     public QuizController() {
         alfredDAO = new SqliteAlfredDAO();
 
         List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
+        noFlashcards = flashcards.isEmpty();
+
         LocalDate questEndDate = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getEndDate();
         int questDaysLeft = (int) ChronoUnit.DAYS.between(LocalDate.now(), questEndDate);
         AlfredWelcome.quiz = new Quiz(flashcards, questDaysLeft);
@@ -35,6 +40,14 @@ public class QuizController {
 
     @FXML
     public void initialize() throws IOException {
+        if (noFlashcards) {
+            progressBar.setVisible(false);
+            submitBtn.setVisible(false);
+            questionsContainer.getChildren().add(new Label("There's no flashcards in this quest yet. Come back when you've added some flashcards!"));
+            questionsContainer.setAlignment(Pos.CENTER);
+            return;
+        }
+
         progressBar.setProgress(0);
 
         for(int i = 0; i < AlfredWelcome.quiz.getQuestions().length ; i++){
@@ -101,6 +114,9 @@ public class QuizController {
                 AlfredWelcome.quiz.getResult() + " / " + AlfredWelcome.quiz.getQuestions().length,
                 LocalDate.now()
         );
+
+        // Update mastered flashcards in the database
+        AlfredWelcome.quiz.updateFlashcardsMastered();
 
         // Show results window
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
