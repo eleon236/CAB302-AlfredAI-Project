@@ -11,10 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FlashcardController {
 
@@ -35,14 +37,16 @@ public class FlashcardController {
         flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
         if (flashcards.isEmpty()) {
             cardLabel.setText("No flashcards available.");
+            flashcardsMasteredLabel.setText("");
+            progressBar.setVisible(false);
         } else {
             updateCard();
-        }
 
-        // Set up mastered text and progress bar
-        int numMastered = alfredDAO.getQuestFlashcardsMastered(AlfredWelcome.currentQuestID);
-        flashcardsMasteredLabel.setText(numMastered + " of " + flashcards.size() + " flashcards mastered");
-        progressBar.setProgress((double) numMastered / flashcards.size());
+            // Set up mastered text and progress bar
+            int numMastered = alfredDAO.getQuestFlashcardsMastered(AlfredWelcome.currentQuestID);
+            flashcardsMasteredLabel.setText(numMastered + " of " + flashcards.size() + " flashcards mastered");
+            progressBar.setProgress((double) numMastered / flashcards.size());
+        }
     }
 
     private void updateCard() {
@@ -70,6 +74,13 @@ public class FlashcardController {
         }
     }
 
+    @FXML
+    private void onPrevious() {
+        currentIndex = (currentIndex - 1 + flashcards.size()) % flashcards.size();
+        showingQuestion = true;
+        updateCard();
+    }
+
 
     @FXML
     private void onBack() throws IOException {
@@ -86,5 +97,6 @@ public class FlashcardController {
         Scene currentScene = ((Node) event.getSource()).getScene();
         currentScene.setRoot(editRoot);
     }
+
 
 }

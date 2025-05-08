@@ -35,6 +35,7 @@ public interface IAlfredDAO {
      * @param endDate The quest's end date
      */
     public int addQuest(
+            int userID,
             String character,
             String name,
             Date endDate
@@ -74,7 +75,7 @@ public interface IAlfredDAO {
      * Adds a new flashcard to the database
      * @param flashcard The flashcard to add
      */
-    public void addFlashcard(Flashcard flashcard);
+    public void addFlashcard(int questID, Flashcard flashcard);
 
     /**
      * Updates an existing flashcard in the database

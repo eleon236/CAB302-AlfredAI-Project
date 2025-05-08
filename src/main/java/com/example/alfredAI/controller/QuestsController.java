@@ -31,7 +31,7 @@ public class QuestsController {
 
     @FXML
     public void initialize() {
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/Bear.png")));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/alfred.png")));
         bearImageView.setImage(image);
 
         loadQuestsIntoListView();
@@ -122,5 +122,6 @@ public class QuestsController {
 //    private void closeWindow() {
 //        Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
 //        stage.close();
+    // test
 //    }
 }

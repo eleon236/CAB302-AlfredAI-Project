@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuizTest {
     private Quiz quiz;
 
-    private final List<Flashcard> flashcards = new ArrayList<>( List.of(
+    private final List<Flashcard> flashcards = new ArrayList<>(List.of(
             new Flashcard(1, "What is something?", "something", false),
             new Flashcard(2, "What is nothing?", "nothing", true),
             new Flashcard(3, "Who are you?", "you", true),

@@ -1,10 +1,7 @@
 package com.example.alfredAI.controller;
 
 import com.example.alfredAI.AlfredWelcome;
-import com.example.alfredAI.model.Flashcard;
-import com.example.alfredAI.model.IAlfredDAO;
-import com.example.alfredAI.model.Quiz;
-import com.example.alfredAI.model.SqliteAlfredDAO;
+import com.example.alfredAI.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -92,6 +89,11 @@ public class QuizController {
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
         AlfredWelcome.quiz.calcQuizResult();
+
+        // Update distance travelled in the quest
+        Quest quest = alfredDAO.getQuest(AlfredWelcome.currentQuestID);
+        quest.updateDistanceTravelled();
+        alfredDAO.updateQuestDistance(AlfredWelcome.currentQuestID, quest.getDistanceTravelled());
 
         // Update quiz result in database
         alfredDAO.updateQuestLastQuizData(

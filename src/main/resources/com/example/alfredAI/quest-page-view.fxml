@@ -11,7 +11,8 @@
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.example.alfredAI.controller.QuestPageController"
           prefHeight="600.0" prefWidth="800.0" alignment="TOP_CENTER"
-          style="-fx-background-color: white;">
+          style="-fx-background-color: white;"
+          stylesheets="@style.css">
 
     <StackPane alignment="TOP_CENTER" maxWidth="800" maxHeight="180">
 
@@ -21,14 +22,28 @@
             <Button text="Back" onAction="#onBack"/>
         </StackPane>
 
-        <Label fx:id="questNameLabel" textAlignment="CENTER"
+        <Label fx:id="questNameLabel" textAlignment="CENTER" alignment="CENTER" maxWidth="360"
                style="-fx-font-family: 'Century'; -fx-font-size: 30px;
-                    -fx-padding: 5px; -fx-border-insets: 5px; -fx-background-insets: 5px;"/>
+                    -fx-padding: 7px; -fx-border-insets: 7px; -fx-background-insets: 7px;"/>
 
     </StackPane>
+
+    <HBox spacing="20.0" alignment="TOP_CENTER" maxWidth="750"
+          style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;">
+
+        <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+        <Label prefWidth="100"/>
+        <Label fx:id="distanceTravelledLabel" textAlignment="CENTER" alignment="TOP_CENTER"
+               style="-fx-font-size: 15px;" wrapText="true" prefWidth="250"/>
+        <Label prefWidth="100"/>
+        <ImageView fx:id="questVillain" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+
+    </HBox>
 
     <HBox spacing="20.0" alignment="CENTER" style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;">
         <Button text="Go to Flashcards" prefWidth="340" onAction="#onGoToFlashcards"/>
         <Button text="Go to Quiz" prefWidth="340" onAction="#onGoToQuiz"/>
+        <Button fx:id="addButton" text="Add Flashcard" onAction="#onAddFlashcard"/>
+
     </HBox>
 </VBox>

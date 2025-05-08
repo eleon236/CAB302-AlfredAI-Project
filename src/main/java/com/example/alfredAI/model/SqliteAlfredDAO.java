@@ -55,8 +55,10 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                     + "name VARCHAR NOT NULL,"
                     + "endDate DATE NOT NULL,"
                     + "distanceTravelled INTEGER NOT NULL,"
-                    + "lastQuizScore INTEGER,"
-                    + "lastQuizDate DATE"
+                    + "lastQuizScore VARCHAR,"
+                    + "lastQuizDate DATE,"
+                    + "highestQuizScore VARCHAR,"
+                    + "currentStreakDays INT"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -150,19 +152,32 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public int addQuest(String character, String name, Date endDate) {
+    public int addQuest(int userID, String character, String name, Date endDate) {
         try {
+            // Insert into quests
             PreparedStatement statement = connection.prepareStatement("INSERT INTO quests (character, name, endDate, distanceTravelled) VALUES (?, ?, ?, ?)");
             statement.setString(1, character);
             statement.setString(2, name);
             statement.setDate(3, (java.sql.Date) endDate);
             statement.setInt(4, 0);
             statement.executeUpdate();
-            // Return the id of the new quest
+
+            // Get the id of the new quest
             ResultSet generatedKeys = statement.getGeneratedKeys();
+            int questID = 0;
             if (generatedKeys.next()) {
-                return generatedKeys.getInt(1);
+                questID = generatedKeys.getInt(1);
             }
+
+            // Insert into userQuests
+            PreparedStatement statement2 = connection.prepareStatement("INSERT INTO userQuests (userID, questID) VALUES (?, ?)");
+            statement2.setInt(1, userID);
+            statement2.setInt(2, questID);
+            statement2.executeUpdate();
+
+            // Return the questID
+            return questID;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -224,18 +239,29 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
-    public void addFlashcard(Flashcard flashcard) {
+    public void addFlashcard(int questID, Flashcard flashcard) {
         try {
+            // Insert into flashcards
             PreparedStatement statement = connection.prepareStatement("INSERT INTO flashcards (question, answer, mastered) VALUES (?, ?, ?)");
             statement.setString(1, flashcard.getQuestion());
             statement.setString(2, flashcard.getAnswer());
             statement.setBoolean(3, flashcard.getMastered());
             statement.executeUpdate();
-            // Set the id of the new flashcard
+
+            // Get the id of the new flashcard
             ResultSet generatedKeys = statement.getGeneratedKeys();
+            int flashcardID = 0;
             if (generatedKeys.next()) {
-                flashcard.setID(generatedKeys.getInt(1));
+                flashcardID = generatedKeys.getInt(1);
+                flashcard.setID(flashcardID);
             }
+
+            // Insert into questFlashcards
+            PreparedStatement statement2 = connection.prepareStatement("INSERT INTO questFlashcards (questID, flashcardID) VALUES (?, ?)");
+            statement2.setInt(1, questID);
+            statement2.setInt(2, flashcardID);
+            statement2.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
