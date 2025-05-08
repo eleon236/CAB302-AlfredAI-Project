@@ -1,8 +1,8 @@
-}import com.example.alfredAI.model.*;
+import com.example.alfredAI.model.*;
 
-        import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.*;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuizTest {
     private Quiz quiz;
 
-    private final List<Flashcard> flashcards = new ArrayList<>( List.of(
+    private final List<Flashcard> flashcards = new ArrayList<>(List.of(
             new Flashcard(1, "What is something?", "something", false),
             new Flashcard(2, "What is nothing?", "nothing", true),
             new Flashcard(3, "Who are you?", "you", true),
@@ -138,3 +138,4 @@ public class QuizTest {
         quiz.calcQuizResult();
         assertEquals(2, quiz.getResult());
     }
+}

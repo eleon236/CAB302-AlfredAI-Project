@@ -1,4 +1,4 @@
-import com.example.cab302week4.model.*;
+import com.example.alfredAI.model.*;
 
 import org.junit.jupiter.api.*;
 
@@ -32,7 +32,7 @@ public class UserTest {
         }
         user = new User(userId,username,password);
         String message = user.Login(userId);
-        assertEquals("You have sucessfully logged in", message);
+        assertEquals("You have successfully logged in", message);
     }
 
     @Test

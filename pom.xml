@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>CAB302Week4</artifactId>
+    <artifactId>alfredAI</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>CAB302Week4</name>
+    <name>alfredAI</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
