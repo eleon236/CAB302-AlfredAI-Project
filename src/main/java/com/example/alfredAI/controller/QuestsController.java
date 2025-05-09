@@ -29,12 +29,19 @@ public class QuestsController {
     @FXML
     private ImageView bearImageView;
 
+    private AchivementsController achivementsController;
+
+    public QuestsController() {
+        achivementsController = new AchivementsController();
+    }
+
     @FXML
     public void initialize() {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/alfred.png")));
         bearImageView.setImage(image);
 
         loadQuestsIntoListView();
+        achivementsController.ensureUserInAchievements(); // Call the method using the instance
     }
 
     @FXML
