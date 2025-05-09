@@ -32,7 +32,7 @@ public class QuestPageController {
 
     private IAlfredDAO alfredDAO;
 
-
+// test
     public QuestPageController() {
         alfredDAO = new SqliteAlfredDAO();
     }
