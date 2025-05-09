@@ -44,6 +44,8 @@
         <Button text="Go to Flashcards" prefWidth="340" onAction="#onGoToFlashcards"/>
         <Button text="Go to Quiz" prefWidth="340" onAction="#onGoToQuiz"/>
         <Button fx:id="addButton" text="Add Flashcard" onAction="#onAddFlashcard"/>
+        <Button fx:id="addaibutton" text="Generate Flashcard" onAction="#onAddAIFlashcard"/>
+
 
     </HBox>
 </VBox>

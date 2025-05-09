@@ -1,0 +1,18 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.alfredAI.controller.OllamaClientController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 40;">
+
+
+    <HBox spacing="10">
+        <Button text="Generate Flashcards" onAction="#generateAndSaveFlashcards"/>
+
+        <Button text="Back" onAction="#onBack"/>
+    </HBox>
+
+</VBox>
