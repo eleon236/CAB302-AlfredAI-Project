@@ -102,33 +102,13 @@ public class QuestsController {
         stage.setScene(scene);
     }
 
+    @FXML
+    private void onGoToAchievements() throws IOException {
+        Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("achivements.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
 
 
-//    @FXML
-//    private void onAddSubject() {
-//        String subjectName = subjectNameTextField.getText().trim();
-//        LocalDate subjectEndDate = subjectEndDateTextField.getValue();
-//
-//        if (subjectName.isEmpty() || subjectEndDate == null) {
-//            System.out.println("All fields must be filled out.");
-//            return;
-//        }
-//
-//        // Create an Quest object
-//        Quest newSubject = new Quest(subjectName, subjectEndDate);
-//
-//        // Save the subject as a quest in the database
-//        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-//        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-//        // To do: Add logic to save the subject to the database or list
-//        System.out.println("Subject added: " + newSubject);
-//
-//        closeWindow();
-//    }
-//
-//    private void closeWindow() {
-//        Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-//        stage.close();
-    // test
-//    }
 }
