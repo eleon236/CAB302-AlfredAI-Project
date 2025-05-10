@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.http.*;
@@ -19,10 +18,16 @@ import java.nio.charset.StandardCharsets;
 
 public class OllamaClientController {
 
-    private static final String OLLAMA_URL = "http://localhost:11434/api/generate";
-    private static final String MODEL = "llama3";
+    private final String OLLAMA_URL = "http://localhost:11434/api/generate";
+    private final String MODEL = "llama3";
 
-    public static void generateAndSaveFlashcards(String topic) {
+    @FXML
+    private void generate(ActionEvent event) {
+        String topic = "AI generated Flashcard";
+        generateFlashcard(topic);
+    }
+
+    public void generateFlashcard(String topic) {
         try {
             HttpClient client = HttpClient.newHttpClient();
 
@@ -73,4 +78,6 @@ public class OllamaClientController {
         Scene scene = ((Node) event.getSource()).getScene();
         scene.setRoot(root);
     }
+
+
 }

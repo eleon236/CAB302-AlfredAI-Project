@@ -1,6 +1,4 @@
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx"
@@ -10,7 +8,7 @@
 
 
     <HBox spacing="10">
-        <Button text="Generate Flashcards" onAction="#generateAndSaveFlashcards"/>
+        <Button text="Generate Flashcards" onAction="#generate"/>
 
         <Button text="Back" onAction="#onBack"/>
     </HBox>
