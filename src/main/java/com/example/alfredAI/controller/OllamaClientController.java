@@ -22,7 +22,7 @@ public class OllamaClientController {
     private static final String OLLAMA_URL = "http://localhost:11434/api/generate";
     private static final String MODEL = "llama3";
 
-    public static void generateAndSaveFlashcards(String topic, int questID) {
+    public static void generateAndSaveFlashcards(String topic) {
         try {
             HttpClient client = HttpClient.newHttpClient();
 
@@ -57,7 +57,7 @@ public class OllamaClientController {
                 String question = fc.get("question").getAsString();
                 String answer = fc.get("answer").getAsString();
 
-                dao.addFlashcard(new Flashcard(questID, question, answer, false));
+                dao.addFlashcard(AlfredWelcome.currentQuestID, new Flashcard(question, answer));
             }
 
         } catch (Exception e) {
