@@ -119,7 +119,7 @@ public class Quiz {
         }
 
         if (numQuestions > flashcards.size()) {
-            return flashcards.size();
+            numQuestions = flashcards.size();
         }
 
         // Enforce maximum 30
