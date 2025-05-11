@@ -1,16 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
+
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.alfredAI.controller.OllamaClientController"
       spacing="10" alignment="CENTER" style="-fx-padding: 40;">
 
+    <Label text="Enter Flashcard Topic:" />
+    <TextField fx:id="topicTextField" promptText="e.g., Quantum Physics, Ancient Rome" />
 
-    <HBox spacing="10">
-        <Button text="Generate Flashcards" onAction="#generate"/>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Generate Flashcards" onAction="#generateFromInput"/>
 
-        <Button text="Back" onAction="#onBack"/>
     </HBox>
+
+    <Label text="Generated Flashcards:" />
+    <ListView fx:id="flashcardListView" prefHeight="200.0" prefWidth="400.0" />
 
 </VBox>
