@@ -76,7 +76,9 @@ public class FlashcardController {
 
     @FXML
     private void onPrevious() {
-        currentIndex = (currentIndex - 1 + flashcards.size()) % flashcards.size();
+        if (!flashcards.isEmpty()) {
+            currentIndex = (currentIndex - 1 + flashcards.size()) % flashcards.size();
+        }
         showingQuestion = true;
         updateCard();
     }

@@ -7,8 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -54,19 +57,24 @@ public class QuizController {
             // Set up question number label
             int questionNum = i + 1;
             Label questionNumLabel = new Label(questionNum + ".");
-            questionNumLabel.setPrefWidth(50);
+            questionNumLabel.setPrefWidth(20);
+            questionNumLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
             // Set up question field
             Label question = new Label(AlfredWelcome.quiz.getQuestions()[i].getQuestion());
             question.setWrapText(true);
             question.setPrefWidth(300);
             question.setPrefHeight(150);
+            question.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; \n" +
+                    "-fx-background-radius: 5; -fx-border-radius: 5; -fx-padding: 20;");
             question.setAlignment(Pos.TOP_LEFT);
 
             // Set up user answer field
             TextField userAnswerField = new TextField();
             userAnswerField.setPrefWidth(300);
             userAnswerField.setPrefHeight(150);
+            userAnswerField.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; \n" +
+                    "-fx-background-radius: 5; -fx-border-radius: 5; -fx-padding: 20;");
             userAnswerField.setAlignment(Pos.TOP_LEFT);
             userAnswerField.setPromptText("Your answer...");
             userAnswerField.textProperty().addListener((observable, oldValue, newValue) ->
@@ -74,10 +82,12 @@ public class QuizController {
             );
 
             // Add the row to questionsContainer
-            HBox questionRow = new HBox(50);
+            HBox questionRow = new HBox(30);
             questionRow.getChildren().add(questionNumLabel);
             questionRow.getChildren().add(question);
             questionRow.getChildren().add(userAnswerField);
+            questionRow.setPrefWidth(780);
+            questionRow.setAlignment(Pos.TOP_CENTER);
 
             questionsContainer.getChildren().add(questionRow);
         }
