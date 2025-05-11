@@ -110,8 +110,12 @@ public class QuizController {
         // Calculate and update quiz result
         AlfredWelcome.quiz.calcQuizResult();
 
-        // Update distance travelled in the quest
+        // Update current streak days for the quest
         Quest quest = alfredDAO.getQuest(AlfredWelcome.currentQuestID);
+        quest.updateQuestStreak();
+        alfredDAO.updateQuestStreak(AlfredWelcome.currentQuestID, quest.getCurrentStreakDays());
+
+        // Update distance travelled in the quest
         quest.updateDistanceTravelled();
         alfredDAO.updateQuestDistance(AlfredWelcome.currentQuestID, quest.getDistanceTravelled());
 
