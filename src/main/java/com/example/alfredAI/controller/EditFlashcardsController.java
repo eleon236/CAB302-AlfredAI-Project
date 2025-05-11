@@ -1,5 +1,6 @@
 package com.example.alfredAI.controller;
 
+import com.example.alfredAI.AlfredWelcome;
 import com.example.alfredAI.model.Flashcard;
 import com.example.alfredAI.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class EditFlashcardsController {
     @FXML
     public void initialize() {
         // Load real flashcards from the database
-        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(1);
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
 
         flashcardList.getItems().addAll(flashcards);
 
