@@ -17,6 +17,7 @@
 
     <HBox spacing="10" alignment="CENTER">
         <Button text="Generate Flashcards" onAction="#generateFromInput"/>
+        <Button text="Back to Quests" onAction="#onBack"/>
 
     </HBox>
 
