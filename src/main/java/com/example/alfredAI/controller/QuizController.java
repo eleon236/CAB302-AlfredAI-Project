@@ -7,11 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -64,7 +61,7 @@ public class QuizController {
             Label question = new Label(AlfredWelcome.quiz.getQuestions()[i].getQuestion());
             question.setWrapText(true);
             question.setPrefWidth(300);
-            question.setPrefHeight(150);
+            question.setMaxHeight(150);
             question.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; \n" +
                     "-fx-background-radius: 5; -fx-border-radius: 5; -fx-padding: 20;");
             question.setAlignment(Pos.TOP_LEFT);

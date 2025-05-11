@@ -7,21 +7,30 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.alfredAI.controller.QuizResultsController"
             stylesheets="@style.css">
-    <VBox spacing="20.0">
+    <VBox spacing="20.0" prefWidth="780" style="-fx-background-color: white;" alignment="TOP_CENTER">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>
-        <HBox maxWidth="700" alignment="CENTER_RIGHT">
-            <Button text="Continue" onAction="#onContinue"/>
-        </HBox>
-        <Label text="Daily Quiz" maxWidth="700" alignment="CENTER"/>
-        <Label text="Results" maxWidth="700" alignment="CENTER"/>
 
-        <Label fx:id="resultsLabel" maxWidth="700" alignment="CENTER"/>
-        <VBox spacing="10.0" prefWidth="700" fx:id="questionsContainer"/>
+        <StackPane alignment="TOP_CENTER" maxWidth="800" maxHeight="180">
+            <StackPane alignment="TOP_RIGHT" maxWidth="800">
+                <Button text="Continue" onAction="#onContinue"
+                        style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white" />
+            </StackPane>
+            <Label text="Daily Quiz" style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+        </StackPane>
+
+        <Label text="Results" maxWidth="800" alignment="CENTER"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label fx:id="resultsLabel" maxWidth="800" alignment="CENTER"
+               style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+
+        <VBox spacing="20.0" fx:id="questionsContainer" alignment="TOP_CENTER"/>
 
     </VBox>
 </ScrollPane>

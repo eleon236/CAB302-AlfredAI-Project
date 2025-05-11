@@ -32,7 +32,9 @@
         <VBox spacing="20.0" fx:id="questionsContainer" alignment="TOP_CENTER"/>
 
         <HBox maxWidth="700" alignment="CENTER_RIGHT">
-            <Button fx:id="submitBtn" text="Submit" onAction="#onSubmit"/>
+            <Button fx:id="submitBtn" text="Submit" onAction="#onSubmit"
+                    style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
         </HBox>
 
     </VBox>
