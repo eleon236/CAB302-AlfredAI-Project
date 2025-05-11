@@ -80,13 +80,19 @@ public class Quest {
         return currentStreakDays;
     }
 
+    public boolean pastQuestEndDate() {
+        return (endDate.isBefore(LocalDate.now()));
+    }
+
     // Increases the quest streak days by 1 after a daily quiz is completed
     public void updateQuestStreak() {
+        if (pastQuestEndDate()) { return; }
         currentStreakDays++;
     }
 
     // Updates the distance travelled after a daily quiz is completed
     public void updateDistanceTravelled() {
+        if (pastQuestEndDate()) { return; }
 
         // Add distance based on today's quiz score
         double scorePercent = (double) AlfredWelcome.quiz.getResult() / AlfredWelcome.quiz.getQuestions().length;

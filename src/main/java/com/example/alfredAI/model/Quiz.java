@@ -115,12 +115,16 @@ public class Quiz {
 
         // Enforce minimum 5
         if (numQuestions < 5) {
-            return 5;
+            numQuestions = 5;
+        }
+
+        if (numQuestions > flashcards.size()) {
+            return flashcards.size();
         }
 
         // Enforce maximum 30
         if (numQuestions > 30) {
-            return 30;
+            numQuestions = 30;
         }
 
         return numQuestions;
