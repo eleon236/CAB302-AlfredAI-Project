@@ -19,7 +19,9 @@
         <ImageView fx:id="questProgressImage" fitWidth="700" fitHeight="210" preserveRatio="true"/>
 
         <StackPane alignment="TOP_LEFT" maxWidth="800">
-            <Button text="Back" onAction="#onBack"/>
+            <Button text="Back" onAction="#onBack"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
         </StackPane>
 
         <Label fx:id="questNameLabel" textAlignment="CENTER" alignment="CENTER" maxWidth="360"
@@ -40,18 +42,22 @@
 
     </HBox>
 
-    <HBox spacing="20.0" alignment="CENTER" style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;">
-        <Button text="Go to Flashcards" prefWidth="340" onAction="#onGoToFlashcards"/>
-        <Button text="Go to Quiz" prefWidth="340" onAction="#onGoToQuiz"/>
-
+    <HBox spacing="20.0" alignment="CENTER" style="-fx-padding: 20 20 0 20; -fx-border-insets: 20px; -fx-background-insets: 20px;">
+        <Button text="Go to Flashcards" prefWidth="340" onAction="#onGoToFlashcards"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #4c6362;
+                                -fx-border: none; -fx-text-fill: white"/>
+        <Button text="Go to Quiz" prefWidth="340" onAction="#onGoToQuiz"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #4c6362;
+                                -fx-border: none; -fx-text-fill: white"/>
     </HBox>
 
     <HBox spacing="20.0" alignment="CENTER" style="-fx-padding: 20px; -fx-border-insets: 20px; -fx-background-insets: 20px;">
-        <Button fx:id="addButton" text="Add Flashcard" prefWidth="340" prefHeight="150" onAction="#onAddFlashcard" style="-fx-font-size: 16pt;"/>
-        <Button fx:id="addaibutton" text="Generate Flashcard" prefWidth="340" prefHeight="150" onAction="#onAddAIFlashcard" style="-fx-font-size: 16pt;"/>
+        <Button fx:id="addButton" text="Add Flashcard" prefWidth="340" prefHeight="150" onAction="#onAddFlashcard"
+                style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #648381;
+                                -fx-border: none; -fx-text-fill: white"/>
+        <Button fx:id="addaibutton" text="Generate Flashcard" prefWidth="340" prefHeight="150" onAction="#onAddAIFlashcard"
+                style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #648381;
+                                -fx-border: none; -fx-text-fill: white"/>
     </HBox>
-
-
-
 
 </VBox>

@@ -9,7 +9,8 @@
 <?import javafx.collections.FXCollections?>
 <BorderPane fx:controller="com.example.alfredAI.controller.QuestsController"
             xmlns:fx="http://javafx.com/fxml" prefWidth="800" prefHeight="600"
-            style="-fx-background-color: #f9e2bd;">
+            style="-fx-background-color: #f9e2bd;"
+            stylesheets="@style.css">
 
     <!-- Top Panel -->
     <top>
@@ -32,7 +33,9 @@
             </VBox>
 
             <Button text="Logout" fx:id="logoutButton" onAction="#onlogoutButton"
-                    style="-fx-font-size: 13px;" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+                    style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"
+                    GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
 
         </HBox>
     </top>
@@ -46,7 +49,9 @@
             <!-- ListView in the first row -->
             <ListView fx:id="questsListView" prefWidth="400" prefHeight="300" GridPane.rowIndex="0" onMouseClicked="#onQuestSelected"/>
             <!-- Button in the second row -->
-            <Button text="Add Subject" onAction="#onGoToAddSubject" GridPane.rowIndex="1"/>
+            <Button text="Add Subject" onAction="#onGoToAddSubject" GridPane.rowIndex="1"
+                    style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
 
 
         </GridPane>

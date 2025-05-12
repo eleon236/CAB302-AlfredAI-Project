@@ -10,14 +10,19 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.alfredAI.controller.OllamaClientController"
-      spacing="10" alignment="CENTER" style="-fx-padding: 40;">
+      spacing="10" alignment="CENTER" style="-fx-padding: 40; -fx-background-color: #f9e2bd;"
+      stylesheets="@style.css">
 
     <Label text="Enter Flashcard Topic:" />
     <TextField fx:id="topicTextField" promptText="e.g., Quantum Physics, Ancient Rome" />
 
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Generate Flashcards" onAction="#generateFromInput"/>
-        <Button text="Back to Quests" onAction="#onBack"/>
+        <Button text="Generate Flashcards" onAction="#generateFromInput"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
+        <Button text="Back to Quests" onAction="#onBack"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
 
     </HBox>
 
