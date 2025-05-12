@@ -67,7 +67,7 @@ public class QuizController {
         questCharacter.setImage(characterImage);
 
         String villainNo = Integer.toString(generateRandomNumber());
-        Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villian"+villainNo+".png")));
+        Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villain"+villainNo+".png")));
         questVillan.setImage(VillianImage);
 
         progressBar.setProgress(0);

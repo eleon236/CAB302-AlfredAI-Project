@@ -51,7 +51,7 @@ public class QuizResultsController {
         questCharacter.setImage(characterImage);
 
         String villainNo = Integer.toString(AlfredWelcome.quiz.getVillainID());
-        Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villian"+villainNo+".png")));
+        Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villain"+villainNo+".png")));
         questVillan.setImage(VillianImage);
 
         for(int i = 0; i < AlfredWelcome.quiz.getQuestions().length ; i++){
