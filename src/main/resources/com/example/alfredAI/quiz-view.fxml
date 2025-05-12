@@ -28,11 +28,15 @@
             <Label text="Daily Quiz" style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
         </StackPane>
 
-        <HBox>
+        <StackPane maxWidth="800" alignment="BOTTOM_LEFT">
             <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
-            <ProgressBar fx:id="progressBar" prefWidth="550"/>
-            <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>
-        </HBox>
+            <HBox maxWidth="800" alignment="CENTER">
+                <ProgressBar fx:id="progressBar" prefWidth="500"/>
+            </HBox>
+            <HBox maxWidth="800" alignment="BOTTOM_RIGHT">
+                <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+            </HBox>
+        </StackPane>
 
         <VBox spacing="20.0" fx:id="questionsContainer" alignment="TOP_CENTER"/>
 
