@@ -37,6 +37,14 @@ public class QuizResultsController {
 
     @FXML
     public void initialize() {
+        resultsLabel.setText(alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizScore());
+
+        if (AlfredWelcome.quiz == null) {
+            questionsContainer.getChildren().add(new Label("Come back again tomorrow to do your next daily quiz!"));
+            questionsContainer.setAlignment(Pos.CENTER);
+            return;
+        }
+
         String characterName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getCharacterName();
         // Set character images
         Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/"+characterName+".png")));
@@ -45,14 +53,6 @@ public class QuizResultsController {
         String villainNo = Integer.toString(AlfredWelcome.quiz.getVillainID());
         Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villian"+villainNo+".png")));
         questVillan.setImage(VillianImage);
-
-        resultsLabel.setText(alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizScore());
-
-        if (AlfredWelcome.quiz == null) {
-            questionsContainer.getChildren().add(new Label("Come back again tomorrow to do your next daily quiz!"));
-            questionsContainer.setAlignment(Pos.CENTER);
-            return;
-        }
 
         for(int i = 0; i < AlfredWelcome.quiz.getQuestions().length ; i++){
             int questionNum = i + 1;

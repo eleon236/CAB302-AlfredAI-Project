@@ -30,11 +30,13 @@
       <HBox spacing="10" alignment="CENTER" prefWidth="750">
             <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
             <Region fx:id="leftSpacer" HBox.hgrow="ALWAYS"/>
-        
-            <Label text="Results" maxWidth="800" alignment="CENTER"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-            <Label fx:id="resultsLabel" maxWidth="800" alignment="CENTER"
-                   style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+
+            <VBox>
+                <Label text="Results" maxWidth="800" alignment="CENTER"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 0 0 20 0;"/>
+                <Label fx:id="resultsLabel" maxWidth="800" alignment="CENTER"
+                       style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+            </VBox>
         
             <Region fx:id="rightSpacer" HBox.hgrow="ALWAYS"/>
             <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>
