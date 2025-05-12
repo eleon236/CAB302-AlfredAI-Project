@@ -8,7 +8,8 @@
 <GridPane fx:controller="com.example.alfredAI.controller.RegistrationController"
           xmlns:fx="http://javafx.com/fxml"
           alignment="center"
-          hgap="20" vgap="20">
+          hgap="20" vgap="20"
+          style="-fx-background-color: #f9e2bd;">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>

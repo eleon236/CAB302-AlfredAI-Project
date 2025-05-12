@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Quiz {
     private final QuizQuestion[] questions;
     private int result;
+    public int VillainID;
 
     /**
      * Constructor to make a Quiz based on provided flashcards and quizLength
@@ -115,12 +116,16 @@ public class Quiz {
 
         // Enforce minimum 5
         if (numQuestions < 5) {
-            return 5;
+            numQuestions = 5;
+        }
+
+        if (numQuestions > flashcards.size()) {
+            numQuestions = flashcards.size();
         }
 
         // Enforce maximum 30
         if (numQuestions > 30) {
-            return 30;
+            numQuestions = 30;
         }
 
         return numQuestions;
@@ -164,6 +169,13 @@ public class Quiz {
         }
 
         result = score;
+    }
+
+    public void setVillainID(int villainNumber){
+        this.VillainID = villainNumber;
+    }
+    public int getVillainID(){
+        return VillainID;
     }
 
     /**
