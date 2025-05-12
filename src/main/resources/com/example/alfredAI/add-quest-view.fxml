@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <VBox alignment="CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.alfredAI.controller.AddQuestController"
-      style="-fx-background-color: #f9e2bd;">
+      style="-fx-background-color: #f9e2bd;"
+      stylesheets="@style.css">
     <padding>
         <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
     </padding>
@@ -92,6 +93,10 @@
     <Label text="Quest Infomation" style="-fx-font-size: 14px;"/>
     <TextField fx:id="subjectNameTextField" promptText="Enter subject name"/>
     <DatePicker fx:id="subjectEndDateTextField" promptText="Select end date"/>
-    <Button text="Add Subject" onAction="#onAddSubject"/>
-    <Button text="Back to Quests" onAction="#onBack"/>
+    <Button text="Add Subject" onAction="#onAddSubject"
+            style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
+    <Button text="Back to Quests" onAction="#onBack"
+            style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
 </VBox>
