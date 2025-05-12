@@ -21,7 +21,7 @@
         </HBox>
         <Label text="Daily Quiz" maxWidth="700" alignment="CENTER"/>
 
-        <HBox spacing="10" alignment="CENTER" prefWidth="800">
+        <HBox spacing="10" alignment="CENTER" prefWidth="750">
             <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
             <Region fx:id="leftSpacer" HBox.hgrow="ALWAYS"/>
             <Label text="Results" maxWidth="700" alignment="CENTER"/>
