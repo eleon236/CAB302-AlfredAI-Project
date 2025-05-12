@@ -17,7 +17,7 @@
         <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
     </padding>
     <Label text="Add a New Subject" style="-fx-font-size: 16px;"/>
-    <Label text="Charcter Selection" style="-fx-font-size: 14px;"/>
+    <Label text="Character Selection" style="-fx-font-size: 14px;"/>
     <HBox spacing="20" alignment="CENTER">
         <children>
             <!-- Wrapped each ImageView in a VBox with a Label below it -->
