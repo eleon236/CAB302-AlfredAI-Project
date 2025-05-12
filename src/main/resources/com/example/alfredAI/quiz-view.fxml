@@ -9,26 +9,37 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.alfredAI.controller.QuizController"
             stylesheets="@style.css">
-    <VBox spacing="20.0">
+    <VBox spacing="20.0" prefWidth="780" minHeight="600" style="-fx-background-color: white;" alignment="TOP_CENTER">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>
-        <Button text="Back to Quest" onAction="#onBack"/>
-        <Label text="Daily Quiz" maxWidth="700" alignment="CENTER"/>
+        
+        <StackPane alignment="TOP_CENTER" maxWidth="800" maxHeight="180">
+            <StackPane alignment="TOP_LEFT" maxWidth="800">
+                <Button text="←" onAction="#onBack"
+                        style="-fx-font-size: 40px; -fx-font-weight: bold; -fx-background-color: white;
+                                -fx-border: none; -fx-padding: -20 0 -20 0;" />
+            </StackPane>
+            <Label text="Daily Quiz" style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+        </StackPane>
+
         <HBox>
             <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
             <ProgressBar fx:id="progressBar" prefWidth="550"/>
             <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>
         </HBox>
 
-
-        <VBox spacing="10.0" prefWidth="700" fx:id="questionsContainer"/>
+        <VBox spacing="20.0" fx:id="questionsContainer" alignment="TOP_CENTER"/>
 
         <HBox maxWidth="700" alignment="CENTER_RIGHT">
-            <Button text="Submit" onAction="#onSubmit"/>
+            <Button fx:id="submitBtn" text="Submit" onAction="#onSubmit"
+                    style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
         </HBox>
 
     </VBox>

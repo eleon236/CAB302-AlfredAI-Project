@@ -60,39 +60,52 @@ public class QuizResultsController {
 
             // Set up question number label
             Label questionNumLabel = new Label(questionNum + ".");
-            questionNumLabel.setPrefWidth(50);
+            questionNumLabel.setPrefWidth(20);
+            questionNumLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
             // Set up question field
             Label questionField = new Label(questionInfo.getQuestion());
             questionField.setWrapText(true);
             questionField.setPrefWidth(300);
             questionField.setPrefHeight(150);
+            questionField.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; \n" +
+                    "-fx-background-radius: 5; -fx-border-radius: 5; -fx-padding: 20;");
             questionField.setAlignment(Pos.TOP_LEFT);
 
             // Set up answer field
             VBox answerField = new VBox();
             answerField.setPrefWidth(300);
             answerField.setPrefHeight(150);
+            answerField.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; \n" +
+                    "-fx-background-radius: 5; -fx-border-radius: 5; -fx-padding: 20;");
             answerField.setAlignment(Pos.TOP_LEFT);
 
             Label correctAns = new Label(questionInfo.getCorrectAnswer());
             correctAns.setWrapText(true);
             correctAns.setPadding(new Insets(0, 0, 10, 0));
+            correctAns.setStyle("-fx-text-fill: green;");
             Label yourAns = new Label(questionInfo.getUserAnswer());
             yourAns.setWrapText(true);
 
+            Label correctAnsLabel = new Label("Correct Answer:");
+            correctAnsLabel.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: green;");
+            Label yourAnsLabel = new Label("Your Answer:");
+            yourAnsLabel.setStyle("-fx-font-size: 15px; -fx-font-weight: bold;");
+
             answerField.getChildren().addAll(
-                    new Label("Correct Answer:"),
+                    correctAnsLabel,
                     correctAns,
-                    new Label("Your Answer:"),
+                    yourAnsLabel,
                     yourAns
             );
 
             // Add the row to questionsContainer
-            HBox questionRow = new HBox(50);
+            HBox questionRow = new HBox(30);
             questionRow.getChildren().add(questionNumLabel);
             questionRow.getChildren().add(questionField);
             questionRow.getChildren().add(answerField);
+            questionRow.setPrefWidth(780);
+            questionRow.setAlignment(Pos.TOP_CENTER);
 
             questionsContainer.getChildren().add(questionRow);
         }

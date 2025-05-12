@@ -55,8 +55,10 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                     + "name VARCHAR NOT NULL,"
                     + "endDate DATE NOT NULL,"
                     + "distanceTravelled INTEGER NOT NULL,"
-                    + "lastQuizScore INTEGER,"
-                    + "lastQuizDate DATE"
+                    + "lastQuizScore VARCHAR,"
+                    + "lastQuizDate DATE,"
+                    + "highestQuizScore VARCHAR,"
+                    + "currentStreakDays INT"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -208,6 +210,18 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public void updateQuestStreak(int ID, int newStreak) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE quests SET currentStreakDays = ? WHERE ID = ?");
+            statement.setInt(1, newStreak);
+            statement.setInt(2, ID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public Quest getQuest(int questID) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM quests WHERE ID = ?");
@@ -227,8 +241,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                 LocalDate lastQuizDate = (sqlQuizDate != null) ? sqlQuizDate.toLocalDate() : null;
 
                 String highestQuizScore = resultSet.getString("highestQuizScore");
+                int currentStreakDays = resultSet.getInt("currentStreakDays");
 
-                return new Quest(ID, character, name, endDate, distanceTravelled, lastQuizScore, lastQuizDate, highestQuizScore);
+                return new Quest(ID, character, name, endDate, distanceTravelled, lastQuizScore, lastQuizDate, highestQuizScore, currentStreakDays);
             }
         } catch (Exception e) {
             e.printStackTrace();

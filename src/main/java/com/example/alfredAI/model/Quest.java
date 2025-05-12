@@ -13,6 +13,7 @@ public class Quest {
     private String lastQuizScore;
     private LocalDate lastQuizDate;
     private String highestQuizScore;
+    private int currentStreakDays;
 
     public Quest(int id, String subjectName, LocalDate endDate) { // Include ID in constructor
         this.id = id;
@@ -20,7 +21,7 @@ public class Quest {
         this.endDate = endDate;
     }
 
-    public Quest(int ID, String character, String name, LocalDate endDate, int distanceTravelled, String lastQuizScore, LocalDate lastQuizDate, String highestQuizScore) {
+    public Quest(int ID, String character, String name, LocalDate endDate, int distanceTravelled, String lastQuizScore, LocalDate lastQuizDate, String highestQuizScore, int currentStreakDays) {
         this.id = ID;
         this.character = character;
         this.subjectName = name;
@@ -29,6 +30,7 @@ public class Quest {
         this.lastQuizScore = lastQuizScore;
         this.lastQuizDate = lastQuizDate;
         this.highestQuizScore = highestQuizScore;
+        this.currentStreakDays = currentStreakDays;
     }
 
     // For testing purposes
@@ -74,15 +76,35 @@ public class Quest {
         return highestQuizScore;
     }
 
+    public int getCurrentStreakDays() {
+        return currentStreakDays;
+    }
+
+    public boolean pastQuestEndDate() {
+        return (endDate.isBefore(LocalDate.now()));
+    }
+
+    // Increases the quest streak days by 1 after a daily quiz is completed
+    public void updateQuestStreak() {
+        if (pastQuestEndDate()) { return; }
+        currentStreakDays++;
+    }
+
     // Updates the distance travelled after a daily quiz is completed
     public void updateDistanceTravelled() {
+        if (pastQuestEndDate()) { return; }
 
         // Add distance based on today's quiz score
         double scorePercent = (double) AlfredWelcome.quiz.getResult() / AlfredWelcome.quiz.getQuestions().length;
         int disToAdd = (int) ((scorePercent * 100) / 4); // Max you can travel in one day with no streak is 25km
 
-        // Possible addition: Increase distance by length of current streak
+        // Increase distance by length of current streak
+        disToAdd = disToAdd + currentStreakDays;
+
         // Up to max of 50km in one day
+        if (disToAdd > 50) {
+            disToAdd = 50;
+        }
 
         // Ensure min 1km
         if (disToAdd < 1) {
