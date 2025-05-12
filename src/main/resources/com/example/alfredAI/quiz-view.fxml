@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.alfredAI.controller.QuizController"
             stylesheets="@style.css">
@@ -17,7 +18,12 @@
         </padding>
         <Button text="Back to Quest" onAction="#onBack"/>
         <Label text="Daily Quiz" maxWidth="700" alignment="CENTER"/>
-        <ProgressBar fx:id="progressBar" prefWidth="700"/>
+        <HBox>
+            <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+            <ProgressBar fx:id="progressBar" prefWidth="550"/>
+            <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+        </HBox>
+
 
         <VBox spacing="10.0" prefWidth="700" fx:id="questionsContainer"/>
 
