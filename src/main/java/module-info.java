@@ -2,6 +2,8 @@ module com.example.alfredAI {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires java.net.http;
+    requires com.google.gson;
     requires java.sql;
 
 

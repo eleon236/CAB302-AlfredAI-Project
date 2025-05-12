@@ -125,6 +125,16 @@ public class QuestPageController {
         stage.setScene(scene);
     }
 
+    @FXML
+    private void onAddAIFlashcard() throws IOException {
+        Stage stage = (Stage) questNameLabel.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("add-ollama-flashcard-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
+
+
+
 
 
 }
