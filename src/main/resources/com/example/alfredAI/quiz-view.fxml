@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
@@ -17,7 +18,7 @@
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>
-
+        
         <StackPane alignment="TOP_CENTER" maxWidth="800" maxHeight="180">
             <StackPane alignment="TOP_LEFT" maxWidth="800">
                 <Button text="←" onAction="#onBack"
@@ -27,7 +28,11 @@
             <Label text="Daily Quiz" style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
         </StackPane>
 
-        <ProgressBar fx:id="progressBar" prefWidth="700"/>
+        <HBox>
+            <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+            <ProgressBar fx:id="progressBar" prefWidth="550"/>
+            <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>
+        </HBox>
 
         <VBox spacing="20.0" fx:id="questionsContainer" alignment="TOP_CENTER"/>
 

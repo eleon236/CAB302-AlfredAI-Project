@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Quiz {
     private final QuizQuestion[] questions;
     private int result;
+    public int VillainID;
 
     /**
      * Constructor to make a Quiz based on provided flashcards and quizLength
@@ -168,6 +169,13 @@ public class Quiz {
         }
 
         result = score;
+    }
+
+    public void setVillainID(int villainNumber){
+        this.VillainID = villainNumber;
+    }
+    public int getVillainID(){
+        return VillainID;
     }
 
     /**

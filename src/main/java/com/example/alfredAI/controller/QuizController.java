@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,12 +17,17 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 public class QuizController {
     @FXML
     private ProgressBar progressBar;
     @FXML
     private VBox questionsContainer;
+    @FXML
+    private ImageView questCharacter;
+    @FXML
+    private ImageView questVillan;
     @FXML
     private Button submitBtn;
 
@@ -38,8 +45,23 @@ public class QuizController {
         AlfredWelcome.quiz = new Quiz(flashcards, questDaysLeft);
     }
 
+    public int generateRandomNumber() {
+        int Number = (int)(Math.random() * 8) + 1;
+        AlfredWelcome.quiz.setVillainID(Number);
+        return(Number);
+    }
+
     @FXML
     public void initialize() throws IOException {
+        String characterName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getCharacterName();
+        // Set character images
+        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/"+characterName+".png")));
+        questCharacter.setImage(characterImage);
+
+        String villainNo = Integer.toString(generateRandomNumber());
+        Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villian"+villainNo+".png")));
+        questVillan.setImage(VillianImage);
+
         if (noFlashcards) {
             progressBar.setVisible(false);
             submitBtn.setVisible(false);

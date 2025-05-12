@@ -10,17 +10,24 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class QuizResultsController {
     @FXML
     private Label resultsLabel;
     @FXML
     private VBox questionsContainer;
+    @FXML
+    private ImageView questCharacter;
+    @FXML
+    private ImageView questVillan;
 
     private IAlfredDAO alfredDAO;
 
@@ -30,6 +37,15 @@ public class QuizResultsController {
 
     @FXML
     public void initialize() {
+        String characterName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getCharacterName();
+        // Set character images
+        Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/"+characterName+".png")));
+        questCharacter.setImage(characterImage);
+
+        String villainNo = Integer.toString(AlfredWelcome.quiz.getVillainID());
+        Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villian"+villainNo+".png")));
+        questVillan.setImage(VillianImage);
+
         resultsLabel.setText(alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizScore());
 
         if (AlfredWelcome.quiz == null) {
