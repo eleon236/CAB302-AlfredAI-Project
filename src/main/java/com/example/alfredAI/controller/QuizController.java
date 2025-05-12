@@ -53,6 +53,14 @@ public class QuizController {
 
     @FXML
     public void initialize() throws IOException {
+        if (noFlashcards) {
+            progressBar.setVisible(false);
+            submitBtn.setVisible(false);
+            questionsContainer.getChildren().add(new Label("There's no flashcards in this quest yet. Come back when you've added some flashcards!"));
+            questionsContainer.setAlignment(Pos.CENTER);
+            return;
+        }
+
         String characterName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getCharacterName();
         // Set character images
         Image characterImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/"+characterName+".png")));
@@ -61,14 +69,6 @@ public class QuizController {
         String villainNo = Integer.toString(generateRandomNumber());
         Image VillianImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/villians/villian"+villainNo+".png")));
         questVillan.setImage(VillianImage);
-
-        if (noFlashcards) {
-            progressBar.setVisible(false);
-            submitBtn.setVisible(false);
-            questionsContainer.getChildren().add(new Label("There's no flashcards in this quest yet. Come back when you've added some flashcards!"));
-            questionsContainer.setAlignment(Pos.CENTER);
-            return;
-        }
 
         progressBar.setProgress(0);
 
