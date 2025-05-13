@@ -83,7 +83,17 @@ public class MockAlfredDAO implements IAlfredDAO {
     }
 
     @Override
+    public void updateAchievementDays(int userID, int daysLoggedIn, long lastDayLoggedIn) {
+        // Mock implementation
+    }
+
+    @Override
     public ResultSet getAchievement(int userID) {
         return null; // Mock implementation
+    }
+
+    @Override
+    public void updateQuizCompleted(int userID, int QuizCompleted) {
+        // Mock implementation
     }
 }

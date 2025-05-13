@@ -358,13 +358,14 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                 int id = resultSet.getInt("ID"); // Retrieve the ID
                 String name = resultSet.getString("name");
                 LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
-                quests.add(new Quest(id, name, endDate)); // Pass ID to the constructor
+                    quests.add(new Quest(id, name, endDate)); // Pass ID to the constructor
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return quests;
     }
+
 
     private void createAchievementsTable() {
         try {
@@ -373,7 +374,8 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                     + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "userID INTEGER NOT NULL,"
                     + "daysLoggedIn INTEGER DEFAULT 0,"
-                    + "questsCompleted INTEGER DEFAULT 0,"
+                    + "lastDayLoggedIn DATE,"
+                    + "QuizCompleted INTEGER DEFAULT 0,"
                     + "otherVariables TEXT,"
                     + "FOREIGN KEY (userID) REFERENCES users(ID)"
                     + ")";
@@ -386,7 +388,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
     public void addAchievement(int userID) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO achievements (userID, daysLoggedIn, questsCompleted, otherVariables) VALUES (?, 0, 0, NULL)"
+                    "INSERT INTO achievements (userID, daysLoggedIn, lastDayLoggedIn, QuizCompleted, otherVariables) VALUES (?, 0, 0, NULL, NULL)"
             );
             statement.setInt(1, userID);
             statement.executeUpdate();
@@ -395,13 +397,13 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
-    public void updateAchievement(int userID, int daysLoggedIn, int questsCompleted, String otherVariables) {
+    public void updateAchievement(int userID, int daysLoggedIn, int QuizCompleted, String otherVariables) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE achievements SET daysLoggedIn = ?, questsCompleted = ?, otherVariables = ? WHERE userID = ?"
+                    "UPDATE achievements SET daysLoggedIn = ?, QuizCompleted = ?, otherVariables = ? WHERE userID = ?"
             );
             statement.setInt(1, daysLoggedIn);
-            statement.setInt(2, questsCompleted);
+            statement.setInt(2, QuizCompleted);
             statement.setString(3, otherVariables);
             statement.setInt(4, userID);
             statement.executeUpdate();
@@ -409,6 +411,34 @@ public class SqliteAlfredDAO implements IAlfredDAO {
             e.printStackTrace();
         }
     }
+
+    public void updateAchievementDays(int userID, int daysLoggedIn, long lastDayLoggedIn) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE achievements SET daysLoggedIn = ?, lastDayLoggedIn = ? WHERE userID = ?"
+            );
+            statement.setInt(1, daysLoggedIn);
+            statement.setLong(2, lastDayLoggedIn);
+            statement.setInt(3, userID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateQuizCompleted(int userID, int QuizCompleted) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+        "UPDATE achievements SET QuizCompleted = ? WHERE userID = ?"
+            );
+            statement.setLong(1, QuizCompleted);
+            statement.setInt(2, userID);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public ResultSet getAchievement(int userID) {
         try {
@@ -422,5 +452,6 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
         return null;
     }
+
 
 }

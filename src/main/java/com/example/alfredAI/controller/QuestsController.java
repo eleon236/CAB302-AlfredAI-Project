@@ -41,6 +41,7 @@ public class QuestsController {
         bearImageView.setImage(image);
 
         loadQuestsIntoListView();
+        achivementsController.addUserDays();
         achivementsController.ensureUserInAchievements(); // Call the method using the instance
     }
 

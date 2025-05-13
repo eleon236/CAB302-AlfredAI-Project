@@ -113,7 +113,11 @@ public interface IAlfredDAO {
     ///////////////// Achievements /////////////////
     void addAchievement(int userID);
 
-    void updateAchievement(int userID, int daysLoggedIn, int questsCompleted, String otherVariables);
+    void updateAchievementDays(int userID, int daysLoggedIn, long lastDayLoggedIn);
+
+    void updateQuizCompleted(int userID, int QuizCompleted);
+
+    void updateAchievement(int userID, int daysLoggedIn, int QuizCompleted, String otherVariables);
 
     ResultSet getAchievement(int userID);
 }

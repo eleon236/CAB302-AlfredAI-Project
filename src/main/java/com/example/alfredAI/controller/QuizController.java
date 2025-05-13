@@ -89,6 +89,8 @@ public class QuizController {
     private void onSubmit() throws IOException {
         // Calculate and update quiz result
         AlfredWelcome.quiz.calcQuizResult();
+        AchivementsController achivementsController = new AchivementsController();
+        achivementsController.updateQuizCompleted();
 
         // Update distance travelled in the quest
         Quest quest = alfredDAO.getQuest(AlfredWelcome.currentQuestID);
