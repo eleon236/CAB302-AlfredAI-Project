@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+    <?import javafx.geometry.Insets?>
     <?import javafx.scene.control.*?>
     <?import javafx.scene.layout.*?>
     <?import javafx.scene.text.*?>
 
+    <BorderPane xmlns="http://javafx.com/javafx"
+                xmlns:fx="http://javafx.com/fxml"
+                fx:controller="com.example.alfredAI.controller.AchivementsController"
+                prefWidth="800" prefHeight="600"
+                style="-fx-background-color: #f9e2bd;"
+                stylesheets="@style.css">
 
+        <!-- Top Panel -->
+        <top>
+            <HBox spacing="20" alignment="CENTER">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Achievements" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-alignment: center;"/>
+            </HBox>
+        </top>
 
-    <VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.example.alfredAI.controller.AchivementsController"
-          style="-fx-padding: 20;">
-        <Button fx:id="backButton" text="Back" onAction="#onBack"/>
-        <Label text="Achievements" style="-fx-font-size: 24; -fx-font-weight: bold;" />
-        <Label fx:id="totalDaysLabel" text="Total Days Logged In: 0" />
-        <Label fx:id="totalQuizzesLabel" text="Total Quizzes Completed: 0" />
-        <VBox fx:id="achievementsBox" spacing="10" />
-    </VBox>
+        <!-- Center Panel -->
+        <center>
+            <VBox spacing="15" alignment="CENTER" style="-fx-padding: 20;">
+                <Label fx:id="totalDaysLabel" text="Total Days Logged In: 0"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                <Label fx:id="totalQuizzesLabel" text="Total Quizzes Completed: 0"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                <VBox fx:id="achievementsBox" spacing="10"/>
+            </VBox>
+        </center>
+
+        <!-- Bottom Panel -->
+        <bottom>
+            <HBox alignment="CENTER" spacing="20">
+                <padding>
+                    <Insets top="10" right="20" bottom="20" left="20"/>
+                </padding>
+                <Button fx:id="backButton" text="Back" onAction="#onBack"
+                        style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                               -fx-border: none; -fx-text-fill: white;"/>
+            </HBox>
+        </bottom>
+
+    </BorderPane>
