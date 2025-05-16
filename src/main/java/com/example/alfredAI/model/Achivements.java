@@ -23,6 +23,7 @@ public class Achivements {
                 System.out.println("USER ADDED TO ACHIEVEMENTS TABLE");
             }
         } catch (Exception e) {
+            System.err.println("Error ensuring user in achievements: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -33,17 +34,20 @@ public class Achivements {
             ResultSet resultSet = alfredDAO.getAchievement(currentUserID);
             if (resultSet != null && resultSet.next()) {
                 int days = resultSet.getInt("daysLoggedIn");
-                int DaysSinceLastLogin = resultSet.getInt("lastDayLoggedIn");
-                if (System.currentTimeMillis() / 1000 > DaysSinceLastLogin) {
-                    alfredDAO.updateAchievementDays(currentUserID, days + 1, System.currentTimeMillis());
+                long lastDayLoggedIn = resultSet.getLong("lastDayLoggedIn");
+                long currentTime = System.currentTimeMillis();
+
+                if (currentTime > lastDayLoggedIn) {
+                    alfredDAO.updateAchievementDays(currentUserID, days + 1, currentTime);
+                    System.out.println("USER DAYS UPDATED");
                 } else {
-                    alfredDAO.updateAchievementDays(currentUserID, days, DaysSinceLastLogin);
+                    System.out.println("No update needed for days logged in.");
                 }
-                System.out.println("USER DAYS UPDATED");
             } else {
                 System.out.println("USER NOT FOUND IN ACHIEVEMENTS TABLE");
             }
         } catch (Exception e) {
+            System.err.println("Error updating user days: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -53,14 +57,43 @@ public class Achivements {
         try {
             ResultSet resultSet = alfredDAO.getAchievement(currentUserID);
             if (resultSet != null && resultSet.next()) {
-                int QuizCompleted = resultSet.getInt("QuizCompleted");
-                alfredDAO.updateQuizCompleted(currentUserID, QuizCompleted + 1);
+                int quizCompleted = resultSet.getInt("QuizCompleted");
+                alfredDAO.updateQuizCompleted(currentUserID, quizCompleted + 1);
                 System.out.println("USER QUIZZES UPDATED");
             } else {
                 System.out.println("USER NOT FOUND IN ACHIEVEMENTS TABLE");
             }
         } catch (Exception e) {
+            System.err.println("Error updating quizzes completed: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public int getDaysLoggedIn() {
+        int currentUserID = AlfredWelcome.currentUserID;
+        try {
+            ResultSet resultSet = alfredDAO.getAchievement(currentUserID);
+            if (resultSet != null && resultSet.next()) {
+                return resultSet.getInt("daysLoggedIn");
+            }
+        } catch (Exception e) {
+            System.err.println("Error retrieving days logged in: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getQuizzesCompleted() {
+        int currentUserID = AlfredWelcome.currentUserID;
+        try {
+            ResultSet resultSet = alfredDAO.getAchievement(currentUserID);
+            if (resultSet != null && resultSet.next()) {
+                return resultSet.getInt("QuizCompleted");
+            }
+        } catch (Exception e) {
+            System.err.println("Error retrieving quizzes completed: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
