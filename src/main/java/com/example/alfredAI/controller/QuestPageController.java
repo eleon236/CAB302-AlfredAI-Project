@@ -31,6 +31,7 @@ public class QuestPageController {
     private IAlfredDAO alfredDAO;
     private Quest quest;
 
+// test
     public QuestPageController() {
         alfredDAO = new SqliteAlfredDAO();
     }
@@ -38,6 +39,7 @@ public class QuestPageController {
     @FXML
     public void initialize() {
         loadQuestDetails();
+
 
         // Display correct quest progress image
         Image image;

@@ -49,9 +49,13 @@
             <!-- ListView in the first row -->
             <ListView fx:id="questsListView" prefWidth="400" prefHeight="300" GridPane.rowIndex="0" onMouseClicked="#onQuestSelected"/>
             <!-- Button in the second row -->
+
             <Button text="Add Subject" onAction="#onGoToAddSubject" GridPane.rowIndex="1"
                     style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
                                 -fx-border: none; -fx-text-fill: white"/>
+
+            <Button text="Go to Achievements" onAction="#onGoToAchievements"  GridPane.rowIndex="2"/>
+
 
 
         </GridPane>

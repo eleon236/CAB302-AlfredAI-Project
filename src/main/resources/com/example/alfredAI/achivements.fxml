@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <?import javafx.scene.control.*?>
+    <?import javafx.scene.layout.*?>
+    <?import javafx.scene.text.*?>
+
+
+
+    <VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.example.alfredAI.controller.AchivementsController"
+          style="-fx-padding: 20;">
+        <Button fx:id="backButton" text="Back" onAction="#onBack"/>
+        <Label text="Achievements" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+        <Label fx:id="totalDaysLabel" text="Total Days Logged In: 0" />
+        <Label fx:id="totalQuizzesLabel" text="Total Quizzes Completed: 0" />
+        <VBox fx:id="achievementsBox" spacing="10" />
+    </VBox>

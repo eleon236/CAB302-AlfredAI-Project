@@ -29,12 +29,20 @@ public class QuestsController {
     @FXML
     private ImageView bearImageView;
 
+    private AchivementsController achivementsController;
+
+    public QuestsController() {
+        achivementsController = new AchivementsController();
+    }
+
     @FXML
     public void initialize() {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/alfred.png")));
         bearImageView.setImage(image);
 
         loadQuestsIntoListView();
+        achivementsController.addUserDays();
+        achivementsController.ensureUserInAchievements(); // Call the method using the instance
     }
 
     @FXML
@@ -95,33 +103,13 @@ public class QuestsController {
         stage.setScene(scene);
     }
 
+    @FXML
+    private void onGoToAchievements() throws IOException {
+        Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("achivements.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
 
 
-//    @FXML
-//    private void onAddSubject() {
-//        String subjectName = subjectNameTextField.getText().trim();
-//        LocalDate subjectEndDate = subjectEndDateTextField.getValue();
-//
-//        if (subjectName.isEmpty() || subjectEndDate == null) {
-//            System.out.println("All fields must be filled out.");
-//            return;
-//        }
-//
-//        // Create an Quest object
-//        Quest newSubject = new Quest(subjectName, subjectEndDate);
-//
-//        // Save the subject as a quest in the database
-//        SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO();
-//        alfredDAO.addQuest("Null", subjectName, java.sql.Date.valueOf(subjectEndDate));
-//        // To do: Add logic to save the subject to the database or list
-//        System.out.println("Subject added: " + newSubject);
-//
-//        closeWindow();
-//    }
-//
-//    private void closeWindow() {
-//        Stage stage = (Stage) subjectNameTextField.getScene().getWindow();
-//        stage.close();
-    // test
-//    }
 }
