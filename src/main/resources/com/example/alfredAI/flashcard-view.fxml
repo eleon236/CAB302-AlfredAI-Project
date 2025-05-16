@@ -9,11 +9,13 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.alfredAI.controller.FlashcardController"
       alignment="CENTER" spacing="10"
-      style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+      style="-fx-padding: 20; -fx-background-color: #f9e2bd;"
+      stylesheets="@style.css">
 
     <HBox alignment="CENTER_RIGHT" spacing="5" maxWidth="600">
         <Button text="Edit Flashcards" onAction="#onEditFlashcards"
-                style="-fx-font-size: 14px; -fx-font-family: 'Comfortaa';"/>
+                style="-fx-font-size: 14px; -fx-font-family: 'Comfortaa'; -fx-font-weight: bold;
+                    -fx-background-color: #575761; -fx-border: none; -fx-text-fill: white"/>
     </HBox>
 
     <VBox alignment="CENTER" spacing="5" maxWidth="600">
@@ -34,10 +36,18 @@
     </StackPane>
 
     <HBox spacing="20" alignment="CENTER">
-        <Button text="Previous" onAction="#onPrevious"/>
-        <Button text="Next" onAction="#onNext"/>
-        <Button text="Flip" onAction="#onFlip"/>
+        <Button text="Previous" onAction="#onPrevious"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
+        <Button text="Next" onAction="#onNext"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
+        <Button text="Flip" onAction="#onFlip"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
     </HBox>
 
-    <Button text="Back to Quest" onAction="#onBack" alignment="CENTER"/>
+    <Button text="Back to Quest" onAction="#onBack" alignment="CENTER"
+            style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
 </VBox>

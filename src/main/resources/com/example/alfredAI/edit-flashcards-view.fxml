@@ -6,14 +6,17 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.alfredAI.controller.EditFlashcardsController"
-      spacing="10" alignment="CENTER" style="-fx-padding: 40;">
+      spacing="10" alignment="CENTER" style="-fx-padding: 40; -fx-background-color: #f9e2bd;"
+      stylesheets="@style.css">
 
     <Label text="Edit Flashcards" style="-fx-font-size: 24;"/>
 
     <ListView fx:id="flashcardList" prefHeight="400" prefWidth="600"/>
 
     <HBox spacing="10">
-        <Button text="Back" onAction="#onBack"/>
+        <Button text="Back" onAction="#onBack"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
     </HBox>
 
 </VBox>

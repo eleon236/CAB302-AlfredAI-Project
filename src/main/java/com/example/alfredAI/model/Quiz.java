@@ -1,5 +1,7 @@
 package com.example.alfredAI.model;
 
+import com.example.alfredAI.AlfredWelcome;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +12,7 @@ import java.util.Objects;
 public class Quiz {
     private final QuizQuestion[] questions;
     private int result;
+    public int VillainID;
 
     /**
      * Constructor to make a Quiz based on provided flashcards and quizLength
@@ -113,12 +116,16 @@ public class Quiz {
 
         // Enforce minimum 5
         if (numQuestions < 5) {
-            return 5;
+            numQuestions = 5;
+        }
+
+        if (numQuestions > flashcards.size()) {
+            numQuestions = flashcards.size();
         }
 
         // Enforce maximum 30
         if (numQuestions > 30) {
-            return 30;
+            numQuestions = 30;
         }
 
         return numQuestions;
@@ -162,5 +169,44 @@ public class Quiz {
         }
 
         result = score;
+    }
+
+    public void setVillainID(int villainNumber){
+        this.VillainID = villainNumber;
+    }
+    public int getVillainID(){
+        return VillainID;
+    }
+
+    /**
+     * Updates mastered flashcards after a quiz in the database
+     */
+    public void updateFlashcardsMastered() {
+        IAlfredDAO alfredDAO = new SqliteAlfredDAO();
+
+        List<Flashcard> flashcards = alfredDAO.getQuestFlashcards(AlfredWelcome.currentQuestID);
+        List<String> masteredQuestions = new ArrayList<>();
+
+        // Find all questions the user got correct
+        for (QuizQuestion question : questions) {
+            // if userAnswer == correctAnswer
+            if (Objects.equals(question.getUserAnswer().toLowerCase(), question.getCorrectAnswer().toLowerCase())) {
+                masteredQuestions.add(question.getQuestion());
+            }
+        }
+
+        // Update corresponding flashcards in the database
+        for (Flashcard flashcard : flashcards) {
+            for (String masteredQuestion : masteredQuestions) {
+                if (Objects.equals(flashcard.getQuestion(), masteredQuestion)) {
+                    alfredDAO.updateFlashcard(new Flashcard(
+                            flashcard.getID(),
+                            flashcard.getQuestion(),
+                            flashcard.getAnswer(),
+                            true
+                    ));
+                }
+            }
+        }
     }
 }

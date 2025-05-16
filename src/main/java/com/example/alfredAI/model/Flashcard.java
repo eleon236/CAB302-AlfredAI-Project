@@ -16,7 +16,7 @@ public class Flashcard {
     public Flashcard(String question, String answer) {
         this.question = question;
         this.answer = answer;
-        this.mastered = mastered;
+        this.mastered = false;
     }
 
     public int getID() {

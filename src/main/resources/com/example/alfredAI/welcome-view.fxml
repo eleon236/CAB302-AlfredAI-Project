@@ -7,7 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <VBox fx:id="emptyBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.alfredAI.controller.WelcomeController"
-      spacing="20" alignment="CENTER">
+      spacing="20" alignment="CENTER"
+      style="-fx-background-color: #f9e2bd;"
+      stylesheets="@style.css">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -34,7 +36,9 @@
 
         <Label fx:id="messageLabel" text="" style="-fx-text-fill: green; -fx-font-size: 16px;" />
 
-        <Button text="Continue !" onAction="#onContinue" style="-fx-font-size: 15px;"/>
+        <Button text="Continue !" onAction="#onContinue"
+                style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
     </VBox>
 
     <!-- Bottom section: Register link -->

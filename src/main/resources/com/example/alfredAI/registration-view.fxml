@@ -8,7 +8,9 @@
 <GridPane fx:controller="com.example.alfredAI.controller.RegistrationController"
           xmlns:fx="http://javafx.com/fxml"
           alignment="center"
-          hgap="20" vgap="20">
+          hgap="20" vgap="20"
+          style="-fx-background-color: #f9e2bd;"
+          stylesheets="@style.css">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -30,11 +32,15 @@
 
     <!-- Go Button -->
     <Button text="Go !" fx:id="goButton" onAction="#handleGoButton"
-            style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+            style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"
+            GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
 
 
     <Button text="Back" fx:id="backButton" onAction="#onBackButton"
-            style="-fx-font-size: 22px;" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
+            style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"
+            GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
 
 
 </GridPane>

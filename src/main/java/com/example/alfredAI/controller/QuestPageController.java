@@ -1,14 +1,13 @@
 package com.example.alfredAI.controller;
 
 import com.example.alfredAI.AlfredWelcome;
-import com.example.alfredAI.model.Flashcard;
 import com.example.alfredAI.model.IAlfredDAO;
+import com.example.alfredAI.model.Quest;
 import com.example.alfredAI.model.SqliteAlfredDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Optional;
 
 public class QuestPageController {
     @FXML
@@ -31,6 +29,7 @@ public class QuestPageController {
     private Label distanceTravelledLabel;
 
     private IAlfredDAO alfredDAO;
+    private Quest quest;
 
 // test
     public QuestPageController() {
@@ -44,7 +43,7 @@ public class QuestPageController {
 
         // Display correct quest progress image
         Image image;
-        int distanceTravelled = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getDistanceTravelled();
+        int distanceTravelled = quest.getDistanceTravelled();
         if (distanceTravelled < 25) {
             image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/quest-progress-1.png")));
         } else if (distanceTravelled < 75) {
@@ -61,7 +60,9 @@ public class QuestPageController {
         questProgressImage.setImage(image);
 
         // Update distance travelled label
-        if (distanceTravelled == 0) {
+        if (quest.pastQuestEndDate()) {
+            distanceTravelledLabel.setText("This quest is finished. You travelled " + distanceTravelled + "km.");
+        } else if (distanceTravelled == 0) {
             distanceTravelledLabel.setText("You haven't travelled any distance in this quest yet!");
         } else {
             distanceTravelledLabel.setText("You've travelled " + distanceTravelled + "km so far!");
@@ -78,13 +79,13 @@ public class QuestPageController {
 
     private void loadQuestDetails() {
         // Load quest details based on the questID
-        String questName = alfredDAO.getQuest(AlfredWelcome.currentQuestID).getSubjectName();
+        quest = alfredDAO.getQuest(AlfredWelcome.currentQuestID);
+        String questName = quest.getSubjectName();
         questNameLabel.setText(questName + " Quest");
     }
 
     @FXML
     private void onGoToFlashcards() throws IOException {
-//        Stage stage = (Stage) contactsListView.getScene().getWindow();
         Stage stage = (Stage) Stage.getWindows().get(0); // Get the primary stage
         FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("flashcard-view.fxml"));
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
@@ -125,6 +126,16 @@ public class QuestPageController {
         Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
         stage.setScene(scene);
     }
+
+    @FXML
+    private void onAddAIFlashcard() throws IOException {
+        Stage stage = (Stage) questNameLabel.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("add-ollama-flashcard-view.fxml"));
+        Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);
+        stage.setScene(scene);
+    }
+
+
 
 
 

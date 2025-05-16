@@ -64,6 +64,16 @@ public interface IAlfredDAO {
     );
 
     /**
+     * Updates an existing quest's current streak in the database
+     * @param ID The quest's ID
+     * @param newStreak The quest's new streak in days
+     */
+    public void updateQuestStreak(
+            int ID,
+            int newStreak
+    );
+
+    /**
      * Retrieves a quest's information from the database
      * @param questID The quest's ID
      * @return The full quest information
