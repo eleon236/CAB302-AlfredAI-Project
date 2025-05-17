@@ -1,5 +1,6 @@
 package com.example.alfredAI.model;
 
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -114,4 +115,19 @@ public interface IAlfredDAO {
      * Retrieves a user's quests from the database
      */
     public List<Quest> getUserQuests(int userID);
+
+
+
+
+
+    ///////////////// Achievements /////////////////
+    void addAchievement(int userID);
+
+    void updateAchievementDays(int userID, int daysLoggedIn, long lastDayLoggedIn);
+
+    void updateQuizCompleted(int userID, int QuizCompleted);
+
+    void updateAchievement(int userID, int daysLoggedIn, int QuizCompleted, String otherVariables);
+
+    ResultSet getAchievement(int userID);
 }

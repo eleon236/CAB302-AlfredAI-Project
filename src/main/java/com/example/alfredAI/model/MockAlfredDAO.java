@@ -1,5 +1,6 @@
 package com.example.alfredAI.model;
 
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -73,5 +74,31 @@ public class MockAlfredDAO implements IAlfredDAO {
     @Override
     public List<Quest> getUserQuests(int userID) {
         return List.of();
+    }
+
+
+    @Override
+    public void addAchievement(int userID) {
+        // Mock implementation
+    }
+
+    @Override
+    public void updateAchievement(int userID, int daysLoggedIn, int questsCompleted, String otherVariables) {
+        // Mock implementation
+    }
+
+    @Override
+    public void updateAchievementDays(int userID, int daysLoggedIn, long lastDayLoggedIn) {
+        // Mock implementation
+    }
+
+    @Override
+    public ResultSet getAchievement(int userID) {
+        return null; // Mock implementation
+    }
+
+    @Override
+    public void updateQuizCompleted(int userID, int QuizCompleted) {
+        // Mock implementation
     }
 }
