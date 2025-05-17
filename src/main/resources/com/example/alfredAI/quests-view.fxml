@@ -54,7 +54,9 @@
                     style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
                                 -fx-border: none; -fx-text-fill: white"/>
 
-            <Button text="Go to Achievements" onAction="#onGoToAchievements"  GridPane.rowIndex="2"/>
+            <Button text="Go to Achievements" onAction="#onGoToAchievements"  GridPane.rowIndex="2"
+                    style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #575761;
+                                -fx-border: none; -fx-text-fill: white"/>
 
 
 

@@ -5,6 +5,7 @@ package com.example.alfredAI.controller;
         import javafx.fxml.FXML;
         import javafx.scene.control.Button;
         import javafx.fxml.FXMLLoader;
+        import javafx.scene.layout.FlowPane;
         import javafx.scene.Scene;
         import javafx.scene.control.Label;
         import javafx.scene.layout.VBox;
@@ -17,7 +18,7 @@ public class AchivementsController {
             private final Achivements achivements;
 
             @FXML
-            private VBox achievementsBox;
+            private FlowPane achievementsBox;
 
             public AchivementsController() {
                 this.achivements = new Achivements();
