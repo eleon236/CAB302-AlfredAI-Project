@@ -31,7 +31,7 @@
         <StackPane maxWidth="800" alignment="BOTTOM_LEFT">
             <ImageView fx:id="questCharacter" fitWidth="100" fitHeight="125" preserveRatio="true"/>
             <HBox maxWidth="800" alignment="CENTER">
-                <ProgressBar fx:id="progressBar" prefWidth="500"/>
+                <ProgressBar fx:id="progressBar" prefWidth="500" style="-fx-accent: #57b379"/>
             </HBox>
             <HBox maxWidth="800" alignment="BOTTOM_RIGHT">
                 <ImageView fx:id="questVillan" fitWidth="100" fitHeight="125" preserveRatio="true"/>

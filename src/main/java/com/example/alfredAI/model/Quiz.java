@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * A class representing a daily quiz, with a list of the quiz's questions
+ * A class representing a daily quiz, with a list of the quiz's questions,
+ * the quiz's result and its villain's ID
  */
 public class Quiz {
     private final QuizQuestion[] questions;
@@ -15,7 +16,7 @@ public class Quiz {
     public int VillainID;
 
     /**
-     * Constructor to make a Quiz based on provided flashcards and quizLength
+     * Constructor to make a Quiz based on provided flashcards and the days left in the quest
      * @param flashcards All the user's flashcards for the selected quest
      * @param questDaysLeft An int with the number of days left in the quest
      */
@@ -72,18 +73,43 @@ public class Quiz {
         this.result = 0;
     }
 
+    /**
+     * Getter for all quiz questions
+     * @return All quiz questions
+     */
     public QuizQuestion[] getQuestions() {
         return questions;
     }
+
+    /**
+     * Getter for the quiz result
+     * @return Quiz result
+     */
     public int getResult() {
         return result;
+    }
+
+    /**
+     * Setter for the villain ID
+     * @param villainNumber The new villain ID
+     */
+    public void setVillainID(int villainNumber){
+        this.VillainID = villainNumber;
+    }
+
+    /**
+     * Getter for the villain ID
+     * @return The villain ID
+     */
+    public int getVillainID(){
+        return VillainID;
     }
 
     /**
      * Calculates the number of questions for a daily quiz
      * @param flashcards All the user's flashcards for the selected quest
      * @param questDaysLeft An int with the number of days left in the quest
-     * @return An int with the number of questions
+     * @return The number of questions
      */
     private int calcNumberOfQuestions(List<Flashcard> flashcards, int questDaysLeft) {
         // Find number of flashcards not mastered yet
@@ -132,7 +158,7 @@ public class Quiz {
     }
 
     /**
-     * Updates the userAnswer for a quiz question
+     * Updates the stored userAnswer for a quiz question
      * @param questionNum The question number as displayed on the GUI
      * @param userAnswer The answer the user entered
      */
@@ -142,7 +168,7 @@ public class Quiz {
 
     /**
      * Calculates the user's current progress in the quiz
-     * @return An int from 0 to 100 representing the percent of questions the user has completed
+     * @return A double between 0 and 1 representing the fraction of questions the user has completed
      */
     public double calcQuizProgress() {
         int questionsDone = 0;
@@ -169,13 +195,6 @@ public class Quiz {
         }
 
         result = score;
-    }
-
-    public void setVillainID(int villainNumber){
-        this.VillainID = villainNumber;
-    }
-    public int getVillainID(){
-        return VillainID;
     }
 
     /**

@@ -5,11 +5,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Mock implementation of the AlfredDAO methods
+ * that doesn't use the database
+ */
 public class MockAlfredDAO implements IAlfredDAO {
 
-    public MockAlfredDAO() {
-
-    }
+    public MockAlfredDAO() {}
 
     @Override
     public User addUser(String username, String password) {
@@ -75,7 +77,6 @@ public class MockAlfredDAO implements IAlfredDAO {
     public List<Quest> getUserQuests(int userID) {
         return List.of();
     }
-
 
     @Override
     public void addAchievement(int userID) {
