@@ -21,13 +21,32 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller class for the Edit Flashcards view.
+ * This class handles the display, editing, and deletion of flashcards
+ * associated with the currently selected quest.
+ */
 public class EditFlashcardsController {
 
+    /**
+     * ListView to display the flashcards.
+     * Each item in the list will be a Flashcard object.
+     */
     @FXML
     private ListView<Flashcard> flashcardList;
 
+    /**
+     * Data Access Object for interacting with the SQLite database.
+     * This is used to load, update, and delete flashcards.
+     */
     private SqliteAlfredDAO alfredDAO = new SqliteAlfredDAO(); // connect to database
 
+    /**
+     * Initializes the controller after its root element has been completely processed.
+     * This method is automatically called by the FXMLLoader.
+     * It loads flashcards from the database for the current quest and sets up the custom
+     * cell factory for the ListView to display flashcard details and action buttons.
+     */
     @FXML
     public void initialize() {
         // Load real flashcards from the database for the current quest
@@ -111,6 +130,13 @@ public class EditFlashcardsController {
         });
     }
 
+    /**
+     * Handles the action when the "Back" button is clicked.
+     * This method loads the "flashcard-view.fxml" and sets it as the current scene,
+     * effectively navigating back to the previous view.
+     * @param event The ActionEvent triggered by the button click.
+     * @throws IOException If the FXML file for the flashcard view cannot be loaded.
+     */
     @FXML
     private void onBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/alfredAI/flashcard-view.fxml"));
