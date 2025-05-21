@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * A controller for the quiz results page functionalities
+ */
 public class QuizResultsController {
     @FXML
     private Label resultsLabel;
@@ -31,10 +34,16 @@ public class QuizResultsController {
 
     private IAlfredDAO alfredDAO;
 
+    /**
+     * A constructor which initialises the connection to the database
+     */
     public QuizResultsController() {
         alfredDAO = new SqliteAlfredDAO();
     }
 
+    /**
+     * Initialises the quiz results page by setting all images and question answers
+     */
     @FXML
     public void initialize() {
         resultsLabel.setText(alfredDAO.getQuest(AlfredWelcome.currentQuestID).getLastQuizScore());
@@ -111,6 +120,10 @@ public class QuizResultsController {
         }
     }
 
+    /**
+     * Navigates back to the quest page when 'Continue' button pressed
+     * @throws IOException If there is an error while completing the action
+     */
     @FXML
     private void onContinue() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();

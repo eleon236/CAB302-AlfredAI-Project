@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-//Main class
+/**
+ * The main class that starts and runs the application
+ */
 public class AlfredWelcome extends Application {
     // Constants defining the window title and size
     public static final String TITLE = "Alfred AI";
@@ -18,6 +20,11 @@ public class AlfredWelcome extends Application {
     public static int currentUserID;
     public static int currentQuestID;
 
+    /**
+     * Starts up the application
+     * @param stage The application stage
+     * @throws IOException If there's an error when starting the app
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AlfredWelcome.class.getResource("welcome-view.fxml"));
@@ -27,6 +34,10 @@ public class AlfredWelcome extends Application {
         stage.show();
     }
 
+    /**
+     * The main method which launches the application
+     * @param args Any arguments passed in
+     */
     public static void main(String[] args) {
         launch();
     }

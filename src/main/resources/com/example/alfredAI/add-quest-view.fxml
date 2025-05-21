@@ -90,7 +90,7 @@
     </HBox>
 
 
-    <Label text="Quest Infomation" style="-fx-font-size: 14px;"/>
+    <Label text="Quest Information" style="-fx-font-size: 14px;"/>
     <TextField fx:id="subjectNameTextField" promptText="Enter subject name"/>
     <DatePicker fx:id="subjectEndDateTextField" promptText="Select end date"/>
     <Button text="Add Subject" onAction="#onAddSubject"

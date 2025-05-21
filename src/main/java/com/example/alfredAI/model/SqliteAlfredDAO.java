@@ -8,11 +8,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * A class that implements the IAlfredDAO methods with the database
+ */
 public class SqliteAlfredDAO implements IAlfredDAO {
 
+    /**
+     * The database connection
+     */
     private Connection connection;
 
+    /**
+     * Constructor that creates all tables in the database if they don't already exist
+     */
     public SqliteAlfredDAO() {
         connection = SqliteConnection.getInstance();
         createUsersTable();
@@ -30,6 +38,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
 //        );
     }
 
+    /**
+     * Creates the users table if not exists
+     */
     private void createUsersTable() {
         // Create table if not exists
         try {
@@ -45,6 +56,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    /**
+     * Creates the quests table if not exists
+     */
     private void createQuestsTable() {
         // Create table if not exists
         try {
@@ -66,6 +80,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    /**
+     * Creates the flashcards table if not exists
+     */
     private void createFlashcardsTable() {
         // Create table if not exists
         try {
@@ -82,6 +99,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    /**
+     * Creates the userQuests table if not exists
+     */
     private void createUserQuestsTable() {
         // Create table if not exists
         try {
@@ -99,6 +119,9 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    /**
+     * Creates the questFlashcards table if not exists
+     */
     private void createQuestFlashcardsTable() {
         // Create table if not exists
         try {
@@ -109,6 +132,27 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                     + "PRIMARY KEY (questID, flashcardID),"
                     + "FOREIGN KEY (questID) REFERENCES quests(ID),"
                     + "FOREIGN KEY (flashcardID) REFERENCES flashcards(ID)"
+                    + ")";
+            statement.execute(query);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    /**
+     * Creates the achievements table if not exists
+     */
+    private void createAchievementsTable() {
+        try {
+            Statement statement = connection.createStatement();
+            String query = "CREATE TABLE IF NOT EXISTS achievements ("
+                    + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "userID INTEGER NOT NULL,"
+                    + "daysLoggedIn INTEGER DEFAULT 0,"
+                    + "lastDayLoggedIn DATE,"
+                    + "QuizCompleted INTEGER DEFAULT 0,"
+                    + "otherVariables TEXT,"
+                    + "FOREIGN KEY (userID) REFERENCES users(ID)"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -371,7 +415,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
                 int id = resultSet.getInt("ID"); // Retrieve the ID
                 String name = resultSet.getString("name");
                 LocalDate endDate = resultSet.getDate("endDate").toLocalDate();
-                    quests.add(new Quest(id, name, endDate)); // Pass ID to the constructor
+                quests.add(new Quest(id, name, endDate)); // Pass ID to the constructor
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -379,25 +423,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         return quests;
     }
 
-
-    private void createAchievementsTable() {
-        try {
-            Statement statement = connection.createStatement();
-            String query = "CREATE TABLE IF NOT EXISTS achievements ("
-                    + "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "userID INTEGER NOT NULL,"
-                    + "daysLoggedIn INTEGER DEFAULT 0,"
-                    + "lastDayLoggedIn DATE,"
-                    + "QuizCompleted INTEGER DEFAULT 0,"
-                    + "otherVariables TEXT,"
-                    + "FOREIGN KEY (userID) REFERENCES users(ID)"
-                    + ")";
-            statement.execute(query);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
-
+    @Override
     public void addAchievement(int userID) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -410,6 +436,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    @Override
     public void updateAchievement(int userID, int daysLoggedIn, int QuizCompleted, String otherVariables) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -425,6 +452,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    @Override
     public void updateAchievementDays(int userID, int daysLoggedIn, long lastDayLoggedIn) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -439,6 +467,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
+    @Override
     public void updateQuizCompleted(int userID, int QuizCompleted) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -452,7 +481,7 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
     }
 
-
+    @Override
     public ResultSet getAchievement(int userID) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -465,6 +494,4 @@ public class SqliteAlfredDAO implements IAlfredDAO {
         }
         return null;
     }
-
-
 }
