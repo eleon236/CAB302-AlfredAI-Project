@@ -19,6 +19,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * A controller for the quiz page functionalities
+ */
 public class QuizController {
     @FXML
     private ProgressBar progressBar;
@@ -34,6 +37,9 @@ public class QuizController {
     private final IAlfredDAO alfredDAO;
     private final boolean noFlashcards;
 
+    /**
+     * A constructor which initialises the day's quiz
+     */
     public QuizController() {
         alfredDAO = new SqliteAlfredDAO();
 
@@ -45,12 +51,20 @@ public class QuizController {
         AlfredWelcome.quiz = new Quiz(flashcards, questDaysLeft);
     }
 
+    /**
+     * Sets the quiz villain ID to a random number 1-8
+     * @return The random number 1-8
+     */
     public int generateRandomNumber() {
         int Number = (int)(Math.random() * 8) + 1;
         AlfredWelcome.quiz.setVillainID(Number);
         return(Number);
     }
 
+    /**
+     * Initialises the quiz page by setting all images and questions
+     * @throws IOException If there's an error with initialising the page
+     */
     @FXML
     public void initialize() throws IOException {
         if (noFlashcards) {
@@ -112,6 +126,11 @@ public class QuizController {
         }
     }
 
+    /**
+     * Called when a userAnswerField's content is changed
+     * @param questionNum The question number as displayed on screen
+     * @param userAnswer The new value in the answer text field
+     */
     @FXML
     private void onAnswer(int questionNum, String userAnswer) {
         AlfredWelcome.quiz.enterUserAnswer(questionNum, userAnswer);
@@ -119,6 +138,10 @@ public class QuizController {
         progressBar.setProgress(quizProgress);
     }
 
+    /**
+     * Navigates back to the quest page when 'Back' button pressed
+     * @throws IOException If there is an error while completing the action
+     */
     @FXML
     private void onBack() throws IOException {
         Stage stage = (Stage) questionsContainer.getScene().getWindow();
@@ -127,6 +150,11 @@ public class QuizController {
         stage.setScene(scene);
     }
 
+    /**
+     * Navigates to the quiz results page when 'Submit' button pressed, and updates relevant data such as
+     * the quiz result, quest streak, distance travelled, and mastered flashcards
+     * @throws IOException If there is an error while completing the action
+     */
     @FXML
     private void onSubmit() throws IOException {
         // Calculate and update quiz result

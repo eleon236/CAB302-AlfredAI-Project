@@ -21,7 +21,7 @@
     <VBox alignment="CENTER" spacing="5" maxWidth="600">
         <Label text="Flashcards" style="-fx-font-size: 30px; -fx-font-family: 'Comfortaa'; -fx-font-weight: bold;"/>
         <Label fx:id="flashcardsMasteredLabel" style="-fx-font-size: 15px;"/>
-        <ProgressBar fx:id="progressBar" prefWidth="400"/>
+        <ProgressBar fx:id="progressBar" prefWidth="400" style="-fx-accent: #57b379"/>
     </VBox>
 
     <StackPane alignment="TOP_CENTER" maxWidth="400" minHeight="200"
