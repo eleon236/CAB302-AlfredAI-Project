@@ -8,10 +8,18 @@ public class Achivements {
 
     private final IAlfredDAO alfredDAO;
 
+    /**
+     * Constructor for Achivements class.
+     * Initializes the alfredDAO to interact with the database.
+     */
     public Achivements() {
         this.alfredDAO = new SqliteAlfredDAO();
     }
 
+    /**
+     * Ensures that the current user is present in the achievements table.
+     * If not, adds the user to the table.
+     */
     public void ensureUserInAchievements() {
         int currentUserID = AlfredWelcome.currentUserID;
         try {
@@ -28,6 +36,9 @@ public class Achivements {
         }
     }
 
+    /**
+     * Adds a day to the user's logged-in days if the current time is greater than the last logged-in time.
+     */
     public void addUserDays() {
         int currentUserID = AlfredWelcome.currentUserID;
         try {
@@ -52,6 +63,9 @@ public class Achivements {
         }
     }
 
+    /**
+     * Updates the number of quizzes completed by the user.
+     */
     public void updateQuizCompleted() {
         int currentUserID = AlfredWelcome.currentUserID;
         try {
@@ -83,6 +97,10 @@ public class Achivements {
         return 0;
     }
 
+    /**
+     * Retrieves the number of quizzes completed by the user.
+     * @return The number of quizzes completed.
+     */
     public int getQuizzesCompleted() {
         int currentUserID = AlfredWelcome.currentUserID;
         try {

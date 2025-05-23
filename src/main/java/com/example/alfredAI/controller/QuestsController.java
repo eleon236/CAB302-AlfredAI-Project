@@ -35,6 +35,10 @@ public class QuestsController {
         achivementsController = new AchivementsController();
     }
 
+    /**
+     * Initializes the controller class. This method is called after the FXML file has been loaded.
+     * It sets up the image and loads quests into the ListView.
+     */
     @FXML
     public void initialize() {
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/alfred.png")));
@@ -45,6 +49,11 @@ public class QuestsController {
         achivementsController.ensureUserInAchievements(); // Call the method using the instance
     }
 
+    /**
+     * Handles the event when the "Add Quest" button is clicked.
+     * It retrieves the subject name and end date from the input fields,
+     * creates a new Quest object, and adds it to the database.
+     */
     @FXML
     private void onlogoutButton() throws IOException {
         AlfredWelcome.currentUserID = 0;

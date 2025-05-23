@@ -42,8 +42,11 @@ public class AchivementsController {
             @FXML
             private Label totalQuizzesLabel;
 
-
-                @FXML
+            /**
+             * Initializes the controller class. This method is called after the FXML file has been loaded.
+             * It sets up the achievements display based on the user's progress.
+             */
+            @FXML
             public void initialize() {
                 Achivements achivements = new Achivements();
                 int daysLoggedIn = achivements.getDaysLoggedIn();
@@ -51,7 +54,6 @@ public class AchivementsController {
 
                     totalDaysLabel.setText("Total Days Logged In: " + daysLoggedIn);
                     totalQuizzesLabel.setText("Total Quizzes Completed: " + quizzesCompleted);
-
 
                     // Define achievements
                 String[] dayAchievements = {
@@ -96,8 +98,12 @@ public class AchivementsController {
             @FXML
             private Button backButton;
 
-            @FXML
-            private void onBack() throws IOException {
+    /**
+     * This method is called when the back button is clicked.
+     * @throws IOException
+     */
+    @FXML
+    private void onBack() throws IOException {
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(AlfredWelcome.class.getResource("quests-view.fxml"));
                 Scene scene = new Scene(loader.load(), AlfredWelcome.WIDTH, AlfredWelcome.HEIGHT);

@@ -15,12 +15,31 @@ public class Quest {
     private String highestQuizScore;
     private int currentStreakDays;
 
+    /**
+     *
+     * @param id The unique identifier for the quest.
+     * @param subjectName name of the subject
+     * @param endDate last date of the quest
+     */
     public Quest(int id, String subjectName, LocalDate endDate) { // Include ID in constructor
         this.id = id;
         this.subjectName = subjectName;
         this.endDate = endDate;
     }
 
+/**
+ * Constructs a Quest object with all properties.
+ *
+ * @param ID The unique identifier for the quest.
+ * @param character The name of the character associated with the quest.
+ * @param name The subject name of the quest.
+ * @param endDate The date when the quest ends.
+ * @param distanceTravelled The total distance travelled in the quest so far.
+ * @param lastQuizScore The score achieved in the most recent quiz.
+ * @param lastQuizDate The date the last quiz was taken.
+ * @param highestQuizScore The highest score achieved in any quiz for this quest.
+ * @param currentStreakDays The current number of consecutive days the user has completed quizzes.
+ */
     public Quest(int ID, String character, String name, LocalDate endDate, int distanceTravelled, String lastQuizScore, LocalDate lastQuizDate, String highestQuizScore, int currentStreakDays) {
         this.id = ID;
         this.character = character;
