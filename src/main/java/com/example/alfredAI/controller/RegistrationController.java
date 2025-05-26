@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class that handles the registration of a user
+ */
 public class RegistrationController {
     private User user;
     private SqliteAlfredDAO alfredDAO;
@@ -37,12 +40,19 @@ public class RegistrationController {
     @FXML
     private Button backButton;
 
+    /**
+     * Creates instances for user and link for database
+     */
     @FXML
     public void initialize() {
         user = new User();
         alfredDAO = new SqliteAlfredDAO();
     }
 
+    /**
+     * Takes users back to the login page
+     * @throws IOException required in case errors occur in the xml file
+     */
     @FXML
     private void onBackButton() throws IOException {
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -51,6 +61,11 @@ public class RegistrationController {
         stage.setScene(scene);
     }
 
+    /**
+     * Handles the registration by checking to see if all fields filled, passwords are the same and to see if the values are not already in the database
+     * If all of these are true user is registered and logged in
+     * Else user is required to reenter values to all conditions are true
+     */
     @FXML
     private void handleGoButton() {
         String username = usernameField.getText();
@@ -99,6 +114,12 @@ public class RegistrationController {
         }
     }
 
+    /**
+     * Function to slow the alert for invalid register conditions
+     * @param type the alert type being displayed that determines the warning image
+     * @param title title displayed on the alert
+     * @param message error message explaining what the error was e.g. passwords don't match, all fields filled, success or failure.
+     */
     private void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

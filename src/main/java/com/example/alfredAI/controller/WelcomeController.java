@@ -21,6 +21,9 @@ import javafx.scene.control.PasswordField;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controller class for home / login page for linking functions from the welcome-view XML file
+ */
 public class WelcomeController {
     private User user;
     private SqliteAlfredDAO alfredDAO;
@@ -43,6 +46,9 @@ public class WelcomeController {
     @FXML
     private ImageView bearImageView;
 
+    /**
+     * Initialise key elements of program such as the database, setting images and setting title lable
+     */
     @FXML
     public void initialize() {
         user = new User();
@@ -54,6 +60,10 @@ public class WelcomeController {
         titleLabel.setText("Welcome to\nAlfred AI!");
     }
 
+    /**
+     * Takes user to register page via a button at the bottom of the UI
+     * @throws IOException required in case errors occur in the xml file
+     */
     @FXML
     private void onRegister() throws IOException {
         Stage stage = (Stage) emptyBox.getScene().getWindow();
@@ -62,6 +72,11 @@ public class WelcomeController {
         stage.setScene(scene);
     }
 
+    /**
+     * Checks username and password to check if its in database user is either logged in and taken to their quests page
+     * if not successful user is required to reenter values to the same values in the databse
+     * @throws IOException required in case errors occur in the xml file
+     */
     @FXML
     private void onContinue() throws IOException {
         Stage stage = (Stage) emptyBox.getScene().getWindow();
